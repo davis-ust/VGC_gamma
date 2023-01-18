@@ -69,8 +69,8 @@ def _get_ec2_boto_data():
                             instID.update({'Backup Retention': bkp_plan['BackupPlan']['Rules'][0]['Lifecycle']['DeleteAfterDays']})
                             instID.update({'Backup Rule Name': bkp_plan['BackupPlan']['Rules'][0]['RuleName']})
                             instID.update({'Backup Target Vault': bkp_plan['BackupPlan']['Rules'][0]['TargetBackupVaultName']})
-                        inst_list.append(instID)
-                        return inst_list
+            inst_list.append(instID)
+    return inst_list
 
 
 def get_ec2_df():
