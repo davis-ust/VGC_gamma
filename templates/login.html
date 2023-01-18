@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/login.css">
+    <title>Login</title>
+</head>
+<body>
+<div class="main-div">
+    <div class="glass-card">
+        <div class="heading">
+            <img style="margin:10px 30px 70px 10px; height:fit-content;width:200px;" class="sealImage" alt="vgc"
+                 src="/static/vgc_logo.png">
+
+        </div>
+        <form class="access_id" id="access-cred" method="post" action="/login">
+            <div class="access_field" style="display:flex;justify-content:flex-start;align-items: center;">
+                <input type="text" placeholder="Key ID" name="key_id"
+                       style="background:transparent; border:none;outline: 0;  margin-left:8px; width:100%">
+            </div>
+            <div class="access_field" style="display:flex;justify-content:flex-start;align-items: center;">
+                <input type="password" placeholder="Access Key" name="access_key"
+                       style="background:transparent; border:none;outline: 0;  margin-left:8px; width:100%">
+            </div>
+            <div class="access_field" style="display:flex;justify-content:flex-start;align-items: center;">
+                <input type="text" placeholder="Region" name="region"
+                       required style="background:transparent; border:none;outline: 0;  margin-left:8px; width:100%">
+            </div>
+            <div style="display:flex;justify-content:flex-start;align-items: center;">
+                <button id="login" class="login_button" type="submit"> Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div></div>
+</body>
+</html>

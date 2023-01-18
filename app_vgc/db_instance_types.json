@@ -1,0 +1,692 @@
+[
+ {"db.t4g.micro":{
+  "Model": "db.t4g.micro",
+  "vCPU": 2,
+  "Memory (GiB)": 1
+ }},
+ {"db.t4g.small":{
+  "Model": "db.t4g.small",
+  "vCPU": 2,
+  "Memory (GiB)": 2
+ }},
+ {"db.t4g.medium":{
+  "Model": "db.t4g.medium",
+  "vCPU": 2,
+  "Memory (GiB)": 4
+ }},
+ {"db.t4g.large":{
+  "Model": "db.t4g.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.t4g.xlarge":{
+  "Model": "db.t4g.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.t4g.2xlarge":{
+  "Model": "db.t4g.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.t3.micro":{
+  "Model": "db.t3.micro",
+  "vCPU": 2,
+  "Memory (GiB)": 1
+ }},
+ {"db.t3.small":{
+  "Model": "db.t3.small",
+  "vCPU": 2,
+  "Memory (GiB)": 2
+ }},
+ {"db.t3.medium":{
+  "Model": "db.t3.medium",
+  "vCPU": 2,
+  "Memory (GiB)": 4
+ }},
+ {"db.t3.large":{
+  "Model": "db.t3.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.t3.xlarge":{
+  "Model": "db.t3.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.t3.2xlarge":{
+  "Model": "db.t3.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.t2.micro":{
+  "Model": "db.t2.micro",
+  "vCPU": 1,
+  "Memory (GiB)": 1
+ }},
+ {"db.t2.small":{
+  "Model": "db.t2.small",
+  "vCPU": 1,
+  "Memory (GiB)": 2
+ }},
+ {"db.t2.medium":{
+  "Model": "db.t2.medium",
+  "vCPU": 2,
+  "Memory (GiB)": 4
+ }},
+ {"db.t2.large":{
+  "Model": "db.t2.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.t2.xlarge":{
+  "Model": "db.t2.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.t2.2xlarge":{
+  "Model": "db.t2.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.m6g.large":{
+  "Model": "db.m6g.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.m6g.xlarge":{
+  "Model": "db.m6g.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.m6g.2xlarge":{
+  "Model": "db.m6g.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.m6g.4xlarge":{
+  "Model": "db.m6g.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 64
+ }},
+ {"db.m6g.8xlarge":{
+  "Model": "db.m6g.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 128
+ }},
+ {"db.m6g.12xlarge":{
+  "Model": "db.m6g.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 192
+ }},
+ {"db.m6g.16xlarge":{
+  "Model": "db.m6g.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 256
+ }},
+ {"db.m5.large":{
+  "Model": "db.m5.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.m5.xlarge":{
+  "Model": "db.m5.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.m5.2xlarge":{
+  "Model": "db.m5.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.m5.4xlarge":{
+  "Model": "db.m5.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 64
+ }},
+ {"db.m5.8xlarge":{
+  "Model": "db.m5.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 128
+ }},
+ {"db.m5.12xlarge":{
+  "Model": "db.m5.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 192
+ }},
+ {"db.m5.16xlarge":{
+  "Model": "db.m5.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 256
+ }},
+ {"db.m5.24xlarge":{
+  "Model": "db.m5.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 384
+ }},
+ {"db.m5d.large":{
+  "Model": "db.m5d.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.m5d.xlarge":{
+  "Model": "db.m5d.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.m5d.2xlarge":{
+  "Model": "db.m5d.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.m5d.4xlarge":{
+  "Model": "db.m5d.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 64
+ }},
+ {"db.m5d.8xlarge":{
+  "Model": "db.m5d.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 128
+ }},
+ {"db.m5d.12xlarge":{
+  "Model": "db.m5d.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 192
+ }},
+ {"db.m5d.16xlarge":{
+  "Model": "db.m5d.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 256
+ }},
+ {"db.m5d.24xlarge":{
+  "Model": "db.m5d.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 384
+ }},
+ {"db.m4.large":{
+  "Model": "db.m4.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+ {"db.m4.xlarge":{
+  "Model": "db.m4.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+ {"db.m4.2xlarge":{
+  "Model": "db.m4.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+ {"db.m4.4xlarge":{
+  "Model": "db.m4.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 64
+ }},
+ {"db.m4.10xlarge":{
+  "Model": "db.m4.10xlarge",
+  "vCPU": 40,
+  "Memory (GiB)": 160
+ }},
+ {"db.m4.16xlarge":{
+  "Model": "db.m4.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 256
+ }},
+ {"db.r6g.large":{
+  "Model": "db.r6g.large",
+  "vCPU": 2,
+  "Memory (GiB)": 16
+ }},
+ {"db.r6g.xlarge":{
+  "Model": "db.r6g.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 32
+ }},
+ {"db.r6g.2xlarge":{
+  "Model": "db.r6g.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 64
+ }},
+ {"db.r6g.4xlarge":{
+  "Model": "db.r6g.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 128
+ }},
+ {"db.r6g.8xlarge":{
+  "Model": "db.r6g.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 256
+ }},
+ {"db.r6g.12xlarge":{
+  "Model": "db.r6g.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 384
+ }},
+ {"db.r6g.16xlarge":{
+  "Model": "db.r6g.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 512
+ }},
+ {"db.r5.large":{
+  "Model": "db.r5.large",
+  "vCPU": 2,
+  "Memory (GiB)": 16
+ }},
+ {"db.r5.xlarge":{
+  "Model": "db.r5.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 32
+ }},
+ {"db.r5.2xlarge":{
+  "Model": "db.r5.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 64
+ }},
+ {"db.r5.4xlarge":{
+  "Model": "db.r5.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 128
+ }},
+ {"db.r5.8xlarge":{
+  "Model": "db.r5.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 256
+ }},
+ {"db.r5.12xlarge":{
+  "Model": "db.r5.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 384
+ }},
+ {"db.r5.16xlarge":{
+  "Model": "db.r5.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 512
+ }},
+ {"db.r5.24xlarge":{
+  "Model": "db.r5.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 768
+ }},
+ {"db.r5.large.tpc1.mem2x":{
+  "Model": "db.r5.large.tpc1.mem2x",
+  "vCPU": 2,
+  "Memory (GiB)": 32
+ }},
+ {"db.r5.xlarge.tpc2.mem2x":{
+  "Model": "db.r5.xlarge.tpc2.mem2x",
+  "vCPU": 4,
+  "Memory (GiB)": 64
+ }},
+ {"db.r5.xlarge.tpc2.mem4x":{
+  "Model": "db.r5.xlarge.tpc2.mem4x",
+  "vCPU": 4,
+  "Memory (GiB)": 128
+ }},
+ {"db.r5.2xlarge.tpc1.mem2x":{
+  "Model": "db.r5.2xlarge.tpc1.mem2x",
+  "vCPU": 8,
+  "Memory (GiB)": 128
+ }},
+ {"db.r5.2xlarge.tpc2.mem4x":{
+  "Model": "db.r5.2xlarge.tpc2.mem4x",
+  "vCPU": 8,
+  "Memory (GiB)": 256
+ }},
+ {"db.r5.2xlarge.tpc2.mem8x":{
+  "Model": "db.r5.2xlarge.tpc2.mem8x",
+  "vCPU": 8,
+  "Memory (GiB)": 512
+ }},
+ {"db.r5.4xlarge.tpc2.mem2x":{
+  "Model": "db.r5.4xlarge.tpc2.mem2x",
+  "vCPU": 16,
+  "Memory (GiB)": 256
+ }},
+ {"db.r5.4xlarge.tpc2.mem3x":{
+  "Model": "db.r5.4xlarge.tpc2.mem3x",
+  "vCPU": 16,
+  "Memory (GiB)": 384
+ }},
+ {"db.r5.4xlarge.tpc2.mem4x":{
+  "Model": "db.r5.4xlarge.tpc2.mem4x",
+  "vCPU": 16,
+  "Memory (GiB)": 512
+ }},
+ {"db.r5.6xlarge.tpc2.mem4x":{
+  "Model": "db.r5.6xlarge.tpc2.mem4x",
+  "vCPU": 24,
+  "Memory (GiB)": 768
+ }},
+ {"db.r5.8xlarge.tpc2.mem3x":{
+  "Model": "db.r5.8xlarge.tpc2.mem3x",
+  "vCPU": 32,
+  "Memory (GiB)": 768
+ }},
+ {"db.r5.12xlarge.tpc2.mem2x":{
+  "Model": "db.r5.12xlarge.tpc2.mem2x",
+  "vCPU": 48,
+  "Memory (GiB)": 768
+ }},
+ {"db.r5b.large":{
+  "Model": "db.r5b.large",
+  "vCPU": 2,
+  "Memory (GiB)": 16
+ }},
+ {"db.r5b.xlarge":{
+  "Model": "db.r5b.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 32
+ }},
+ {"db.r5b.2xlarge":{
+  "Model": "db.r5b.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 64
+ }},
+ {"db.r5b.4xlarge":{
+  "Model": "db.r5b.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 128
+ }},
+ {"db.r5b.8xlarge":{
+  "Model": "db.r5b.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 256
+ }},
+ {"db.r5b.12xlarge":{
+  "Model": "db.r5b.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 384
+ }},
+ {"db.r5b.16xlarge":{
+  "Model": "db.r5b.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 512
+ }},
+ {"db.r5b.24xlarge":{
+  "Model": "db.r5b.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 768
+ }},
+ {"db.r5d.large":{
+  "Model": "db.r5d.large",
+  "vCPU": 2,
+  "Memory (GiB)": 16
+ }},
+ {"db.r5d.xlarge":{
+  "Model": "db.r5d.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 32
+ }},
+ {"db.r5d.2xlarge":{
+  "Model": "db.r5d.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 64
+ }},
+ {"db.r5d.4xlarge":{
+  "Model": "db.r5d.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 128
+ }},
+ {"db.r5d.8xlarge":{
+  "Model": "db.r5d.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 256
+ }},
+ {"db.r5d.12xlarge":{
+  "Model": "db.r5d.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 384
+ }},
+ {"db.r5d.16xlarge":{
+  "Model": "db.r5d.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 512
+ }},
+ {"db.r5d.24xlarge":{
+  "Model": "db.r5d.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 768
+ }},
+ {"db.r4.large":{
+  "Model": "db.r4.large",
+  "vCPU": 2,
+  "Memory (GiB)": 15.25
+ }},
+ {"db.r4.xlarge":{
+  "Model": "db.r4.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 30.5
+ }},
+ {"db.r4.2xlarge":{
+  "Model": "db.r4.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 61
+ }},
+ {"db.r4.4xlarge":{
+  "Model": "db.r4.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 122
+ }},
+ {"db.r4.8xlarge":{
+  "Model": "db.r4.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 244
+ }},
+ {"db.r4.16xlarge":{
+  "Model": "db.r4.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 488
+ }},
+ {"db.x2g.medium":{
+  "Model": "db.x2g.medium",
+  "vCPU": 1,
+  "Memory (GiB)": "16 GiB"
+ }},
+ {"db.x2g.large":{
+  "Model": "db.x2g.large",
+  "vCPU": 2,
+  "Memory (GiB)": "32 GiB"
+ }},
+ {"db.x2g.xlarge":{
+  "Model": "db.x2g.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": "64 GiB"
+ }},
+ {"db.x2g.2xlarge":{
+  "Model": "db.x2g.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": "128 GiB"
+ }},
+ {"db.x2g.4xlarge":{
+  "Model": "db.x2g.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": "256 GiB"
+ }},
+ {"db.x2g.8xlarge":{
+  "Model": "db.x2g.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": "512 GiB"
+ }},
+ {"db.x2g.12xlarge":{
+  "Model": "db.x2g.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": "768 GiB"
+ }},
+ {"db.x2g.16xlarge":{
+  "Model": "db.x2g.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": "1024 GiB"
+ }},
+ {"db.x1e.xlarge":{
+  "Model": "db.x1e.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 122
+ }},
+ {"db.x1e.2xlarge":{
+  "Model": "db.x1e.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 244
+ }},
+ {"db.x1e.4xlarge":{
+  "Model": "db.x1e.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 488
+ }},
+ {"db.x1e.8xlarge":{
+  "Model": "db.x1e.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 976
+ }},
+ {"db.x1e.16xlarge":{
+  "Model": "db.x1e.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 1952
+ }},
+ {"db.x1e.32xlarge":{
+  "Model": "db.x1e.32xlarge",
+  "vCPU": 128,
+  "Memory (GiB)": 3904
+ }},
+ {"db.x1.16xlarge":{
+  "Model": "db.x1.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 976
+ }},
+ {"db.x1.32xlarge":{
+  "Model": "db.x1.32xlarge",
+  "vCPU": 128,
+  "Memory (GiB)": 1952
+ }},
+ {"db.z1d.large":{
+  "Model": "db.z1d.large",
+  "vCPU": 2,
+  "Memory (GiB)": 16
+ }},
+ {"db.z1d.xlarge":{
+  "Model": "db.z1d.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 32
+ }},
+ {"db.z1d.2xlarge":{
+  "Model": "db.z1d.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 64
+ }},
+ {"db.z1d.3xlarge":{
+  "Model": "db.z1d.3xlarge",
+  "vCPU": 12,
+  "Memory (GiB)": 96
+ }},
+ {"db.z1d.6xlarge":{
+  "Model": "db.z1d.6xlarge",
+  "vCPU": 24,
+  "Memory (GiB)": 192
+ }},
+ {"db.z1d.12xlarge":{
+  "Model": "db.z1d.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 384
+ }},
+{"db.m6i.large":{
+  "Model": "db.m6i.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+{"db.m6i.xlarge":{
+  "Model": "db.m6i.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 8
+ }},
+{"db.m6i.2xlarge":{
+  "Model": "db.m6i.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+{"db.m6i.4xlarge":{
+  "Model": "db.m6i.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 64
+ }},
+{"db.m6i.8xlarge":{
+  "Model": "db.m6i.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 128
+ }},
+{"db.m6i.12xlarge":{
+  "Model": "db.m6i.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 192
+ }},
+{"db.m6i.16xlarge":{
+  "Model": "db.m6i.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 256
+ }},
+{"db.m6i.24xlarge":{
+  "Model": "db.m6i.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 384
+ }},
+{"db.m6i.32xlarge":{
+  "Model": "db.m6i.32xlarge",
+  "vCPU": 128,
+  "Memory (GiB)": 512
+ }},
+{"db.m6i.metal":{
+  "Model": "db.m6i.metal",
+  "vCPU": 128,
+  "Memory (GiB)": 512
+ }},
+{"db.m6id.large":{
+  "Model": "db.m6id.large",
+  "vCPU": 2,
+  "Memory (GiB)": 8
+ }},
+{"db.m6id.xlarge":{
+  "Model": "db.m6id.xlarge",
+  "vCPU": 4,
+  "Memory (GiB)": 16
+ }},
+{"db.m6id.2xlarge":{
+  "Model": "db.m6id.2xlarge",
+  "vCPU": 8,
+  "Memory (GiB)": 32
+ }},
+{"db.m6id.4xlarge":{
+  "Model": "db.m6id.4xlarge",
+  "vCPU": 16,
+  "Memory (GiB)": 64
+ }},
+{"db.m6id.8xlarge":{
+  "Model": "db.m6id.8xlarge",
+  "vCPU": 32,
+  "Memory (GiB)": 128
+ }},
+{"db.m6id.12xlarge":{
+  "Model": "db.m6id.12xlarge",
+  "vCPU": 48,
+  "Memory (GiB)": 192
+ }},
+{"db.m6id.16xlarge":{
+  "Model": "db.m6id.16xlarge",
+  "vCPU": 64,
+  "Memory (GiB)": 256
+ }},
+{"db.m6id.24xlarge":{
+  "Model": "db.m6id.24xlarge",
+  "vCPU": 96,
+  "Memory (GiB)": 384
+ }},
+{"db.m6id.32xlarge":{
+  "Model": "db.m6id.32xlarge",
+  "vCPU": 128,
+  "Memory (GiB)": 512
+ }},
+{"db.m6id.metal":{
+  "Model": "db.m6id.metal",
+  "vCPU": 128,
+  "Memory (GiB)": 512
+ }}
+]

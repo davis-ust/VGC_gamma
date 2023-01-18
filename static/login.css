@@ -1,0 +1,82 @@
+*{
+margin:0;
+padding:0;
+font-family:'SF Pro Text';
+overflow:hidden;
+}
+.main-div{
+display:flex;
+background-color:#405d51;
+height:100%;
+justify-content:center;
+align-items:center;
+width:100%;
+}
+
+.main-div::before{
+
+    content: '';
+    position: absolute;
+    bottom: 0vh;
+    left: 50%;
+    width: 100%;
+    height: 50vh;
+    background-color: #183229;
+    /* background: radial-gradient(at top left, transparent 300px, #183229 0); */
+    border-radius: 60%;
+    transform-origin: top;
+    transform: translateX(-90%) scale(4);
+
+}
+.glass-card{
+box-sizing: border-box;
+width: 450px;
+height: 600px;
+background:linear-gradient(198.9deg, #EBEBEB -97.46%, rgba(235, 235, 235, 0) 99.31%);
+backdrop-filter: blur(13.5px);
+border-radius: 36px;
+align-items:center;
+flex-direction:column;
+display:flex;
+transform: rotate(360deg);
+}
+.cred-div{
+margin:100px auto 0;
+}
+.cred{
+background-color:white;
+border-radius:10px;
+width:290px;
+margin-bottom:20px;
+}
+.heading{
+margin:20px auto 70px;}
+
+.access_id {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+.access_field {
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+    background: #FFFFFF;
+    box-shadow: inset 5px 2px 9px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.login_button {
+    width: 150px;
+    height: 40px;
+    left: 627px;
+    top: 687px;
+    font-size:22px;
+    background: #183229;
+    border-radius: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    border:none;
+}
