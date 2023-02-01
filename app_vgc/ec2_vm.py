@@ -3,55 +3,63 @@ from app_vgc import BotoManager, recursive_process
 
 def _get_ec2_boto_data():
     print('getting _get_ec2_boto_data...')
-    inst_list = []
+    output_list = []
     ec2 = BotoManager.boto_session.client('ec2')
     instance_details = ec2.describe_instances()
     for instance in instance_details['Reservations']:
-        for inst in instance['Instances']:
-            instID = {'InstanceId': inst['InstanceId']}
-            instance_id = inst['InstanceId']
-            if 'Platform' in inst.keys():
-                instID.update({'Platform OS': inst['Platform']})
-            instID.update({'VM Name': inst['KeyName']})
-            instID.update({'InstanceType': inst['InstanceType']})
-            instID.update({'Availability Zone': inst['Placement']['AvailabilityZone']})
-            if 'PublicIpAddress' in inst.keys():
-                instID.update({'Public IP': inst['PublicIpAddress']})
-            instID.update({'Subnet ID': inst['SubnetId']})
-            instID.update({'VPC ID': inst['VpcId']})
+        for instance_item in instance['Instances']:
+            instance_id = instance_item['InstanceId']
+            instance_detail = {
+                'InstanceId': instance_id,
+                'VM Name': instance_item['KeyName'],
+                'InstanceType': instance_item['InstanceType'],
+                'Availability Zone': instance_item['Placement']['AvailabilityZone'],
+                'Subnet ID': instance_item['SubnetId'],
+                'VPC ID': instance_item['VpcId'],
+                'OwnerId': instance['OwnerId'],
+                'Instances': instance['Instances'],
+                'Root Device Name': instance_item['RootDeviceName'],
+                'Root Device Type': instance_item['RootDeviceType'],
+                'CPU Cores': instance_item['CpuOptions']['CoreCount'],
+                'Threads per core': instance_item['CpuOptions']['ThreadsPerCore']
+            }
+
+            if 'Platform' in instance_item.keys():
+                instance_detail['Platform OS'] = instance_item['Platform']
+            if 'PublicIpAddress' in instance_item.keys():
+                instance_detail['Public IP'] = instance_item['PublicIpAddress']
+            if 'IamInstanceProfile' in instance_item.keys():
+                instance_detail['Custom Permissions'] = instance_item['IamInstanceProfile']
+
+            for sg_details in instance_item['SecurityGroups']:
+                instance_detail.update({'Security Groups': sg_details['GroupName']})
+                instance_detail.update({'Security Group ID': sg_details['GroupId']})
+
             # for ipub in inst['NetworkInterfaces']:
             #     if 'Association' in ipub.keys():
             #         instID.update({'Public IP':ipub['Association']['PublicIp']})
-            instID.update({'OwnerId': instance['OwnerId']})
-            instID.update({'Instances': instance['Instances']})
-            instID.update({'Root Device Name': inst['RootDeviceName']})
-            instID.update({'Root Device Type': inst['RootDeviceType']})
-            root_device_type = inst['RootDeviceType']
-            if root_device_type == 'ebs':
-                instID.update({'Root Volume ID': inst['BlockDeviceMappings'][0]['Ebs']['VolumeId']})
-                root_vol_id = inst['BlockDeviceMappings'][0]['Ebs']['VolumeId']
-                root_volume_id = inst['BlockDeviceMappings'][0]['Ebs']['VolumeId']
-                instID.update({'Root Device Size in GB': ec2.describe_volumes(VolumeIds=[root_volume_id], DryRun=False)['Volumes'][0]['Size']})
-                for volume_list in ec2.describe_volumes()['Volumes']:
-                    for attachment_list in volume_list['Attachments']:
-                        if attachment_list['InstanceId'] == instance_id and attachment_list['VolumeId'] != root_vol_id:
-                            instID.update({'Additional Data Disk IDs': attachment_list['VolumeId']})
-                            additional_disk_id = attachment_list['VolumeId']
-                            additional_disk_volume = ec2.describe_volumes(VolumeIds=[additional_disk_id])
-                            additional_disk_name = additional_disk_volume['Volumes'][0]['Attachments'][0]['Device']
-                            additional_disk_size = additional_disk_volume['Volumes'][0]['Size']
-                            additional_disk_az = additional_disk_volume['Volumes'][0]['AvailabilityZone']
-                            instID.update({'Additional Data Device Name': additional_disk_name})
-                            instID.update({'Additional Data Disk Size': additional_disk_size})
-                            instID.update({'Additional Disk Availability Zone': additional_disk_az})
 
-            for sg_details in inst['SecurityGroups']:
-                instID.update({'Security Groups': sg_details['GroupName']})
-                instID.update({'Security Group ID': sg_details['GroupId']})
-            instID.update({'CPU Cores': inst['CpuOptions']['CoreCount']})
-            instID.update({'Threads per core': inst['CpuOptions']['ThreadsPerCore']})
-            if 'IamInstanceProfile' in inst.keys():
-                instID.update({'Custom Permissions': inst['IamInstanceProfile']})
+            root_device_type = instance_item['RootDeviceType']
+            if root_device_type == 'ebs':
+                root_volume_id = instance_item['BlockDeviceMappings'][0]['Ebs']['VolumeId']
+                instance_detail['Root Volume ID'] = root_volume_id
+                instance_detail['Root Device Size in GB'] = ec2.describe_volumes(
+                    VolumeIds=[root_volume_id],
+                    DryRun=False
+                )['Volumes'][0]['Size']
+
+                for volume_list in ec2.describe_volumes()['Volumes']:
+                    for attachment_detail in volume_list['Attachments']:
+                        additional_disk_id = attachment_detail['VolumeId']
+                        if attachment_detail['InstanceId'] == instance_id and additional_disk_id != root_volume_id:
+                            # todo: the following details of this loop might supposed to be appended to a list
+                            #  to get multiple additional disks data
+                            instance_detail.update({'Additional Data Disk IDs': additional_disk_id})
+                            additional_disk_volume = ec2.describe_volumes(VolumeIds=[additional_disk_id])
+                            instance_detail['Additional Data Device Name'] = additional_disk_volume['Volumes'][0]['Attachments'][0]['Device']
+                            instance_detail['Additional Data Disk Size'] = additional_disk_volume['Volumes'][0]['Size']
+                            instance_detail['Additional Disk Availability Zone'] = additional_disk_volume['Volumes'][0]['AvailabilityZone']
+
             bkp = BotoManager.boto_session.client('backup')
             for bkp_plan_list in bkp.list_backup_plans()['BackupPlansList']:
                 bkp_plan_id = bkp_plan_list['BackupPlanId']
@@ -62,15 +70,15 @@ def _get_ec2_boto_data():
                         if '/' not in arn:
                             continue
 
-                        id = arn.split('/')[1]
-                        if id == instance_id:
+                        if instance_id == arn.split('/')[1]:
                             bkp_plan = bkp.get_backup_plan(BackupPlanId=bkp_plan_id)
-                            instID.update({'Backup Plan Name': bkp_plan['BackupPlan']['BackupPlanName']})
-                            instID.update({'Backup Retention': bkp_plan['BackupPlan']['Rules'][0]['Lifecycle']['DeleteAfterDays']})
-                            instID.update({'Backup Rule Name': bkp_plan['BackupPlan']['Rules'][0]['RuleName']})
-                            instID.update({'Backup Target Vault': bkp_plan['BackupPlan']['Rules'][0]['TargetBackupVaultName']})
-            inst_list.append(instID)
-    return inst_list
+                            instance_detail.update({'Backup Plan Name': bkp_plan['BackupPlan']['BackupPlanName']})
+                            instance_detail.update({'Backup Retention': bkp_plan['BackupPlan']['Rules'][0]['Lifecycle']['DeleteAfterDays']})
+                            instance_detail.update({'Backup Rule Name': bkp_plan['BackupPlan']['Rules'][0]['RuleName']})
+                            instance_detail.update({'Backup Target Vault': bkp_plan['BackupPlan']['Rules'][0]['TargetBackupVaultName']})
+
+            output_list.append(instance_detail)
+    return output_list
 
 
 def get_ec2_df():
@@ -80,8 +88,12 @@ def get_ec2_df():
     for ec2 in ec2_vm_list:
         owner_id = {'owner_id': ec2['OwnerId']}
         for i_ec2 in ec2['Instances']:
+            owner_id['Name'] = ''
             for i_t in i_ec2['Tags']:
-                owner_id.update({'Name': i_t['Value']})
+                if i_t['Key'] == 'Name':
+                    owner_id['Name'] = i_t['Value']
+                    break
+
             owner_id.update({'AmiLaunch Index': i_ec2['AmiLaunchIndex']})
             owner_id.update({'Image Id': i_ec2['ImageId']})
             owner_id.update({'Instance Id': i_ec2['InstanceId']})
