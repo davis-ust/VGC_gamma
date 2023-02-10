@@ -5,7 +5,7 @@ import datetime
 import pandas as pd
 from pathlib import Path
 from app_vgc import BotoManager, subnet, vpc, load_balancer, internet_gateway, sqs, nat_gateway, \
-    transit_gateway, rds, dynamo_db, transfer_service, ec2_vm, network_acl
+    transit_gateway, rds, dynamo_db, transfer_service, ec2_vm, network_acl, sns
 
 
 download_folder_path = "generated_files"
@@ -49,7 +49,8 @@ def main():
         ('rds_details', rds.get_rds_df, None),
         ('dynamodb_details', dynamo_db.get_dynamo_db_df, None),
         ('ts_details', transfer_service.get_transfer_service_df, None),
-        ('ec2_details', ec2_vm.get_ec2_df, None)
+        ('ec2_details', ec2_vm.get_ec2_df, None),
+        ('sns_details', sns.get_sns, None)
     )
 
     all_data = {'subnet_details': subnet_data}
@@ -100,7 +101,9 @@ def main():
         if 'ts_details' in all_data:
             pd.DataFrame(data=all_data['ts_details']).to_excel(writer, sheet_name="AWS Transfer Service", index=False)
         if 'ec2_details' in all_data:
-            pd.DataFrame(data=all_data['ec2_details']).to_excel(writer, sheet_name="VMs", index=False)
+            pd.DataFrame(data=all_data['ec2_details']).to_excel(writer, sheet_name="VMs", index=False),
+        if 'sns_details' in all_data:
+            pd.DataFrame(data=all_data['sns_details']).to_excel(writer, sheet_name="SNS", index=False)
 
     return relative_path, all_data
 
