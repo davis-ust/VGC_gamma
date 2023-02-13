@@ -21,10 +21,14 @@ def get_vpc_pd(tup_args):
     vpc_detail_set = []
     for i_vpc in vpc_list:
         vpcID = {'VPC ID': i_vpc['VpcId']}
+        vpcID['Name'] = '-'
         if 'Tags' in i_vpc.keys():
             for i_tags in i_vpc['Tags']:
-                Name = {'Name': i_tags['Value']}
-                vpcID.update(Name)
+                if i_tags['Key'] == 'Name':
+                    Name = {'Name': i_tags['Value'] or '-'}
+                    vpcID.update(Name)
+                    break
+
         State = {'State': i_vpc['State']}
         vpcID.update(State)
         IPv4CIDR = {'IPv4 CIDR': i_vpc['CidrBlock']}

@@ -52,13 +52,14 @@ def get_subnet_pd(route_table, network_acl):
     for i_sub in subnet_list:
         # print(i_sub)
         SubnetId = {'Subnet ID': i_sub['SubnetId']}
+        SubnetId['Name'] = '-'
         if 'Tags' in i_sub.keys():
             for i_tag in i_sub['Tags']:
-                Name = {'Name': i_tag['Value']}
-                SubnetId.update(Name)
-        else:
-            Name = {'Name': ' '}
-            SubnetId.update(Name)
+                if i_tag['Key'] == 'Name':
+                    Name = {'Name': i_tag['Value'] or '-'}
+                    SubnetId.update(Name)
+                    break
+
         State = {'State': i_sub['State']}
         SubnetId.update(State)
         vpcID = {'VPC': i_sub['VpcId']}
