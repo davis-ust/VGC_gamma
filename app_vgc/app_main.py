@@ -14,30 +14,11 @@ download_folder_path = "generated_files"
 def main():
     if not BotoManager.boto_session:
         BotoManager.set_boto_session()
-
     route_table = subnet.get_route_table()
     network_acl_data = subnet.get_nacl_aws_data()
     subnet_data, net_vpc = subnet.get_subnet_pd(route_table, network_acl_data)
-
-    # all_data_old = {
-    #     'subnet_details': subnet_data,
-    #     'vpc_details': vpc.get_vpc_pd(route_table, net_vpc),
-    #     'load_balancer': load_balancer.get_load_balancer_pd(),
-    #     'network_acl_details': network_acl.get_network_acl_df(network_acl_data),
-    #     'igw_details': internet_gateway.get_internet_gateway(),
-    #     'sqs_details': sqs.get_sqs_df(),
-    #     'NAT_details': nat_gateway.get_nat_gateway_df(),
-    #     'tgw_details': transit_gateway.get_transit_gateway_df(),
-    #     'rds_details': rds.get_rds_df(),
-    #     'dynamodb_details': dynamo_db.get_dynamo_db_df(),
-    #     'ts_details': transfer_service.get_transfer_service_df(),
-    #     'ec2_details': ec2_vm.get_ec2_df()
-    # }
-
-    #network_acl.get_network_acl_df(network_acl_data)   
-
-    #ec2_vm.get_ec2_df()
-
+    region = BotoManager.boto_key_region
+    print("REGION", region)
     all_data_meta = (
         ('vpc_details', vpc.get_vpc_pd, (route_table, net_vpc)),
         ('load_balancer', load_balancer.get_load_balancer_pd, None),
@@ -75,8 +56,10 @@ def main():
     Path(download_folder_path).mkdir(exist_ok=True)
     tz = pytz.timezone('Asia/Kolkata')
     current_date = datetime.datetime.now(tz=tz).strftime("%Y-%m-%d--%H-%M-%S")
-    excel_filename = current_date + ".xlsx"
+    excel_filename = region + current_date + ".xlsx"
+    # print("Excel Filename", excel_filename)
     relative_path = fr"{download_folder_path}/aws_resource_inventory-{excel_filename}"
+    print("Excel Filename", relative_path)
     with pd.ExcelWriter(relative_path) as writer:
         if 'subnet_details' in all_data:
             pd.DataFrame(data=all_data['subnet_details']).to_excel(writer, sheet_name="Subnet", index=False)

@@ -1,3 +1,5 @@
+import boto3
+
 from app_vgc import BotoManager, recursive_process
 
 
@@ -104,6 +106,7 @@ def get_ec2_df():
             owner_id.update({'AvailabilityZone': i_ec2['Placement']['AvailabilityZone']})
             owner_id.update({'Tenancy': i_ec2['Placement']['Tenancy']})
             owner_id.update({'PrivateDnsName': i_ec2['PrivateDnsName']})
+            owner_id.update({'PublicDnsName': i_ec2.get('PublicDnsName') or '--'})
             owner_id.update({'PrivateIpAddress': i_ec2['PrivateIpAddress']})
             if 'PublicIpAddress' in i_ec2.keys():
                 owner_id.update({'PublicIpAddress': i_ec2['PublicIpAddress']})
@@ -133,3 +136,13 @@ def get_ec2_df():
 
     vms_ec2_lst = recursive_process(vms_ec2_lst)
     return vms_ec2_lst
+
+
+if __name__ == '__main__':
+    BotoManager.boto_session = boto3.Session(
+        aws_access_key_id="AKIAXUJZERGG4ZB2XJNX",
+        aws_secret_access_key="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",
+        region_name='us-east-1'
+    )
+    val = get_ec2_df()
+    print(val)
