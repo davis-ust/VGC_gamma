@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-width: 1260px;
+    min-height: 675px;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+nav {
+    width: 100%;
+    height: 50px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #183229;
+    position: fixed;
+
+}
+
+.sealImage {
+    position: fixed;
+    width: 90px;
+    height: fit-content;
+    left: 6px;
+    top: 3px;
+}
+
+.refresh {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 30px;
+    background-color: #D6CDA4;
+    border-radius: 15px;
+    margin-right: 12px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    overflow: visible;
+    z-index: 1;
+}
+
+.dropbtn {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    height: 300px;
+    right: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.show {
+    display: block;
+}
+
+.logo_and_search {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icons-div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2px;
+    align-items: center;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s ease-in-out;
+    padding: 20px 0;
+}
+
+.sidenav ul {
+    padding: 0px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sidenav li {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
+    padding: 6px;
+}
+
+.sidenav ul:hover {
+    color: #FC6A59;
+}
+
+.sidenav li:hover {
+    color: #FC6A59;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidenav_elements {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.a-elements {
+    margin-bottom: 20px;
+}
+
+.hint_sidenav {
+    width: 30px;
+    height: calc(100% - 50px);
+    left: 0;
+    margin-top: 50px;
+    position: fixed;
+    background-color: #021C13;
+}
+
+.main-contents {
+    width: calc(100% - 30px);
+    height: calc(100% - 50px);
+    left: 30px;
+    position: fixed;
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    top: 50px;
+    z-index: -1;
+    background-color: #405d51;;
+}
+
+#search-input {
+    position: fixed;
+    width: 300px;
+    height: 25px;
+    top: 100px;
+    left: 90px;
+    outline: none;
+    border: none;
+    background: #021C13;
+    color: white;
+    z-index: 2;
+}
+
+.details-table {
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    margin-top: 25px;
+}
+
+.cont_table_main {
+    width: 100%;
+    margin: 15px 50px;
+    height: 100%;
+
+}
+
+ul {
+    padding-left: 1px;
+}
+
+li {
+    list-style: none;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #021C13;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+th {
+    padding: 5px 0;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    background-color: #D6CDA4;
+}
+
+tr, td {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px
+
+}
+
+.heading-tr {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color: #183229;
+}
+
+.details-table {
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    margin-top: 80px;
+    margin-left: 8px;
+}

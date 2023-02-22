@@ -1,4 +1,6 @@
 from app_vgc import BotoManager
+
+
 # import json
 # import boto3
 
@@ -27,14 +29,10 @@ def get_sns():
                     'Endpoint': i['Endpoint'],
                     'TopicArn': i['TopicArn']
                     }
-
         sns_list.append(sns_dict)
-    print(sns_list)
-
     return sns_list
 
 
 if __name__ == "__main__":
     result = get_sns()
     print(result)
-

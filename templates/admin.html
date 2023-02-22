@@ -189,15 +189,15 @@
                     <th>Created At</th>
                 </tr>
                 {% for load_balancer in processing_data['load_balancer'] %}
-                <tr>
-                    <td>{{load_balancer['Name']}}</td>
-                    <td>{{load_balancer['DNS Name']}}</td>
-                    <td>{{load_balancer['State']}}</td>
-                    <td>{{load_balancer['VPC ID']}}</td>
-                    <td>{{load_balancer['Availability Zones']}}</td>
-                    <td>{{load_balancer['Type']}}</td>
-                    <td>{{load_balancer['Created At']}}</td>
-                </tr>
+                    <tr>
+                        <td>{{ load_balancer['Name'] }}</td>
+                        <td>{{ load_balancer['DNS Name'] }}</td>
+                        <td>{{ load_balancer['State'] }}</td>
+                        <td>{{ load_balancer['VPC ID'] }}</td>
+                        <td>{{ load_balancer['Availability Zones'] }}</td>
+                        <td>{{ load_balancer['Type'] }}</td>
+                        <td>{{ load_balancer['Created At'] }}</td>
+                    </tr>
                 {% endfor %}
             </table>
         </div>
@@ -258,12 +258,12 @@
                     <th>Encryption</th>
                 </tr>
                 {% for sqs in processing_data['sqs_details'] %}
-                <tr>
-                    <td>{{sqs['Name']}}</td>
-                    <td>{{sqs['Created']}}</td>
-                    <td>{{sqs['Type']}}</td>
-                    <td>{{sqs['Encryption']}}</td>
-                </tr>
+                    <tr>
+                        <td>{{ sqs['Name'] }}</td>
+                        <td>{{ sqs['Created'] }}</td>
+                        <td>{{ sqs['Type'] }}</td>
+                        <td>{{ sqs['Encryption'] }}</td>
+                    </tr>
                 {% endfor %}
             </table>
         </div>
@@ -352,34 +352,35 @@
                     <th>Deletion Protection</th>
                 </tr>
                 {% for rds in processing_data['rds_details'] %}
-                <tr>
-                    <td>{{rds['DB Name']}}</td>
-                    <td>{{rds['Instance Type']}}</td>
-                    <td>{{rds['vCPU']}}</td>
-                    <td>{{rds['Memory in GB']}}</td>
-                    <td>{{rds['Engine']}}</td>
-                    <td>{{rds['EngineVersion']}}</td>
-                    <td>{{rds['DB Status']}}</td>
-                    <td>{{rds['Admin User']}}</td>
-                    <td>{{rds['End Point']}}</td>
-                    <td>{{rds['VPC Security Groupd ID']}}</td>
-                    <td>{{rds['Availability Zone']}}</td>
-                    <td>{{rds['DB Subnet Name']}}</td>
-                    <td>{{rds['VPC ID']}}</td>
-                    <td>{{rds['Prefered Maintenance Window']}}</td>
-                    <td>{{rds['LatestRestorableTime']}}</td>
-                    <td>{{rds['MultiAZ']}}</td>
-                    <td>{{rds['AutoMinorVersionUpgrade']}}</td>
-                    <td>{{rds['LicenseModel']}}</td>
-                    <td>{{rds['PubliclyAccessible']}}</td>
-                    <td>{{rds['StorageType']}}</td>
-                    <td>{{rds['StorageEncrypted']}}</td>
-                    <td>{{rds['KmsKeyId']}}</td>
-                    <td>{{rds['MonitoringInterval']}}</td>
-                    <td>{{rds['DBInstanceArn']}}</td>
-                    <td>{{rds['IAMDatabaseAuthenticationEnabled']}}</td>
-                    <td>{{rds['DeletionProtection']}}</td>
-                </tr>
+                    <tr>
+                        <td>{{ rds['DB Name'] }}</td>
+                        <td>{{ rds['Instance Type'] }}</td>
+                        <td>{{ rds['vCPU'] }}</td>
+                        <td>{{ rds['Memory in GB'] }}</td>
+                        <td>{{ rds['Engine'] }}</td>
+                        <td>{{ rds['EngineVersion'] }}</td>
+                        <td>{{ rds['DB Status'] }}</td>
+                        <td>{{ rds['Admin User'] }}</td>
+                        <td>{{ rds['End Point'] }}</td>
+                        <td>{{ rds['VPC Security Groupd ID'] }}</td>
+                        <td>{{ rds['Availability Zone'] }}</td>
+                        <td>{{ rds['DB Subnet Name'] }}</td>
+                        <td>{{ rds['VPC ID'] }}</td>
+                        <td>{{ rds['Prefered Maintenance Window'] }}</td>
+                        <td>{{ rds['LatestRestorableTime'] }}</td>
+                        <td>{{ rds['MultiAZ'] }}</td>
+                        <td>{{ rds['AutoMinorVersionUpgrade'] }}</td>
+                        <td>{{ rds['LicenseModel'] }}</td>
+                        <td>{{ rds['PubliclyAccessible'] }}</td>
+                        <td>{{ rds['StorageType'] }}</td>
+                        <td>{{ rds['StorageEncrypted'] }}</td>
+                        <td>{{ rds['KmsKeyId'] }}</td>
+                        <td>{{ rds['MonitoringInterval'] }}</td>
+                        <td>{{ rds['DBInstanceArn'] }}</td>
+                        <td>{{ rds['IAMDatabaseAuthenticationEnabled'] }}</td>
+                        <td>{{ rds['DeletionProtection'] }}</td>
+                    </tr>
+
                 {% endfor %}
             </table>
         </div>
@@ -402,20 +403,20 @@
                     <th>Table ID</th>
                 </tr>
                 {% for dynamo_db in processing_data['dynamodb_details'] %}
-                <tr>
-                    <td>{{dynamo_db['Table Name']}}</td>
-                    <td>{{dynamo_db['Key Name']}}</td>
-                    <td>{{dynamo_db['Key Table']}}</td>
-                    <td>{{dynamo_db['Table Status']}}</td>
-                    <td>{{dynamo_db['Creation DateTime']}}</td>
-                    <td>{{dynamo_db['LastDecrease DateTime']}}</td>
-                    <td>{{dynamo_db['ReadCapacityUnits']}}</td>
-                    <td>{{dynamo_db['WriteCapacityUnits']}}</td>
-                    <td>{{dynamo_db['TableSizeBytes']}}</td>
-                    <td>{{dynamo_db['ItemCount']}}</td>
-                    <td>{{dynamo_db['TableArn']}}</td>
-                    <td>{{dynamo_db['TableId']}}</td>
-                </tr>
+                    <tr>
+                        <td>{{ dynamo_db['Table Name'] }}</td>
+                        <td>{{ dynamo_db['Key Name'] }}</td>
+                        <td>{{ dynamo_db['Key Table'] }}</td>
+                        <td>{{ dynamo_db['Table Status'] }}</td>
+                        <td>{{ dynamo_db['Creation DateTime'] }}</td>
+                        <td>{{ dynamo_db['LastDecrease DateTime'] }}</td>
+                        <td>{{ dynamo_db['ReadCapacityUnits'] }}</td>
+                        <td>{{ dynamo_db['WriteCapacityUnits'] }}</td>
+                        <td>{{ dynamo_db['TableSizeBytes'] }}</td>
+                        <td>{{ dynamo_db['ItemCount'] }}</td>
+                        <td>{{ dynamo_db['TableArn'] }}</td>
+                        <td>{{ dynamo_db['TableId'] }}</td>
+                    </tr>
                 {% endfor %}
             </table>
         </div>
@@ -424,17 +425,11 @@
         <div class="cont_table_main">
             <table>
                 <tr class="heading-tr">
-                    <th>Arn</th>
-                    <th>Name</th>
-                    <th>Domain</th>
-                    <th>Endpoint Type</th>
-                    <th>HostKey Fingerprint</th>
-                    <th>Identity Provider Type</th>
-                    <th>Logging Role</th>
-                    <th>Protocols</th>
-                    <th>Security Policy Name</th>
-                    <th>Server ID</th>
-                    <th>User Count</th>
+                    <th>SubscriptionArn</th>
+                    <th>Owner</th>
+                    <th>Protocol</th>
+                    <th>Endpoint</th>
+                    <th>TopicArn</th>
                 </tr>
                 {% for ts_details in processing_data['ts_details'] %}
                 <tr>

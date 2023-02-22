@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/revisedAdmin.css">
+    {#    <link rel="stylesheet" href="/static/ajax_mdn_file.css">#}
+    <link rel="stylesheet" href="/static/mdn_file.css">
+    <link rel="stylesheet" href="/static/font_style.woff2">
+    <script src="{{ url_for('static', filename='js/jquery_file.js') }}"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    <script src="https:/cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+    <title>VGC Cloud Dashboard</title>
+</head>
+<body>
+<nav>
+    <div class="logo_and_search">
+        <img onclick="openNav()" class="sealImage" alt="vgc" src="/static/vgc_logo.png">
+        <div class="menu_ham">
+            <span onclick="openNav()" class="material-symbols-outlined">menu</span>
+        </div>
+        <div class="menu_ham">
+            <span onclick="openNav()" class="material-symbols-outlined">home</span>
+        </div>
+
+    </div>
+
+    <div class="icons-div">
+        <div class="refresh" id="refresh" class="nav-icons" style="" onclick="location.href='/get_latest_data'">
+            <h5 style="color:black;font-weight:800; margin-bottom:0;">Refresh</h5>
+            <span class="material-symbols-outlined" style="color:black;font-weight:800;">refresh</span>
+        </div>
+        <div class="refresh" id="export" class="nav-icons" onclick="location.href='/downloads/{{ filename }}'">
+            <h5 style="color:black;font-weight:800; margin-bottom:0;">Export</h5>
+            <span class="material-symbols-outlined" style="color:black;font-weight:800;">download</span>
+        </div>
+    </div>
+    <div style="display:flex;justify-content:space-around;margin-right:5px;">
+        <div id="user" class="nav-icons">
+            <div>
+                <button class="region dropbtn" id="regionIndi">{{ reg }}</button>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn material-symbols-outlined" onclick="myFunction()">public</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <h6 onclick="getRegion()">ap-south-1</h6>
+                    <h6 onclick="getRegion()">eu-north-1</h6>
+                    <h6 onclick="getRegion()">eu-west-3</h6>
+                    <h6 onclick="getRegion()">eu-west-2</h6>
+                    <h6 onclick="getRegion()">eu-west-1</h6>
+                    <h6 onclick="getRegion()">ap-northeast-3</h6>
+                    <h6 onclick="getRegion()">ap-northeast-2</h6>
+                    <h6 onclick="getRegion()">ap-northeast-1</h6>
+                    <h6 onclick="getRegion()">ca-central-1</h6>
+                    <h6 onclick="getRegion()">sa-east-1</h6>
+                    <h6 onclick="getRegion()">ap-southeast-1</h6>
+                    <h6 onclick="getRegion()">ap-southeast-2</h6>
+                    <h6 onclick="getRegion()">eu-central-1</h6>
+                    <h6 onclick="getRegion()">us-east-1</h6>
+                    <h6 onclick="getRegion()">us-east-2</h6>
+                    <h6 onclick="getRegion()">us-west-1</h6>
+                    <h6 onclick="getRegion()">us-west-2</h6>
+                </div>
+            </div>
+            <div>
+                <button onclick="openAdmin();" class='dropbtn material-symbols-outlined'
+                        style="cursor:pointer">person
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+<div id="mySidenav" class="sidenav">
+    <a href="javacript:void(0);" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="sidenav_elements">
+        <div class="main_logo">
+        </div>
+        <div class="a-elements">
+            <ul id="sidebar-elements" class="sidebar-elements">
+                <li onclick="ats();" class="ats">
+                    <span class="material-symbols-outlined icon" id="ats_logo">send</span>
+                    <span class="element-name" id="ats_text">Amazon Transfer Service</span>
+                </li>
+                <li onclick="loadBalancer();" class="lb">
+                    <span id="load_logo" class="material-symbols-outlined icon">lan</span>
+                    <span id="load_text" class="element-name">Load Balancer</span>
+
+                </li>
+                <li onclick="nat();" class="nat">
+                    <span id="nat_logo" class="material-symbols-outlined icon">nat</span>
+                    <span class="element-name" id="nat_text">NAT Gateway</span>
+                </li>
+                <li onclick="dynamo();" class="dynamo">
+                    <span class="material-symbols-outlined icon" id="dynamo_logo">database</span>
+                    <span class="element-name" id="dynamo_text">Dynamo DB</span>
+                </li>
+                <li onclick="vpcDetails();" class="vpc">
+                    <span id="vpc_logo" class="material-symbols-outlined icon">cloud</span>
+                    <span id="vpc_text" class="element-name">VPC Details</span>
+                </li>
+
+                <li onclick="subnets();" class="subnets">
+                    <span id="subnet_logo" class="material-symbols-outlined icon">hub</span>
+                    <span id="subnets_text" class="element-name">SUBNETS</span>
+
+                </li>
+                <li onclick="nacl();" class="nacl">
+                    <span id="nacl_logo" class="material-symbols-outlined icon">settings_input_hdmi</span>
+                    <span class="element-name" id="nacl_text">NACL</span>
+
+                </li>
+                <li onclick="tgw();" class="tgw">
+                    <span class="material-symbols-outlined icon" id="tgw_logo"> fluorescent</span>
+                    <span class="element-name" id="tgw_text">TGW</span>
+                </li>
+                <li onclick="igw();" class="igw">
+                    <span id="igw_logo" class="material-symbols-outlined icon">router</span>
+                    <span class="element-name" id="igw_text">IGW</span>
+                    <!--            <span class="element-name" id="disk-perf">Disk performances</span>-->
+                </li>
+                <li onclick="rds();" class="rds">
+                    <span class="material-symbols-outlined icon" id="rds_logo">shield</span>
+                    <span class="element-name" id="rds_text">RDS</span>
+                </li>
+                <li onclick="vms();" class="vms">
+                    <span class="material-symbols-outlined icon" id="vms_logo">dvr</span>
+                    <span class="element-name" id="vms_text">VMs</span>
+                </li>
+                <li onclick="sqs();" class="sqs">
+                    <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span>
+                    <span class="element-name" id="sqs_text">SQS</span>
+                </li>
+                <li onclick="vms();" class="sns">
+                    <span class="material-symbols-outlined icon">dvr</span>
+                    <span class="element-name">SNS</span>
+                </li>
+                <li onclick="vms();" class="s3">
+                    <span class="material-symbols-outlined icon">dvr</span>
+                    <span class="element-name">S3</span>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="hint_sidenav">
+    <ul id="sidebar-elements" class="sidebar-elements">
+        <li onclick="ats();" class="ats">
+            <span class="material-symbols-outlined icon" id="ats_logo">send</span>
+        </li>
+        <li onclick="loadBalancer();" class="lb">
+            <span id="load_logo" class="material-symbols-outlined icon">lan</span>
+        </li>
+        <li onclick="nat();" class="nat">
+            <span id="nat_logo" class="material-symbols-outlined icon">nat</span>
+        </li>
+        <li onclick="dynamo();" class="dynamo">
+            <span class="material-symbols-outlined icon" id="dynamo_logo">database</span>
+        </li>
+        <li onclick="vpcDetails();" class="vpc">
+            <span id="vpc_logo" class="material-symbols-outlined icon">cloud</span>
+        </li>
+        <li onclick="subnets();" class="subnets">
+            <span id="subnet_logo" class="material-symbols-outlined icon">hub</span>
+        </li>
+        <li onclick="nacl();" class="nacl">
+            <span id="nacl_logo" class="material-symbols-outlined icon">settings_input_hdmi</span>
+        </li>
+        <li onclick="tgw();" class="tgw">
+            <span class="material-symbols-outlined icon" id="tgw_logo"> fluorescent</span>
+        </li>
+        <li onclick="igw();" class="igw">
+            <span id="igw_logo" class="material-symbols-outlined icon">router</span>
+        </li>
+        <li onclick="rds();" class="rds">
+            <span class="material-symbols-outlined icon" id="rds_logo">shield</span>
+        </li>
+        <li onclick="vms();" class="vms">
+            <span class="material-symbols-outlined icon" id="vms_logo">dvr</span>
+        </li>
+        <li onclick="sqs();" class="sqs">
+            <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span>
+        </li>
+        <li onclick="vms();" class="sns">
+            <span class="material-symbols-outlined icon">dvr</span>
+        </li>
+        <li onclick="vms();" class="s3">
+            <span class="material-symbols-outlined icon">dvr</span>
+        </li>
+
+
+    </ul>
+</div>
+<div class="main-contents">
+    <div class="table_search">
+        <input type="text" id="search-input" placeholder="Search...">
+    </div>
+    <div id="subnet_details"
+         style="display:none;align-items:flex-start;justify-content: center;height:100%;margin-top:80px; margin-left:8px">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>Subnet ID</th>
+                    <th>State</th>
+                    <th>VPC</th>
+                    <th>IPV4 CIDR</th>
+                    <th>Availability zone</th>
+                    <th>Availability zone ID</th>
+                    <th>Network Border Group</th>
+                    <th>Network ACL</th>
+                    <th>Route Table</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for subnets in processing_data['subnet_details'] %}
+
+                    <tr>
+                        <td>{{ subnets['Name'] }}</td>
+                        <td>{{ subnets['Subnet ID'] }}</td>
+                        <td>{{ subnets['State'] }}</td>
+                        <td>{{ subnets['VPC'] }}</td>
+                        <td>{{ subnets['IPv4 CIDR'] }}</td>
+                        <td>{{ subnets['Availability Zone'] }}</td>
+                        <td>{{ subnets['Availability Zone ID'] }}</td>
+                        <td>{{ subnets['Network border group'] }}</td>
+                        <td>{{ subnets['Network ACL'] }}</td>
+                        <td>{{ subnets['Route Table'] }}</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="vpc_details" class="details-table" style="margin-left: 50px">
+
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>VPC ID</th>
+                    <th>State</th>
+                    <th>IPV4 CIDR</th>
+                    <th>Host Min</th>
+                    <th>Host Max</th>
+                    <th>DHCP options set</th>
+                    <th>Tenancy</th>
+                    <th>Owner ID</th>
+                    <th>Main Route Table</th>
+                    <th>Main Network ACL</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vpc in processing_data['vpc_details'] %}
+                    <tr>
+                        <td>{{ vpc['Name'] }}</td>
+                        <td>{{ vpc['VPC ID'] }}</td>
+                        <td>{{ vpc['State'] }}</td>
+                        <td>{{ vpc['IPv4 CIDR'] }}</td>
+                        <td>{{ vpc['Host Min'] }}</td>
+                        <td>{{ vpc['Host Max'] }}</td>
+                        <td>{{ vpc['DHCP options set'] }}</td>
+                        <td>{{ vpc['Tenancy'] }}</td>
+                        <td>{{ vpc['Owner ID'] }}</td>
+                        <td>{{ vpc['Main route table'] }}</td>
+                        <td>{{ vpc['Main network ACL'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="load_balancer" class="details-table">
+
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>DNS Name</th>
+                    <th>State</th>
+                    <th>VPC ID</th>
+                    <th>Availability Zones</th>
+                    <th>Type</th>
+                    <th>Created At</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for load_balancer in processing_data['load_balancer'] %}
+                    <tr>
+                        <td>{{ load_balancer['Name'] }}</td>
+                        <td>{{ load_balancer['DNS Name'] }}</td>
+                        <td>{{ load_balancer['State'] }}</td>
+                        <td>{{ load_balancer['VPC ID'] }}</td>
+                        <td>{{ load_balancer['Availability Zones'] }}</td>
+                        <td>{{ load_balancer['Type'] }}</td>
+                        <td>{{ load_balancer['Created At'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="nacl" class="details-table">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>Network ACL ID</th>
+                    <th>VPC ID</th>
+                    <th>Default</th>
+                    <th>Inbound Rules Count</th>
+                    <th>Outbound Rules Count</th>
+                    <th>Associated with</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for nacl in processing_data['network_acl_details'] %}
+                    <tr>
+                        <td>{{ nacl['Name'] }}</td>
+                        <td>{{ nacl['Network ACL ID'] }}</td>
+                        <td>{{ nacl['VPC ID'] }}</td>
+                        <td>{{ nacl['Default'] }}</td>
+                        <td>{{ nacl['Inbound rules count'] }}</td>
+                        <td>{{ nacl['Outbound rules count'] }}</td>
+                        <td>{{ nacl['Associated with'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="igw" class="details-table">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>Internal Gateway ID</th>
+                    <th>State</th>
+                    <th>VPC ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for igw in processing_data['igw_details'] %}
+                    <tr>
+                        <td>{{ igw['Name'] }}</td>
+                        <td>{{ igw['Internet Gateway Id'] }}</td>
+                        <td>{{ igw['State'] }}</td>
+                        <td>{{ igw['VpcId'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="sqs_details" class="details-table">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>Created</th>
+                    <th>Type</th>
+                    <th>Encryption</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for sqs in processing_data['sqs_details'] %}
+                    <tr>
+                        <td>{{ sqs['Name'] }}</td>
+                        <td>{{ sqs['Created'] }}</td>
+                        <td>{{ sqs['Type'] }}</td>
+                        <td>{{ sqs['Encryption'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="nat_details" class="details-table">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>NAT Gateway ID</th>
+                    <th>Elastic IP Address</th>
+                    <th>Private IP Address</th>
+                    <th>Network Interface ID</th>
+                    <th>VPC ID</th>
+                    <th>Subnet ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for nat in processing_data['NAT_details'] %}
+                    <tr>
+                        <td>{{ nat['Name'] }}</td>
+                        <td>{{ nat['NAT gateway ID'] }}</td>
+                        <td>{{ nat['Elastic IP Address'] }}</td>
+                        <td>{{ nat['Private IP address'] }}</td>
+                        <td>{{ nat['Network interface ID'] }}</td>
+                        <td>{{ nat['VPC ID'] }}</td>
+                        <td>{{ nat['Subnet ID'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="tgw_details" class="details-table">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>Transit Gateway Attachment ID</th>
+                    <th>Transit Gateway ID</th>
+                    <th>Resource Type</th>
+                    <th>Resource ID</th>
+                    <th>State</th>
+                    <th>Association Route Table ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tgw in processing_data['tgw_details'] %}
+
+                    <tr>
+                        <td>{{ tgw['Name'] }}</td>
+                        <td>{{ tgw['Transit gateway attachment ID'] }}</td>
+                        <td>{{ tgw['Transit gateway ID'] }}</td>
+                        <td>{{ tgw['Resource type'] }}</td>
+                        <td>{{ tgw['Resource ID'] }}</td>
+                        <td>{{ tgw['State'] }}</td>
+                        <td>{{ tgw['Association route table ID'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="rds_details" class="details-table" style="margin-left: 50px;">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>DB Name</th>
+                    <th>Instance Type</th>
+                    <th>vCPU</th>
+                    <th>Memory In GB</th>
+                    <th>Engine</th>
+                    <th>Engine Version</th>
+                    <th>DB Status</th>
+                    <th>Admin User</th>
+                    <th>End Point</th>
+                    <th>VPC Security Groupd ID</th>
+                    <th>Availability Zone</th>
+                    <th>DB Subnet Name</th>
+                    <th>VPC ID</th>
+                    <th>Preferred Maintenance Window</th>
+                    <th>Latest Restorable Time</th>
+                    <th>MultiAZ</th>
+                    <th>Auto Minor Version Upgrade</th>
+                    <th>License Model</th>
+                    <th>Pubilicly Accessible</th>
+                    <th>Storage Type</th>
+                    <th>Storage Encrypted</th>
+                    <th>KMS Key ID</th>
+                    <th>Monitoring Interval</th>
+                    <th>DBInstanceArn</th>
+                    <th>IAM Database Authentication Enabled</th>
+                    <th>Deletion Protection</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rds in processing_data['rds_details'] %}
+                    <tr>
+                        <td>{{ rds['DB Name'] }}</td>
+                        <td>{{ rds['Instance Type'] }}</td>
+                        <td>{{ rds['vCPU'] }}</td>
+                        <td>{{ rds['Memory in GB'] }}</td>
+                        <td>{{ rds['Engine'] }}</td>
+                        <td>{{ rds['EngineVersion'] }}</td>
+                        <td>{{ rds['DB Status'] }}</td>
+                        <td>{{ rds['Admin User'] }}</td>
+                        <td>{{ rds['End Point'] }}</td>
+                        <td>{{ rds['VPC Security Groupd ID'] }}</td>
+                        <td>{{ rds['Availability Zone'] }}</td>
+                        <td>{{ rds['DB Subnet Name'] }}</td>
+                        <td>{{ rds['VPC ID'] }}</td>
+                        <td>{{ rds['Prefered Maintenance Window'] }}</td>
+                        <td>{{ rds['LatestRestorableTime'] }}</td>
+                        <td>{{ rds['MultiAZ'] }}</td>
+                        <td>{{ rds['AutoMinorVersionUpgrade'] }}</td>
+                        <td>{{ rds['LicenseModel'] }}</td>
+                        <td>{{ rds['PubliclyAccessible'] }}</td>
+                        <td>{{ rds['StorageType'] }}</td>
+                        <td>{{ rds['StorageEncrypted'] }}</td>
+                        <td>{{ rds['KmsKeyId'] }}</td>
+                        <td>{{ rds['MonitoringInterval'] }}</td>
+                        <td>{{ rds['DBInstanceArn'] }}</td>
+                        <td>{{ rds['IAMDatabaseAuthenticationEnabled'] }}</td>
+                        <td>{{ rds['DeletionProtection'] }}</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="dynamo_db" class="details-table">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Table Name</th>
+                    <th>Key Name</th>
+                    <th>Key Table</th>
+                    <th>Table Status</th>
+                    <th>Creation DateTime</th>
+                    <th>Last Decrease DateTime</th>
+                    <th>Read Capacity Units</th>
+                    <th>Write Capacity Units</th>
+                    <th>Table Size Bytes</th>
+                    <th>Item Count</th>
+                    <th>TableArn</th>
+                    <th>Table ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for dynamo_db in processing_data['dynamodb_details'] %}
+                    <tr>
+                        <td>{{ dynamo_db['Table Name'] }}</td>
+                        <td>{{ dynamo_db['Key Name'] }}</td>
+                        <td>{{ dynamo_db['Key Table'] }}</td>
+                        <td>{{ dynamo_db['Table Status'] }}</td>
+                        <td>{{ dynamo_db['Creation DateTime'] }}</td>
+                        <td>{{ dynamo_db['LastDecrease DateTime'] }}</td>
+                        <td>{{ dynamo_db['ReadCapacityUnits'] }}</td>
+                        <td>{{ dynamo_db['WriteCapacityUnits'] }}</td>
+                        <td>{{ dynamo_db['TableSizeBytes'] }}</td>
+                        <td>{{ dynamo_db['ItemCount'] }}</td>
+                        <td>{{ dynamo_db['TableArn'] }}</td>
+                        <td>{{ dynamo_db['TableId'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="ts_details" class="details-table" style="display: flex">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th>Name</th>
+                    <th>Arn</th>
+                    <th>Domain</th>
+                    <th>Endpoint Type</th>
+                    <th>HostKey Fingerprint</th>
+                    <th>Identity Provider Type</th>
+                    <th>Logging Role</th>
+                    <th>Protocols</th>
+                    <th>Security Policy Name</th>
+                    <th>Server ID</th>
+                    <th>User Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ts_details in processing_data['ts_details'] %}
+                    <tr>
+                        <td>{{ ts_details['Name'] }}</td>
+                        <td>{{ ts_details['Arn'] }}</td>
+                        <td>{{ ts_details['Domain'] }}</td>
+                        <td>{{ ts_details['EndpointType'] }}</td>
+                        <td>{{ ts_details['HostKeyFingerprint'] }}</td>
+                        <td>{{ ts_details['IdentityProviderType'] }}</td>
+                        <td>{{ ts_details['LoggingRole'] }}</td>
+                        <td>{{ ts_details['Protocols'] }}</td>
+                        <td>{{ ts_details['SecurityPolicyName'] }}</td>
+                        <td>{{ ts_details['ServerId'] }}</td>
+                        <td>{{ ts_details['State'] }}</td>
+                        <td>{{ ts_details['UserCount'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="ec2_details" class="details-table" style="margin-left: 50px">
+        <div class="cont_table_main">
+            <table class="myTable">
+                <thead>
+                <tr class="heading-tr">
+                    <th onclick="sort(0)">Name</th>
+                    <th>Owner ID</th>
+                    <th>AmiLaunch Index</th>
+                    <th>Image ID</th>
+                    <th>Instance ID</th>
+                    <th>Instance Type</th>
+                    <th>Key Name</th>
+                    <th>Launch Time</th>
+                    <th>State</th>
+                    <th>Availability Zone</th>
+                    <th>Tenancy</th>
+                    <th>PrivateDNS Name</th>
+                    <th>PrivateIP Address</th>
+                    <th>Subnet ID</th>
+                    <th>VPC ID</th>
+                    <th>Architecture</th>
+                    <th>Hypervisor</th>
+                    <th>Platform</th>
+                    <th>RootDevice Name</th>
+                    <th>RootDevice Type</th>
+                    <th>Root Volume ID</th>
+                    <th>Root Device Size in GB</th>
+                    <th>Additional Data Disk IDs</th>
+                    <th>Additional Data Device Name</th>
+                    <th>Additional Data Disk Size</th>
+                    <th>CPU Core</th>
+                    <th>CPU ThreadsPerCore</th>
+                    <th>Security Groups-Name</th>
+                    <th>Security Groups-ID</th>
+                    <th>Backup Plan Name</th>
+                    <th>Backup Retention</th>
+                    <th>Custom Permission-Arn</th>
+                    <th>Custom Permission-ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ec2 in processing_data['ec2_details'] %}
+                    <tr>
+                        <td>{{ ec2['Name'] }}</td>
+                        <td>{{ ec2['owner_id'] }}</td>
+                        <td>{{ ec2['AmiLaunch Index'] }}</td>
+                        <td>{{ ec2['Image Id'] }}</td>
+                        <td>{{ ec2['Instance Id'] }}</td>
+                        <td>{{ ec2['Instance Type'] }}</td>
+                        <td>{{ ec2['Key Name'] }}</td>
+                        <td>{{ ec2['LaunchTime'] }}</td>
+                        <td>{{ ec2['State'] }}</td>
+                        <td>{{ ec2['AvailabilityZone'] }}</td>
+                        <td>{{ ec2['Tenancy'] }}</td>
+                        <td>{{ ec2['PrivateDnsName'] }}</td>
+                        <td>{{ ec2['PrivateIpAddress'] }}</td>
+                        <td>{{ ec2['SubnetId'] }}</td>
+                        <td>{{ ec2['VpcId'] }}</td>
+                        <td>{{ ec2['Architecture'] }}</td>
+                        <td>{{ ec2['Hypervisor'] }}</td>
+                        <td>{{ ec2['Platform'] }}</td>
+                        <td>{{ ec2['RootDeviceName'] }}</td>
+                        <td>{{ ec2['RootDeviceType'] }}</td>
+                        <td>{{ ec2['Root Volume ID'] }}</td>
+                        <td>{{ ec2['Root Device Size in GB'] }}</td>
+                        <td>{{ ec2['Additional Data Disk IDs'] }}</td>
+                        <td>{{ ec2['Additional Data Device Name'] }}</td>
+                        <td>{{ ec2['Additional Data Disk Size'] }}</td>
+                        <td>{{ ec2['CPU Core'] }}</td>
+                        <td>{{ ec2['CPU ThreadsPerCore'] }}</td>
+                        <td>{{ ec2['SecurityGroups-name'] }}</td>
+                        <td>{{ ec2['SecurityGroups-id'] }}</td>
+                        <td>{{ ec2['Backup Plan Name'] }}</td>
+                        <td>{{ ec2['Backup Retention'] }}</td>
+                        <td>{{ ec2['Custom Permissions - Arn'] }}</td>
+                        <td>{{ ec2['Custom Permissions - Id'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+<script>
+
+    document.getElementById("search-input").addEventListener("input", function () {
+        let searchValue = this.value;
+        let table = document.querySelector("table");
+
+        let rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) {
+            let columns = rows[i].getElementsByTagName("td");
+            let match = false;
+            for (let j = 0; j < columns.length; j++) {
+                if (columns[j].textContent.toLowerCase().includes(searchValue.toLowerCase())) {
+                    match = true;
+                    break;
+                }
+            }
+            if (match) {
+                rows[i].style.display = "table-row";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    });
+
+    var hint_navElements = document.querySelectorAll(".a-elements ul li",);
+    hint_navElements[0].classList.add("active");
+    hint_navElements.forEach(function (item) {
+
+
+        item.addEventListener("click", function select() {
+            hint_navElements.forEach(function (item) {
+                return item.classList.remove("active");
+            });
+            item.classList.add("active");
+
+        });
+
+    });
+
+
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+
+    }
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "295px";
+
+    }
+
+
+    function myFunction() {
+        document.getElementById("dropdown-content").classList.toggle("show");
+    }
+
+    function getRegion() {
+        let links = document.querySelectorAll("h6");
+
+        for (let link of links) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                let clickedLinkText = this.textContent;
+                window.location.href = '/dashboard/' + clickedLinkText;
+                document.getElementById("regionIndi").textContent = clickedLinkText;
+                document.getElementById("dropdown-content").classList.toggle("show");
+
+
+            });
+
+        }
+
+    }
+
+</script>
+</html>

@@ -1,4 +1,29 @@
 $(document).ready(function () {
+    document.getElementById('label-head').textContent=" ";
+    // $('.myTable').DataTable();
+
+     $('.item').click(function() {
+    var value = $(this).data('value');
+    var selected=document.querySelectorAll('ul li')
+         selected.forEach(function (item){
+             return item.classList.remove('active');
+         });
+         $('.item[data-value="' + value + '"]').addClass('active');
+  });
+
+var len= $('.myTable').rows;
+console.log(len);
+    $('.myTable').DataTable({
+        "searching": true,
+        "sorting": [[0, 'asc']]
+
+    });
+    // let regparts = window.location.pathname.split('/')
+    // let regdef = regparts[regparts.length - 1];
+    //
+    // document.getElementById("regionIndi").textContent = regdef;
+    // document.getElementById("regiondrop").textContent=regdef;
+
     $("#subnet_logo").hover(function () {
         $(this).css('cursor', 'pointer').attr('title', 'Subnets');
     }, function () {
@@ -76,6 +101,7 @@ $(document).ready(function () {
             }
         });
     }, 3 * 60 * 1000);
+
 });
 
 function openSettings() {
@@ -93,7 +119,9 @@ function openSettings() {
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
     const ac = document.getElementById("access-cred");
+    const sns = document.getElementById("sns_details");
     subnet_details.style.display = "none";
+    sns.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
     nacl.style.display = "none";
@@ -135,6 +163,7 @@ function closeNav() {
     document.getElementById("ats_text").style.display = "none";
     document.getElementById("vms_text").style.display = "none";
     document.getElementById("dynamo_text").style.display = "none";
+    document.getElementById("sns_details").style.display = "none";
 
 
 }
@@ -159,6 +188,7 @@ function openNav() {
     document.getElementById("ats_text").style.display = "";
     document.getElementById("vms_text").style.display = "";
     document.getElementById("dynamo_text").style.display = "";
+    document.getElementById("sns_details").style.display = "";
 
 }
 
@@ -176,6 +206,11 @@ function subnets() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
+
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "flex";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -204,6 +239,11 @@ function vpcDetails() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
+
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "flex";
     load_balancer.style.display = "none";
@@ -232,6 +272,11 @@ function loadBalancer() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
+
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "flex";
@@ -260,7 +305,11 @@ function nacl() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -289,7 +338,11 @@ function igw() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -318,7 +371,11 @@ function sqs() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    nacl.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -331,6 +388,7 @@ function sqs() {
     dynamo_db.style.display = "none";
     ts.style.display = "none";
     ec2.style.display = "none";
+    sns.style.display="none"
 }
 
 function nat() {
@@ -347,7 +405,11 @@ function nat() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -364,6 +426,7 @@ function nat() {
 
 function tgw() {
 
+    const sns = document.getElementById("sns_details");
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
     const load_balancer = document.getElementById("load_balancer");
@@ -376,7 +439,10 @@ function tgw() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -393,6 +459,7 @@ function tgw() {
 
 function rds() {
 
+    const sns = document.getElementById("sns_details");
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
     const load_balancer = document.getElementById("load_balancer");
@@ -409,6 +476,7 @@ function rds() {
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
+    sns.style.display = "none";
     nacl.style.display = "none";
     igw.style.display = "none";
     sqs.style.display = "none";
@@ -434,7 +502,11 @@ function dynamo() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -463,7 +535,11 @@ function ats() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
+    sns.style.display = "none"
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -480,6 +556,7 @@ function ats() {
 
 function vms() {
 
+    const sns = document.getElementById("sns_details");
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
     const load_balancer = document.getElementById("load_balancer");
@@ -505,5 +582,40 @@ function vms() {
     dynamo_db.style.display = "none";
     ts.style.display = "none";
     ec2.style.display = "flex";
+    sns.style.display = "none"
+}
+
+function sns() {
+    document.getElementById('label-head').textContent="SNS";
+
+    const sns = document.getElementById("sns_details");
+    const subnet_details = document.getElementById("subnet_details");
+    const vpc = document.getElementById("vpc_details");
+    const load_balancer = document.getElementById("load_balancer");
+    const nacl = document.getElementById("nacl");
+    const igw = document.getElementById("igw");
+    const sqs = document.getElementById("sqs_details");
+    const nat = document.getElementById("nat_details");
+    const tgw = document.getElementById("tgw_details");
+    const rds = document.getElementById("rds_details");
+    const dynamo_db = document.getElementById("dynamo_db");
+    const ts = document.getElementById("ts_details");
+    const ec2 = document.getElementById("ec2_details");
+    const dash = document.getElementById("dash-view");
+
+    dash.style.display = "none";
+    subnet_details.style.display = "none";
+    vpc.style.display = "none";
+    load_balancer.style.display = "none";
+    nacl.style.display = "none";
+    igw.style.display = "none";
+    sqs.style.display = "none";
+    nat.style.display = "none";
+    tgw.style.display = "none";
+    rds.style.display = "none";
+    dynamo_db.style.display = "none";
+    ts.style.display = "none";
+    ec2.style.display = "none";
+    sns.style.display = "flex";
 }
 
