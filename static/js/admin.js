@@ -103,6 +103,44 @@ console.log(len);
     }, 3 * 60 * 1000);
 
 });
+// document.addEventListener('click', function(event) {
+//     var myDiv = document.getElementById('dropdown-content');
+//     if (!myDiv.contains(event.target)) {
+//       myDiv.style.display = 'none';
+//     }
+//   });
+// const toggle = document.querySelector('.switch input')
+// console.log(toggle, "hij")
+// toggle.addEventListener('click', () => {
+//     console.log(toggle.checked ? 'checked' : 'unchecked');
+// });
+
+
+function openConfirm() {
+    var conDiv = document.getElementById('confirmPopup');
+    conDiv.style.display = "block";
+    $("table").on('click', '.delete_region', function () {
+        var currentRow = $(this).closest("tr");
+        console.log(currentRow)
+        var del1 = currentRow.find(".regionKey").text().trim(); // get current row 1st TD value
+        console.log(del1, 'hostname')
+        var del2 = currentRow.find("td:eq(1)").text().split(' ',)[0];
+        console.log(del2, 'interval')
+        var del3 = currentRow.find("td:eq(1)").text().split(' ',)[1];
+        // var del4= currentRow.find(".status");
+
+        $('.region-delete').val(del1);
+        // $('.status').val(del4)
+        // console.log($('.ip-delete').val(del1))
+        $('.delete-time').val(del2);
+        $('.delete-time-interval').val(del3);
+    });
+
+}
+$('#del-reg').addEventListener('click',function (){
+     var conDiv = document.getElementById('confirmPopup');
+    conDiv.style.display = "none";
+});
 
 function openSettings() {
 
@@ -135,6 +173,10 @@ function openSettings() {
     ec2.style.display = "none";
     ac.style.display = "";
 
+}
+
+function closePop() {
+    $('.popup-container:target').style.visibility = 'hidden';
 }
 
 function openAdmin() {
@@ -194,6 +236,7 @@ function openNav() {
 
 
 function subnets() {
+    document.getElementById('label-head').textContent="SUBNETS";
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
     const load_balancer = document.getElementById("load_balancer");
@@ -226,6 +269,7 @@ function subnets() {
 }
 
 function vpcDetails() {
+    document.getElementById('label-head').textContent="VPC DETAILS";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -258,7 +302,42 @@ function vpcDetails() {
     ec2.style.display = "none";
 }
 
+function opendash() {
+    document.getElementById('label-head').textContent=" ";
+
+    const subnet_details = document.getElementById("subnet_details");
+    const vpc = document.getElementById("vpc_details");
+    const load_balancer = document.getElementById("load_balancer");
+    const nacl = document.getElementById("nacl");
+    const igw = document.getElementById("igw");
+    const sqs = document.getElementById("sqs_details");
+    const nat = document.getElementById("nat_details");
+    const tgw = document.getElementById("tgw_details");
+    const rds = document.getElementById("rds_details");
+    const dynamo_db = document.getElementById("dynamo_db");
+    const ts = document.getElementById("ts_details");
+    const ec2 = document.getElementById("ec2_details");
+    const sns = document.getElementById("sns_details");
+    const dash = document.getElementById("dash-view");
+
+    dash.style.display = "flex";
+    sns.style.display = "none"
+    subnet_details.style.display = "none";
+    vpc.style.display = "none";
+    load_balancer.style.display = "none";
+    nacl.style.display = "none";
+    igw.style.display = "none";
+    sqs.style.display = "none";
+    nat.style.display = "none";
+    tgw.style.display = "none";
+    rds.style.display = "none";
+    dynamo_db.style.display = "none";
+    ts.style.display = "none";
+    ec2.style.display = "none";
+}
+
 function loadBalancer() {
+    document.getElementById('label-head').textContent="LOAD BALANCER";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -292,6 +371,7 @@ function loadBalancer() {
 }
 
 function nacl() {
+    document.getElementById('label-head').textContent="NACL";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -325,6 +405,7 @@ function nacl() {
 }
 
 function igw() {
+    document.getElementById('label-head').textContent="IGW";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -358,6 +439,7 @@ function igw() {
 }
 
 function sqs() {
+    document.getElementById('label-head').textContent="SQS";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -392,6 +474,7 @@ function sqs() {
 }
 
 function nat() {
+    document.getElementById('label-head').textContent="NAT";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -425,6 +508,7 @@ function nat() {
 }
 
 function tgw() {
+    document.getElementById('label-head').textContent="TGW";
 
     const sns = document.getElementById("sns_details");
     const subnet_details = document.getElementById("subnet_details");
@@ -458,6 +542,7 @@ function tgw() {
 }
 
 function rds() {
+    document.getElementById('label-head').textContent="RDS";
 
     const sns = document.getElementById("sns_details");
     const subnet_details = document.getElementById("subnet_details");
@@ -472,7 +557,9 @@ function rds() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
@@ -489,6 +576,7 @@ function rds() {
 }
 
 function dynamo() {
+    document.getElementById('label-head').textContent="DYNAMO DB";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -522,6 +610,7 @@ function dynamo() {
 }
 
 function ats() {
+    document.getElementById('label-head').textContent="ATS";
 
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
@@ -555,6 +644,7 @@ function ats() {
 }
 
 function vms() {
+    document.getElementById('label-head').textContent="VMs";
 
     const sns = document.getElementById("sns_details");
     const subnet_details = document.getElementById("subnet_details");
@@ -569,7 +659,9 @@ function vms() {
     const dynamo_db = document.getElementById("dynamo_db");
     const ts = document.getElementById("ts_details");
     const ec2 = document.getElementById("ec2_details");
+    const dash = document.getElementById("dash-view");
 
+    dash.style.display = "none";
     subnet_details.style.display = "none";
     vpc.style.display = "none";
     load_balancer.style.display = "none";
