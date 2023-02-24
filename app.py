@@ -72,6 +72,7 @@ def handle_dashboard(region='us-east-1'):
         ts, processing_data, filename = timestamp_check()
         print("Latest Timestamp", ts)
         automated_data = get_scheduler_data()
+        print('if akathu', processing_data)
         return render_template('admin.html', processing_data=processing_data, ts=ts, filename=filename,
                                reg=session['region'], scheduler_data=automated_data)
     auto_data = get_scheduler_data()
@@ -144,7 +145,7 @@ def handle_downloads(filename):
 @app.route('/automate_refresh', methods=['POST', 'GET'])
 def add_automated_regions():
     req_data = request.form.to_dict()
-    print(req_data,"add regions data")
+    print(req_data, "add regions data")
     try:
         interval = int(req_data.get('interval'))
         print(interval)
