@@ -1,11 +1,12 @@
-from pathlib import Path
-
 import boto3
-from flask import Flask, render_template, request, session, redirect, url_for, send_from_directory
-from threading import Thread
 import json
 import time
 import schedule
+import json
+from threading import Thread
+from flask import jsonify
+from pathlib import Path
+from flask import Flask, render_template, request, session, redirect, url_for, send_from_directory
 from app_vgc import BotoManager, app_main
 from tools import handle_json_file
 from automate_region_scan import ScheduleManager
@@ -157,7 +158,7 @@ def add_automated_regions():
         interval=interval,
         interval_units=req_data.get('units'),
     )
-    return redirect(url_for('/handle_dashboard'))
+    return redirect(url_for('handle_dashboard'))
 
 
 
@@ -178,31 +179,6 @@ def delete_automated_region():
         interval_units=req_data.get('interval-units')
     )
     return redirect(url_for('handle_dashboard'))
-    # if request.method == 'POST':
-    #     region = request.form.get('region_name')
-    #     interval = request.form.get('time-interval')
-    #     units = request.form.get('interval-units')
-    #     print("formdata delete-->", region, interval, units)
-    #     for i in schedule.get_jobs():
-    #         print("jobs-->", i)
-    #     jobs_to_delete = [
-    #         job
-    #         for job in schedule.get_jobs()
-    #         if job.job_func.__name__ == handle_thread_data and
-    #            job.args[0] == region and
-    #            job.interval == int(interval) and
-    #            job.unit == units
-    #     ]
-    #     # Cancel the matching jobs
-    #     for job in jobs_to_delete:
-    #         schedule.cancel_job(job)
-    #     # Remove the specified region from the JSON file
-    #     saved_data = handle_json_file(SAVED_DATA_Automate_JSON)
-    #     if region in saved_data:
-    #         saved_data.pop(region)
-    #     handle_json_file(SAVED_DATA_Automate_JSON, saved_data)
-    #
-    #     return redirect(url_for('handle_dashboard'))
 
 
 def get_scheduler_data():
@@ -218,6 +194,16 @@ def get_scheduler_data():
     except (json.decoder.JSONDecodeError, FileNotFoundError):
         print('The file is not a valid JSON or does not exist')
         return {}
+
+
+@app.errorhandler(404)
+def handle_custom_error(error):
+    return render_template('404error.html', error=error), 404
+
+
+@app.errorhandler(500)
+def handle_custom_error(error):
+    return render_template('500error.html'), 500
 
 
 # @app.route('/login', methods=['GET', 'POST'])

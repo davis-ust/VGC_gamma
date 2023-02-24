@@ -856,7 +856,7 @@ input:checked + .slider:before {
     padding:17px;
 }
 #regiondrop{
-text-transform: capitalize}
+text-transform: uppercase}
 .dropbtn {
     padding: 0px 2px;
     background-color: transparent;

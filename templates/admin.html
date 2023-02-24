@@ -33,7 +33,7 @@
         </div>
         <div style="width: 400px;display: flex;justify-content: space-evenly;height: 56px;align-items: center;">
             <div class="icons-div">
-                 <div class="refresh" id="refresh" class="nav-icons" style=""
+                <div class="refresh" id="refresh" class="nav-icons" style=""
                      onclick="opendash()">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Dashboard</span>
                     {#                    <span class="material-symbols-outlined" style="color:white;font-weight:800;">refresh</span>#}
@@ -97,16 +97,16 @@
                     <span class="material-symbols-outlined icon" id="ats_logo">send</span>
                     <span class="element-name" id="ats_text">Amazon Transfer Service</span>
                 </li>
-                <li onclick="loadBalancer();"  class="item" data-value="2" >
+                <li onclick="loadBalancer();" class="item" data-value="2">
                     <span id="load_logo" class="material-symbols-outlined icon">lan</span>
                     <span id="load_text" class="element-name">Load Balancer</span>
 
                 </li>
-                <li onclick="nat();"  class="item" data-value="3">
+                <li onclick="nat();" class="item" data-value="3">
                     <span id="nat_logo" class="material-symbols-outlined icon">nat</span>
                     <span class="element-name" id="nat_text">NAT Gateway</span>
                 </li>
-                <li onclick="dynamo();"  class="item" data-value="4">
+                <li onclick="dynamo();" class="item" data-value="4">
                     <span class="material-symbols-outlined icon" id="dynamo_logo">database</span>
                     <span class="element-name" id="dynamo_text">Dynamo DB</span>
                 </li>
@@ -115,12 +115,12 @@
                     <span id="vpc_text" class="element-name">VPC Details</span>
                 </li>
 
-                <li onclick="subnets();"  class="item" data-value="6">
+                <li onclick="subnets();" class="item" data-value="6">
                     <span id="subnet_logo" class="material-symbols-outlined icon">hub</span>
                     <span id="subnets_text" class="element-name">SUBNETS</span>
 
                 </li>
-                <li onclick="nacl();"  class="item" data-value="7">
+                <li onclick="nacl();" class="item" data-value="7">
                     <span id="nacl_logo" class="material-symbols-outlined icon">settings_input_hdmi</span>
                     <span class="element-name" id="nacl_text">NACL</span>
 
@@ -134,26 +134,26 @@
                     <span class="element-name" id="igw_text">IGW</span>
                     <!--            <span class="element-name" id="disk-perf">Disk performances</span>-->
                 </li>
-                <li onclick="rds();"  class="item" data-value="10">
+                <li onclick="rds();" class="item" data-value="10">
                     <span class="material-symbols-outlined icon" id="rds_logo">shield</span>
                     <span class="element-name" id="rds_text">RDS</span>
                 </li>
-                <li onclick="vms();"  class="item" data-value="11">
+                <li onclick="vms();" class="item" data-value="11">
                     <span class="material-symbols-outlined icon" id="vms_logo">dvr</span>
                     <span class="element-name" id="vms_text">VMs</span>
                 </li>
-                <li onclick="sqs();"  class="item" data-value="12">
+                <li onclick="sqs();" class="item" data-value="12">
                     <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span>
                     <span class="element-name" id="sqs_text">SQS</span>
                 </li>
-                <li onclick="sns();"  class="item" data-value="13">
-                    <span class="material-symbols-outlined icon">dvr</span>
+                <li onclick="sns();" class="item" data-value="13">
+                    <span class="material-symbols-outlined icon">chat_bubble</span>
                     <span class="element-name">SNS</span>
                 </li>
-{#                <li onclick="vms();"  class="item" data-value="14">#}
-{#                    <span class="material-symbols-outlined icon">dvr</span>#}
-{#                    <span class="element-name">S3</span>#}
-{#                </li>#}
+                {#                <li onclick="vms();"  class="item" data-value="14">#}
+                {#                    <span class="material-symbols-outlined icon">dvr</span>#}
+                {#                    <span class="element-name">S3</span>#}
+                {#                </li>#}
 
 
             </ul>
@@ -164,48 +164,48 @@
 <div class="hint_sidenav">
 
     <ul id="sidebar-elements" class="sidebar-elements" style="padding-bottom: 1rem;">
-        <li onclick="ats();"  class="item" data-value="1">
+        <li onclick="ats();" id="ats" class="item" data-value="1">
             <span class="material-symbols-outlined icon" id="ats_logo">send</span>
         </li>
-        <li onclick="loadBalancer();"  class="item" data-value="2">
+        <li onclick="loadBalancer();" id="lb" class="item" data-value="2">
             <span id="load_logo" class="material-symbols-outlined icon">lan</span>
         </li>
-        <li onclick="nat();"  class="item" data-value="3">
+        <li onclick="nat();" id="nat" class="item" data-value="3">
             <span id="nat_logo" class="material-symbols-outlined icon">nat</span>
         </li>
-        <li onclick="dynamo();"  class="item" data-value="4">
+        <li onclick="dynamo();" id="dynamo" class="item" data-value="4">
             <span class="material-symbols-outlined icon" id="dynamo_logo">database</span>
         </li>
-        <li onclick="vpcDetails();"  class="item" data-value="5">
+        <li onclick="vpcDetails();" id="vpc" class="item" data-value="5">
             <span id="vpc_logo" class="material-symbols-outlined icon">cloud</span>
         </li>
-        <li onclick="subnets();"  class="item" data-value="6">
+        <li onclick="subnets();" id="subnets" class="item" data-value="6">
             <span id="subnet_logo" class="material-symbols-outlined icon">hub</span>
         </li>
-        <li onclick="nacl();"  class="item" data-value="7">
+        <li onclick="nacl();" id="nacl" class="item" data-value="7">
             <span id="nacl_logo" class="material-symbols-outlined icon">settings_input_hdmi</span>
         </li>
-        <li onclick="tgw();"  class="item" data-value="8">
+        <li onclick="tgw();" id="tgw" class="item" data-value="8">
             <span class="material-symbols-outlined icon" id="tgw_logo"> fluorescent</span>
         </li>
-        <li onclick="igw();"  class="item" data-value="9">
+        <li onclick="igw();" id="igw" class="item" data-value="9">
             <span id="igw_logo" class="material-symbols-outlined icon">router</span>
         </li>
-        <li onclick="rds();"  class="item" data-value="10">
+        <li onclick="rds();" id="rds" class="item" data-value="10">
             <span class="material-symbols-outlined icon" id="rds_logo">shield</span>
         </li>
-        <li onclick="vms();"  class="item" data-value="11">
+        <li onclick="vms();" id="vms" class="item" data-value="11">
             <span class="material-symbols-outlined icon" id="vms_logo">dvr</span>
         </li>
-        <li onclick="sqs();"  class="item" data-value="12">
+        <li onclick="sqs();" id="sqs" class="item" data-value="12">
             <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span>
         </li>
-        <li onclick="sns();"  class="item" data-value="13">
-            <span class="material-symbols-outlined icon">dvr</span>
+        <li onclick="sns();" id="sns" class="item" data-value="13">
+            <span class="material-symbols-outlined icon">chat_bubble</span>
         </li>
-{#        <li onclick="vms();"  class="item" data-value="14">#}
-{#            <span class="material-symbols-outlined icon">dvr</span>#}
-{#        </li>#}
+        {#        <li onclick="vms();"  class="item" data-value="14">#}
+        {#            <span class="material-symbols-outlined icon">dvr</span>#}
+        {#        </li>#}
 
 
     </ul>
@@ -229,10 +229,12 @@
                                 <div>
                                     <h4>REGION</h4>
                                 </div>
-                                <div >
+                                <div>
                                     <input type="text" id="ip-input-new" name="region"
-                                           style="display:block;width: 270px;border:1px solid #000;margin-top: 20px" value="{{ reg }}" readonly class="region-in">
-                                    <label for="region" style="display:inline-block;font-size: x-small">Note: Kindly change the region from selector on navigation bar </label>
+                                           style="display:block;width: 270px;border:1px solid #000;margin-top: 20px"
+                                           value="{{ reg }}" readonly class="region-in">
+                                    <label for="region" style="display:inline-block;font-size: x-small">Note: Kindly
+                                        change the region from selector on navigation bar </label>
 
                                 </div>
 
@@ -246,9 +248,9 @@
                                         <option value="minutes">Minutes</option>
                                     </select>
                                 </div>
-<div class="button-refresh">
-                                <button>ADD</button>
-                            </div>
+                                <div class="button-refresh">
+                                    <button>ADD</button>
+                                </div>
                             </div>
 
                         </div>
@@ -329,22 +331,24 @@
     <div class="dashboard_View" id="dash-view" style="display:flex">
         <div class="cb_container">
             <div class="grid-box box1">
-                <div class="head-text" ><span>EC2</span></div>
+                <div class="head-text"><span>EC2</span></div>
                 <div class="count-text" onclick="vms()"><a>{{ processing_data['ec2_details'] | length }}</a></div>
             </div>
             <div class="grid-box box2">
-                <div class="head-text" ><span>VPC</span></div>
-                <div class="count-text" onclick="vpcDetails()"><a>{{ processing_data['vpc_details'] | length }}</a></div>
+                <div class="head-text"><span>VPC</span></div>
+                <div class="count-text" onclick="vpcDetails()"><a>{{ processing_data['vpc_details'] | length }}</a>
+                </div>
 
             </div>
             <div class="grid-box box3">
-                <div class="head-text" ><span>RDS</span></div>
+                <div class="head-text"><span>RDS</span></div>
                 <div class="count-text" onclick="rds()"><a>{{ processing_data['rds_details'] | length }}</a></div>
 
             </div>
             <div class="grid-box box4">
-                <div class="head-text" ><span>DynamoDB</span></div>
-                <div class="count-text" onclick="dynamo()"><a>{{ processing_data['dynamodb_details'] | length }}</a></div>
+                <div class="head-text"><span>DynamoDB</span></div>
+                <div class="count-text" onclick="dynamo()"><a>{{ processing_data['dynamodb_details'] | length }}</a>
+                </div>
 
             </div>
         </div>
@@ -359,11 +363,11 @@
 
     {#    <h1>{{ processing_data['subnet_details'] | length }}</h1>#}
     <div id="subnet_details">
-        <div class="cont_table_main">
-            <table class="myTable">
+        <div class="cont_table_main" >
+            <table class="myTable" style="width: 100%">
                 <thead>
                 <tr class="heading-tr">
-                        <th>Name</th>
+                    <th>Name</th>
                     <th>Subnet ID</th>
                     <th>State</th>
                     <th>VPC</th>
@@ -784,7 +788,7 @@
             <table class="myTable">
                 <thead>
                 <tr class="heading-tr">
-                    <th >Name</th>
+                    <th>Name</th>
                     <th>Owner ID</th>
                     <th>Host Name</th>
                     <th>AmiLaunch Index</th>
@@ -825,7 +829,7 @@
                     <tr>
                         <td>{{ ec2['Name'] }}</td>
                         <td>{{ ec2['owner_id'] }}</td>
-                        <td>{{ ec2['PublicDnsName'] }}</td>
+                        <td>{{ ec2['PrivateDnsName'] }}</td>
                         <td>{{ ec2['AmiLaunch Index'] }}</td>
                         <td>{{ ec2['Image Id'] }}</td>
                         <td>{{ ec2['Instance Id'] }}</td>
@@ -934,7 +938,6 @@
     {#    });#}
     {##
     {# });#}
-
 
 
     function closeNav() {
