@@ -1,3 +1,4 @@
+let clickedLinkText;
 $(document).ready(function () {
     document.getElementById('label-head').textContent = " ";
     // $('.myTable').DataTable();
@@ -18,6 +19,115 @@ $(document).ready(function () {
         "sorting": [[0, 'asc']]
 
     });
+
+    // function returnTableData(id,reqdata) {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/dashboard',
+    //         data: JSON.stringify({
+    //
+    //             'payload': clickedLinkText
+    //         }),
+    //         success: (data) => {
+    //             var template = Handlebars.compile($('#dashboard_html').html());
+    //             var html = template(data['processing_data'].reqdata);
+    //             $('#' + id).html(html);
+    //         },
+    //         error: function (jqXHR, textStatus, errorThrown) {
+    //             console.log('Error: ' + textStatus);
+    //         }
+    //     });
+    // }
+
+
+    // const tables = [
+    //     {
+    //         id: "subnet_table",
+    //         columns: [
+    //             {headerText: "Name", key: "Name", dataType: "string"},
+    //             {headerText: "Subnet ID", key: "Subnet ID", dataType: "string"},
+    //             {headerText: "State", key: "State", dataType: "string"},
+    //             {headerText: "VPC", key: "VPC", dataType: "string"},
+    //             {headerText: "IPv4 CIDR", key: "IPv4 CIDR", dataType: "string"},
+    //             {headerText: "Availablity Zone", key: "Availablity Zone", dataType: "string"},
+    //             {headerText: "Availablity Zone ID", key: "Availablity Zone ID", dataType: "string"},
+    //             {headerText: "Network Border Group", key: "Network Border Group", dataType: "string"},
+    //             {headerText: "Network ACL", key: "Network ACL", dataType: "string"},
+    //             {headerText: "Route Table", key: "Route Table", dataType: "string"}
+    //         ],
+    //         dataSource: returnTableData("subnet_table","subnet_details")
+    //     }
+    // ];
+    //
+    // // Loop through each table configuration and create a grid for each one
+    // tables.forEach(function (tableConfig) {
+    //     let uniqueCategoriesSet = new Set();
+    //     let uniqueCategories = [];
+    //
+    //     tableConfig.dataSource.forEach(function (product) {
+    //         uniqueCategoriesSet.add(product.CategoryName)
+    //     });
+    //
+    //     uniqueCategoriesSet.forEach(function (item) {
+    //         uniqueCategories.push(item);
+    //     });
+    //
+    //     $.ig.CustomComboEditorProvider = $.ig.CustomComboEditorProvider || $.ig.EditorProviderCombo.extend({
+    //         setSize: function (height) {
+    //             this.editor.element.css({
+    //                 height: height
+    //             });
+    //         },
+    //         getValue: function () {
+    //             return this.editor.value();
+    //         },
+    //         destroy: function () {
+    //             this.editor.element.remove();
+    //         }
+    //     });
+    //
+    //     $("#" + tableConfig.id).igGrid({
+    //         autoGenerateColumns: false,
+    //         width: '100%',
+    //         columns: tableConfig.columns,
+    //         dataSource: tableConfig.dataSource,
+    //         responseDataKey: "results",
+    //         autoCommit: true,
+    //         features: [
+    //             {
+    //                 name: "Sorting",
+    //                 sortingDialogContainment: "window"
+    //             },
+    //             {
+    //                 name: "Filtering",
+    //                 type: "local",
+    //                 columnSettings: [
+    //                     {
+    //                         columnKey: "CategoryName",
+    //                         conditionList: [
+    //                             "equals"
+    //                         ],
+    //                         editorProvider: new $.ig.CustomComboEditorProvider(),
+    //                         editorOptions: {
+    //                             dataSource: uniqueCategories,
+    //                             allowCustomValue: false,
+    //                             autoComplete: true,
+    //                             multiSelection: {
+    //                                 enabled: true,
+    //                                 showCheckboxes: true,
+    //                                 itemSeparator: ', '
+    //                             }
+    //                         }
+    //                     }
+    //                 ]
+    //             },
+    //             {
+    //                 name: "Paging",
+    //                 pageSize: 10
+    //             }
+    //         ]
+    //     });
+    // });
     // let regparts = window.location.pathname.split('/')
     // let regdef = regparts[regparts.length - 1];
     //
@@ -778,5 +888,13 @@ function sns() {
     ts.style.display = "none";
     ec2.style.display = "none";
     sns.style.display = "flex";
+}
+
+function getRegion(e) {
+    document.getElementById("dropdown-content").classList.toggle("show")
+    clickedLinkText = e.target.textContent;
+    window.location.href = '/dashboard/' + clickedLinkText;
+    document.getElementById("regionIndi").textContent = clickedLinkText;
+    document.getElementById("regiondrop").textContent = clickedLinkText;
 }
 

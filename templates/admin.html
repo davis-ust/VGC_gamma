@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="dashboard_html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,24 @@
     <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
     <script src="{{ url_for('static', filename='js/chartjs.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dtable.js') }}"></script>
+{#    <script src="{{ url_for('static', filename='js/data.js') }}"></script>#}
 
     <link href='https://fonts.googleapis.com/css?family=Crimson Text' rel='stylesheet'>
+
+{##}
+{#    <script src="https://igniteui.com/js/modernizr.min.js"></script>#}
+{##}
+{#    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>#}
+{#    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>#}
+{#    <script src="https://cdn-na.infragistics.com/igniteui/latest/js/infragistics.core.js"></script>#}
+{#    <script src="https://cdn-na.infragistics.com/igniteui/latest/js/infragistics.lob.js"></script>#}
+{#    <link href="https://cdn-na.infragistics.com/igniteui/latest/css/themes/infragistics/infragistics.theme.css"#}
+{#        rel="stylesheet">#}
+{#    </link>#}
+{##}
+{#    <link href="https://cdn-na.infragistics.com/igniteui/latest/css/structure/infragistics.css" rel="stylesheet">#}
+{#    </link>#}
+
     {#    <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>#}
     <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet"/>-->
     <!--    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" rel="stylesheet" />-->
@@ -31,7 +47,7 @@
 
             <div class="menu_ham"><h2 id="label-head"></h2></div>
         </div>
-        <div style="width: 400px;display: flex;justify-content: space-evenly;height: 56px;align-items: center;">
+        <div style="width: 400px;display: flex;justify-content: space-evenly;height: 56px;align-items: center;margin-right: 20px">
             <div class="icons-div">
                 <div class="refresh" id="refresh" class="nav-icons" style=""
                      onclick="opendash()">
@@ -54,28 +70,29 @@
                             href="#add-scheduler-popup">Auto Scan</a></span>
                 </div>
                 <div id="user" class="nav-icons">
-                    <div class="refresh" id="dropdown" onclick="myFunction()">
-                        <div style="display: flex;justify-content: space-evenly;width: 115px;align-items: center"><span
+                    <div class="refresh" id="dropdown">
+                        <div style="display: flex;justify-content: space-evenly;width: 140px;align-items: center"
+                             onclick="myFunction()"><span
                                 id="regiondrop" style="color:white;font-weight:500; margin-bottom:0;">{{ reg }}</span>
                             <span class="material-symbols-outlined">public</span></div>
                         <div class="dropdown-content" id="dropdown-content">
-                            <h6 onclick="getRegion()">ap-south-1</h6>
-                            <h6 onclick="getRegion()">eu-north-1</h6>
-                            <h6 onclick="getRegion()">eu-west-3</h6>
-                            <h6 onclick="getRegion()">eu-west-2</h6>
-                            <h6 onclick="getRegion()">eu-west-1</h6>
-                            <h6 onclick="getRegion()">ap-northeast-3</h6>
-                            <h6 onclick="getRegion()">ap-northeast-2</h6>
-                            <h6 onclick="getRegion()">ap-northeast-1</h6>
-                            <h6 onclick="getRegion()">ca-central-1</h6>
-                            <h6 onclick="getRegion()">sa-east-1</h6>
-                            <h6 onclick="getRegion()">ap-southeast-1</h6>
-                            <h6 onclick="getRegion()">ap-southeast-2</h6>
-                            <h6 onclick="getRegion()">eu-central-1</h6>
-                            <h6 onclick="getRegion()">us-east-1</h6>
-                            <h6 onclick="getRegion()">us-east-2</h6>
-                            <h6 onclick="getRegion()">us-west-1</h6>
-                            <h6 onclick="getRegion()">us-west-2</h6>
+                            <h6 onclick="getRegion(event)">ap-south-1</h6>
+                            <h6 onclick="getRegion(event)">eu-north-1</h6>
+                            <h6 onclick="getRegion(event)">eu-west-3</h6>
+                            <h6 onclick="getRegion(event)">eu-west-2</h6>
+                            <h6 onclick="getRegion(event)">eu-west-1</h6>
+                            <h6 onclick="getRegion(event)">ap-northeast-3</h6>
+                            <h6 onclick="getRegion(event)">ap-northeast-2</h6>
+                            <h6 onclick="getRegion(event)">ap-northeast-1</h6>
+                            <h6 onclick="getRegion(event)">ca-central-1</h6>
+                            <h6 onclick="getRegion(event)">sa-east-1</h6>
+                            <h6 onclick="getRegion(event)">ap-southeast-1</h6>
+                            <h6 onclick="getRegion(event)">ap-southeast-2</h6>
+                            <h6 onclick="getRegion(event)">eu-central-1</h6>
+                            <h6 onclick="getRegion(event)">us-east-1</h6>
+                            <h6 onclick="getRegion(event)">us-east-2</h6>
+                            <h6 onclick="getRegion(event)">us-west-1</h6>
+                            <h6 onclick="getRegion(event)">us-west-2</h6>
                         </div>
                     </div>
                 </div>
@@ -322,12 +339,6 @@
 
     </div>
 
-    {#    <div class="table_search">#}
-    {##}
-    {#        <input type="text" id="search-input" placeholder="Search...">#}
-    {##}
-    {#    </div>#}
-
     <div class="dashboard_View" id="dash-view" style="display:flex">
         <div class="cb_container">
             <div class="grid-box box1">
@@ -361,11 +372,12 @@
         </div>
     </div>
 
-    {#    <h1>{{ processing_data['subnet_details'] | length }}</h1>#}
+
     <div id="subnet_details">
         <div class="cont_table_main" >
             <table class="myTable" style="width: 100%">
                 <thead>
+
                 <tr class="heading-tr">
                     <th>Name</th>
                     <th>Subnet ID</th>
@@ -378,13 +390,25 @@
                     <th>Network ACL</th>
                     <th>Route Table</th>
                 </tr>
+                <tr>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+                    <th><input></th>
+
+                </tr>
                 </thead>
                 <tbody>
                 {% for subnets in processing_data['subnet_details'] %}
 
                     <tr>
-                        <td>{{ subnets['Name'] }}</td>
-                        <td>{{ subnets['Subnet ID'] }}</td>
+                        <td>{{ subnets['Name'] }}</td>                        <td>{{ subnets['Subnet ID'] }}</td>
                         <td>{{ subnets['State'] }}</td>
                         <td>{{ subnets['VPC'] }}</td>
                         <td>{{ subnets['IPv4 CIDR'] }}</td>
@@ -955,24 +979,26 @@
         document.getElementById("dropdown-content").classList.toggle("show");
     }
 
-    function getRegion() {
-        let links = document.querySelectorAll("h6");
+    {#function getRegion() {#}
+    {##}
+    {#    let links = document.querySelectorAll("h6");#}
+    {##}
+    {#    for (let link of links) {#}
+    {#        link.addEventListener("click", function (event) {#}
+    {#            event.preventDefault();#}
+    {#            let clickedLinkText = this.textContent;#}
+    {#            window.location.href = '/dashboard/' + clickedLinkText;#}
+    {#            document.getElementById("regionIndi").textContent = clickedLinkText;#}
+    {#            document.getElementById("regiondrop").textContent = clickedLinkText;#}
+    {#            document.getElementById("dropdown-content").classList.toggle("show");#}
+    {##}
+    {##}
+    {#        });#}
+    {##}
+    {#    }#}
+    {##}
+    {# } #}
 
-        for (let link of links) {
-            link.addEventListener("click", function (event) {
-                event.preventDefault();
-                let clickedLinkText = this.textContent;
-                window.location.href = '/dashboard/' + clickedLinkText;
-                document.getElementById("regionIndi").textContent = clickedLinkText;
-                document.getElementById("regiondrop").textContent = clickedLinkText;
-                document.getElementById("dropdown-content").classList.toggle("show");
-
-
-            });
-
-        }
-
-    }
 
 </script>
 </html>
