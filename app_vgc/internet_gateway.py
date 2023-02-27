@@ -25,6 +25,6 @@ def get_internet_gateway():
         for iat in iint['Attachments']:
             intGat.update(iat)
         igw_lst.append(intGat)
-    # print(igw_lst)
+    #print(igw_lst)
 
     return igw_lst

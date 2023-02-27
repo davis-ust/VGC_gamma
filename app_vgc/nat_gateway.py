@@ -30,6 +30,6 @@ def get_nat_gateway_df():
             })
         natID.update({'VPC ID': inatd['VpcId'], 'Subnet ID': inatd['SubnetId']})
         NAT_lst.append(natID)
-    # print(NAT_lst)
+    #print(NAT_lst)
 
     return NAT_lst

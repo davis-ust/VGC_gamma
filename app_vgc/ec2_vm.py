@@ -148,4 +148,4 @@ if __name__ == '__main__':
         region_name='us-east-1'
     )
     val = get_ec2_df()
-    print(val)
+    #print(val)
