@@ -16,9 +16,12 @@ def get_internet_gateway():
         # print(iint)
         intGat = {'Internet Gateway Id': iint['InternetGatewayId']}
         intGat['Name'] = '-'
+        intGat['Environment'] = '-'
         for ita in iint['Tags']:
             if ita['Key'] == 'Name':
                 intGat.update({'Name': ita['Value']} or '-')
+            if ita['Key'] == 'Environment':
+                intGat.update({'Environment': ita['Value']} or '-')
         for iat in iint['Attachments']:
             intGat.update(iat)
         igw_lst.append(intGat)

@@ -363,7 +363,8 @@
             <table class="myTable">
                 <thead>
                 <tr class="heading-tr">
-                        <th>Name</th>
+                    <th>Name</th>
+                    <th>Environment</th>
                     <th>Subnet ID</th>
                     <th>State</th>
                     <th>VPC</th>
@@ -380,6 +381,7 @@
 
                     <tr>
                         <td>{{ subnets['Name'] }}</td>
+                        <td>{{ subnets['Environment'] }}</td>
                         <td>{{ subnets['Subnet ID'] }}</td>
                         <td>{{ subnets['State'] }}</td>
                         <td>{{ subnets['VPC'] }}</td>
@@ -403,6 +405,7 @@
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
+                    <th>Environment</th>
                     <th>VPC ID</th>
                     <th>State</th>
                     <th>IPV4 CIDR</th>
@@ -419,6 +422,7 @@
                 {% for vpc in processing_data['vpc_details'] %}
                     <tr>
                         <td>{{ vpc['Name'] }}</td>
+                        <td>{{ vpc['Environment'] }}</td>
                         <td>{{ vpc['VPC ID'] }}</td>
                         <td>{{ vpc['State'] }}</td>
                         <td>{{ vpc['IPv4 CIDR'] }}</td>
@@ -472,6 +476,7 @@
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
+                    <th>Environment</th>
                     <th>Network ACL ID</th>
                     <th>VPC ID</th>
                     <th>Default</th>
@@ -484,6 +489,7 @@
                 {% for nacl in processing_data['network_acl_details'] %}
                     <tr>
                         <td>{{ nacl['Name'] }}</td>
+                        <td>{{ nacl['Environment'] }}</td>
                         <td>{{ nacl['Network ACL ID'] }}</td>
                         <td>{{ nacl['VPC ID'] }}</td>
                         <td>{{ nacl['Default'] }}</td>
@@ -502,6 +508,7 @@
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
+                    <th>Environment</th>
                     <th>Internal Gateway ID</th>
                     <th>State</th>
                     <th>VPC ID</th>
@@ -511,6 +518,7 @@
                 {% for igw in processing_data['igw_details'] %}
                     <tr>
                         <td>{{ igw['Name'] }}</td>
+                        <td>{{ igw['Environment'] }}</td>
                         <td>{{ igw['Internet Gateway Id'] }}</td>
                         <td>{{ igw['State'] }}</td>
                         <td>{{ igw['VpcId'] }}</td>
@@ -550,6 +558,7 @@
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
+                    <th>Environment</th>
                     <th>NAT Gateway ID</th>
                     <th>Elastic IP Address</th>
                     <th>Private IP Address</th>
@@ -562,6 +571,7 @@
                 {% for nat in processing_data['NAT_details'] %}
                     <tr>
                         <td>{{ nat['Name'] }}</td>
+                        <td>{{ nat['Environment'] }}</td>
                         <td>{{ nat['NAT gateway ID'] }}</td>
                         <td>{{ nat['Elastic IP Address'] }}</td>
                         <td>{{ nat['Private IP address'] }}</td>
@@ -785,6 +795,7 @@
                 <thead>
                 <tr class="heading-tr">
                     <th >Name</th>
+                    <th>Environment</th>
                     <th>Owner ID</th>
                     <th>Host Name</th>
                     <th>AmiLaunch Index</th>
@@ -824,6 +835,7 @@
                 {% for ec2 in processing_data['ec2_details'] %}
                     <tr>
                         <td>{{ ec2['Name'] }}</td>
+                        <td>{{ ec2['Environment'] }}</td>
                         <td>{{ ec2['owner_id'] }}</td>
                         <td>{{ ec2['PublicDnsName'] }}</td>
                         <td>{{ ec2['AmiLaunch Index'] }}</td>

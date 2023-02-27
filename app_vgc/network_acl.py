@@ -4,8 +4,13 @@ def get_network_acl_df(network_acl):
     for inet in network_acl['NetworkAcls']:
 
         NetworkAclId = {'Network ACL ID': inet['NetworkAclId']}
+        NetworkAclId['Name'] = '-'
+        NetworkAclId['Environment'] = '-'
         for tn in inet['Tags']:
-            NetworkAclId.update({'Name': tn['Value']})
+            if tn['Key'] == 'Name':
+                NetworkAclId.update({'Name': tn['Value']} or '-')
+            elif tn['Key'] == 'Environment':
+                NetworkAclId.update({'Environment': tn['Value']} or '-')
         NetworkAclId.update({'VPC ID': inet['VpcId']})
         NetworkAclId.update({'Default': inet['IsDefault']})
         a = inet['Entries']

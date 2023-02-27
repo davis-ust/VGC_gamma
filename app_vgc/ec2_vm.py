@@ -90,10 +90,13 @@ def get_ec2_df():
     for ec2 in ec2_vm_list:
         owner_id = {'owner_id': ec2['OwnerId']}
         for i_ec2 in ec2['Instances']:
-            owner_id['Name'] = ''
+            owner_id['Name'] = '-'
+            owner_id['Environment'] = '-'
             for i_t in i_ec2['Tags']:
                 if i_t['Key'] == 'Name':
                     owner_id['Name'] = i_t['Value']
+                elif i_t['Key'] == 'Environment':
+                    owner_id['Environment'] = i_t['Value'] or "-"
                     break
 
             owner_id.update({'AmiLaunch Index': i_ec2['AmiLaunchIndex']})
