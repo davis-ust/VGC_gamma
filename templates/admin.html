@@ -4,34 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/admin.css">
-    {#        <link rel="stylesheet" href="/static/ajax_mdn_file.css">#}
     <link rel="stylesheet" href="/static/mdn_file.css">
     <link rel="stylesheet" href="/static/font_style.woff2">
     <script src="{{ url_for('static', filename='js/jquery_file.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
     <script src="{{ url_for('static', filename='js/chartjs.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dtable.js') }}"></script>
-{#    <script src="{{ url_for('static', filename='js/data.js') }}"></script>#}
 
     <link href='https://fonts.googleapis.com/css?family=Crimson Text' rel='stylesheet'>
-
-{##}
-{#    <script src="https://igniteui.com/js/modernizr.min.js"></script>#}
-{##}
-{#    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>#}
-{#    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>#}
-{#    <script src="https://cdn-na.infragistics.com/igniteui/latest/js/infragistics.core.js"></script>#}
-{#    <script src="https://cdn-na.infragistics.com/igniteui/latest/js/infragistics.lob.js"></script>#}
-{#    <link href="https://cdn-na.infragistics.com/igniteui/latest/css/themes/infragistics/infragistics.theme.css"#}
-{#        rel="stylesheet">#}
-{#    </link>#}
-{##}
-{#    <link href="https://cdn-na.infragistics.com/igniteui/latest/css/structure/infragistics.css" rel="stylesheet">#}
-{#    </link>#}
-
-    {#    <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>#}
-    <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet"/>-->
-    <!--    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" rel="stylesheet" />-->
 
     <title>VGC Cloud Dashboard</title>
 </head>
@@ -52,20 +32,16 @@
                 <div class="refresh" id="refresh" class="nav-icons" style=""
                      onclick="opendash()">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Dashboard</span>
-                    {#                    <span class="material-symbols-outlined" style="color:white;font-weight:800;">refresh</span>#}
                 </div>
                 <div class="refresh" id="refresh" class="nav-icons" style=""
                      onclick="location.href='/get_latest_data'">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Refresh</span>
-                    {#                    <span class="material-symbols-outlined" style="color:white;font-weight:800;">refresh</span>#}
                 </div>
                 <div class="refresh" id="export" class="nav-icons"
                      onclick="location.href='/downloads/{{ filename }}'">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Export</span>
-                    {#                    <span class="material-symbols-outlined" style="color:white;font-weight:800;">download</span>#}
                 </div>
                 <div class="refresh" id="schedule" class="nav-icons">
-                    {#                    <span style="color:white;font-weight:800; margin-bottom:0;">Export</span>#}
                     <span style="color:white;font-weight:500; margin-bottom:0;"><a
                             href="#add-scheduler-popup">Auto Scan</a></span>
                 </div>
@@ -114,56 +90,56 @@
                     <span class="material-symbols-outlined icon" id="ats_logo">send</span>
                     <span class="element-name" id="ats_text">Amazon Transfer Service</span>
                 </li>
-                <li onclick="loadBalancer();" class="item" data-value="2">
+                <li data-table-selector="#lb_Table" class="item lb" data-value="2">
                     <span id="load_logo" class="material-symbols-outlined icon">lan</span>
                     <span id="load_text" class="element-name">Load Balancer</span>
 
                 </li>
-                <li onclick="nat();" class="item" data-value="3">
+                <li data-table-selector="#nat_Table" class="item nat" data-value="3">
                     <span id="nat_logo" class="material-symbols-outlined icon">nat</span>
                     <span class="element-name" id="nat_text">NAT Gateway</span>
                 </li>
-                <li onclick="dynamo();" class="item" data-value="4">
+                <li data-table-selector="#dynamo_Table" class="item dynamo" data-value="4">
                     <span class="material-symbols-outlined icon" id="dynamo_logo">database</span>
                     <span class="element-name" id="dynamo_text">Dynamo DB</span>
                 </li>
-                <li onclick="vpcDetails();" class="item" data-value="5">
+                <li data-table-selector="#vpc_Table" class="item vpc" data-value="5">
                     <span id="vpc_logo" class="material-symbols-outlined icon">cloud</span>
                     <span id="vpc_text" class="element-name">VPC Details</span>
                 </li>
 
-                <li onclick="subnets();" class="item" data-value="6">
+                <li data-table-selector="#subnet_Table" class="item subnets" data-value="6">
                     <span id="subnet_logo" class="material-symbols-outlined icon">hub</span>
                     <span id="subnets_text" class="element-name">SUBNETS</span>
 
                 </li>
-                <li onclick="nacl();" class="item" data-value="7">
+                <li data-table-selector="#nacl_Table" class="item nacl" data-value="7">
                     <span id="nacl_logo" class="material-symbols-outlined icon">settings_input_hdmi</span>
                     <span class="element-name" id="nacl_text">NACL</span>
 
                 </li>
-                <li onclick="tgw();" class="item" data-value="8">
+                <li data-table-selector="#tgw_Table" class="item tgw" data-value="8">
                     <span class="material-symbols-outlined icon" id="tgw_logo"> fluorescent</span>
                     <span class="element-name" id="tgw_text">TGW</span>
                 </li>
-                <li onclick="igw();" class="item" data-value="9">
+                <li data-table-selector="#igw_Table" class="item igw" data-value="9">
                     <span id="igw_logo" class="material-symbols-outlined icon">router</span>
                     <span class="element-name" id="igw_text">IGW</span>
                     <!--            <span class="element-name" id="disk-perf">Disk performances</span>-->
                 </li>
-                <li onclick="rds();" class="item" data-value="10">
+                <li data-table-selector="#rds_Table" class="item rds" data-value="10">
                     <span class="material-symbols-outlined icon" id="rds_logo">shield</span>
                     <span class="element-name" id="rds_text">RDS</span>
                 </li>
-                <li onclick="vms();" class="item" data-value="11">
+                <li data-table-selector="#ec2_Table" class="item vms" data-value="11">
                     <span class="material-symbols-outlined icon" id="vms_logo">dvr</span>
                     <span class="element-name" id="vms_text">VMs</span>
                 </li>
-                <li onclick="sqs();" class="item" data-value="12">
+                <li data-table-selector="#sqs_Table" class="item sqs" data-value="12">
                     <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span>
                     <span class="element-name" id="sqs_text">SQS</span>
                 </li>
-                <li onclick="sns();" class="item" data-value="13">
+                <li data-table-selector="#sns_Table" class="item sns" data-value="13">
                     <span class="material-symbols-outlined icon">chat_bubble</span>
                     <span class="element-name">SNS</span>
                 </li>
@@ -181,44 +157,45 @@
 <div class="hint_sidenav">
 
     <ul id="sidebar-elements" class="sidebar-elements" style="padding-bottom: 1rem;">
-        <li onclick="ats();" id="ats" class="item" data-value="1">
-            <span class="material-symbols-outlined icon" id="ats_logo">send</span>
+        <li data-table-selector="#ts_Table" class="item ats" data-value="1">
+            <a href="#ts_Table"><span class="material-symbols-outlined icon" id="ats_logo">send</span></a>
         </li>
-        <li onclick="loadBalancer();" id="lb" class="item" data-value="2">
-            <span id="load_logo" class="material-symbols-outlined icon">lan</span>
+        <li data-table-selector="#lb_Table" class="item lb" data-value="2">
+            <a href="#lb_Table"><span id="load_logo" class="material-symbols-outlined icon">lan</span></a>
         </li>
-        <li onclick="nat();" id="nat" class="item" data-value="3">
-            <span id="nat_logo" class="material-symbols-outlined icon">nat</span>
+        <li data-table-selector="#nat_Table" class="item nat" data-value="3">
+            <a href="#nat_Table"> <span id="nat_logo" class="material-symbols-outlined icon">nat</span></a>
         </li>
-        <li onclick="dynamo();" id="dynamo" class="item" data-value="4">
-            <span class="material-symbols-outlined icon" id="dynamo_logo">database</span>
+        <li data-table-selector="#dynamo_Table" class="item dynamo" data-value="4">
+            <a href="#dynamo_Table"> <span class="material-symbols-outlined icon" id="dynamo_logo">database</span></a>
         </li>
-        <li onclick="vpcDetails();" id="vpc" class="item" data-value="5">
-            <span id="vpc_logo" class="material-symbols-outlined icon">cloud</span>
+        <li data-table-selector="#vpc_Table" class="item vpc" data-value="5">
+            <a href="#vpc_Table"> <span id="vpc_logo" class="material-symbols-outlined icon">cloud</span></a>
         </li>
-        <li onclick="subnets();" id="subnets" class="item" data-value="6">
-            <span id="subnet_logo" class="material-symbols-outlined icon">hub</span>
+        <li data-table-selector="#subnet_Table" class="item subnets" data-value="6">
+            <a href="#subnet_Table"> <span id="subnet_logo" class="material-symbols-outlined icon">hub</span></a>
         </li>
-        <li onclick="nacl();" id="nacl" class="item" data-value="7">
-            <span id="nacl_logo" class="material-symbols-outlined icon">settings_input_hdmi</span>
+        <li data-table-selector="#nacl_Table" class="item nacl" data-value="7">
+            <a href="#nacl_Table"> <span id="nacl_logo"
+                                         class="material-symbols-outlined icon">settings_input_hdmi</span></a>
         </li>
-        <li onclick="tgw();" id="tgw" class="item" data-value="8">
-            <span class="material-symbols-outlined icon" id="tgw_logo"> fluorescent</span>
+        <li data-table-selector="#tgw_Table" class="item tgw" data-value="8">
+            <a href="#tgw_Table"> <span class="material-symbols-outlined icon" id="tgw_logo"> fluorescent</span></a>
         </li>
-        <li onclick="igw();" id="igw" class="item" data-value="9">
-            <span id="igw_logo" class="material-symbols-outlined icon">router</span>
+        <li data-table-selector="#igw_Table" class="item igw" data-value="9">
+            <a href="#igw_Table"> <span id="igw_logo" class="material-symbols-outlined icon">router</span></a>
         </li>
-        <li onclick="rds();" id="rds" class="item" data-value="10">
-            <span class="material-symbols-outlined icon" id="rds_logo">shield</span>
+        <li data-table-selector="#rds_Table" class="item rds" data-value="10">
+            <a href="#rds_Table"> <span class="material-symbols-outlined icon" id="rds_logo">shield</span></a>
         </li>
-        <li onclick="vms();" id="vms" class="item" data-value="11">
-            <span class="material-symbols-outlined icon" id="vms_logo">dvr</span>
+        <li data-table-selector="#ec2_Table" class="item vms" data-value="11">
+            <a href="#ec2_Table"> <span class="material-symbols-outlined icon" id="vms_logo">dvr</span></a>
         </li>
-        <li onclick="sqs();" id="sqs" class="item" data-value="12">
-            <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span>
+        <li data-table-selector="#sqs_Table" class="item sqs" data-value="12">
+            <a href="#sqs_Table"> <span id="sqs_logo" class="material-symbols-outlined icon">view_agenda</span></a>
         </li>
-        <li onclick="sns();" id="sns" class="item" data-value="13">
-            <span class="material-symbols-outlined icon">chat_bubble</span>
+        <li data-table-selector="#sns_Table" class="item sns" data-value="13">
+            <a href="#sns_Table"> <span class="material-symbols-outlined icon">chat_bubble</span></a>
         </li>
         {#        <li onclick="vms();"  class="item" data-value="14">#}
         {#            <span class="material-symbols-outlined icon">dvr</span>#}
@@ -253,129 +230,10 @@
                                     <label for="region" style="display:inline-block;font-size: x-small">Note: Kindly
                                         change the region from selector on navigation bar </label>
 
-                                </div>
-
-                                <div><h4>TIME INTERVAL</h4></div>
-                                <div><input type="text" placeholder="Enter interval in minutes/hours"
-                                            id="time-input-new"
-                                            name="interval"></div>
-                                <div>
-                                    <select name="units" id="range-picker-new">
-                                        <option value="hours" selected>Hours</option>
-                                        <option value="minutes">Minutes</option>
-                                    </select>
-                                </div>
-                                <div class="button-refresh">
-                                    <button>ADD</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                </legend>
-                <div class="refresh_container">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Region</th>
-                            <th>Time Interval</th>
-                            <th>Delete</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for key,value in scheduler_data.items() %}
-                            <tr>
-
-                                <td class="regionKey">{{ key |default('') }}</td>
-                                <td class="interval">{{ value['interval'] }} {{ value['interval_units'] }}</td>
-
-                                <td class="delete_region" style="cursor:pointer;" onclick="openConfirm()"><span
-                                        class="material-symbols-outlined"> delete</span></td>
-                                <td class="status"><label class="switch">
-                                    <input type="checkbox"/>
-                                    <span class="slider round"></span>
-                                </label></td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="confirmPopup" id="confirmPopup" style="display: none">
-            <form action="/delete_region" method="post" class="popup-content">
-                <a href="#" class="close">&times;</a>
-                <h3>DELETE CUSTOM REFRESH INTERVAL</h3>
-                <div style="display: flex;flex-direction: column;width: 100%;height: 280px;align-items:center;justify-content: space-evenly">
-                    <span>You are going to delete the {{ reg }} scheduled refresh.Are you sure??</span>
-                    <div style="display:flex;width:100%;height:fit-content;justify-content:center;">
-                        <button id="del-reg"
-                                style="width:150px;height:30px;border:none;cursor:pointer;background-color:#006E74;color:white;margin: 14px">
-                            DELETE
-                        </button>
-                    </div>
-                </div>
-                <div style="display:none;flex-direction:column; align-items: center">
-                    <div class="host-div">
-                        <div><input type="text" class="region-delete" readonly name="region_name"
-                                    style="visibility: hidden"></div>
-                    </div>
-                    <div class="interval-div">
-                        {#                    <div><h4>TIME INTERVAL</h4></div>#}
-                        <div><input type="text" readonly name="time-interval" class="delete-time"
-                                    style="visibility: hidden"></div>
-                        <div style="visibility: hidden">
-                            <select readonly="readonly" name="interval-units">
-                                <option value="hours" selected>Hours</option>
-                                <option value="minutes">Minutes</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-
-    </div>
-
-    <div class="dashboard_View" id="dash-view" style="display:flex">
-        <div class="cb_container">
-            <div class="grid-box box1">
-                <div class="head-text"><span>EC2</span></div>
-                <div class="count-text" onclick="vms()"><a>{{ processing_data['ec2_details'] | length }}</a></div>
-            </div>
-            <div class="grid-box box2">
-                <div class="head-text"><span>VPC</span></div>
-                <div class="count-text" onclick="vpcDetails()"><a>{{ processing_data['vpc_details'] | length }}</a>
-                </div>
-
-            </div>
-            <div class="grid-box box3">
-                <div class="head-text"><span>RDS</span></div>
-                <div class="count-text" onclick="rds()"><a>{{ processing_data['rds_details'] | length }}</a></div>
-
-            </div>
-            <div class="grid-box box4">
-                <div class="head-text"><span>DynamoDB</span></div>
-                <div class="count-text" onclick="dynamo()"><a>{{ processing_data['dynamodb_details'] | length }}</a>
-                </div>
-
-            </div>
-        </div>
-        <div class="gb_container">
-            <div class="graphbox box1">
-
-                <canvas id="myChart" width="1300" height="340"
-                        style="width: 1300px;height: 340px; background:#183229"></canvas>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="subnet_details">
-        <div class="cont_table_main" >
-            <table class="myTable" style="width: 100%">
+    <div id="subnet_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+        <div class="cont_table_main">
+            <table class="myTable" style="width: 100%" id="subnet_Table">
                 <thead>
 
                 <tr class="heading-tr">
@@ -427,7 +285,7 @@
     <div id="vpc_details" class="details-table" style="margin-left: 50px">
 
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="vpc_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -464,9 +322,10 @@
         </div>
     </div>
     <div id="load_balancer" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
 
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="lb_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -494,9 +353,11 @@
             </table>
         </div>
     </div>
-    <div id="nacl" class="details-table">
+    <div id="nacl_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="nacl_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -524,9 +385,12 @@
             </table>
         </div>
     </div>
-    <div id="igw" class="details-table">
+
+    <div id="igw_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="igw_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -549,8 +413,10 @@
         </div>
     </div>
     <div id="sqs_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="sqs_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -573,8 +439,10 @@
         </div>
     </div>
     <div id="nat_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="nat_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -603,8 +471,10 @@
         </div>
     </div>
     <div id="tgw_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="tgw_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -634,8 +504,10 @@
         </div>
     </div>
     <div id="rds_details" class="details-table" style="margin-left: 50px;">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="rds_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>DB Name</th>
@@ -703,8 +575,10 @@
         </div>
     </div>
     <div id="dynamo_db" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="dynamo_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Table Name</th>
@@ -743,8 +617,10 @@
         </div>
     </div>
     <div id="sns_details" class="details-table">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="sns_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>SubscriptionArn</th>
@@ -769,8 +645,10 @@
         </div>
     </div>
     <div id="ts_details" class="details-table" style="display: none">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="ts_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -808,8 +686,10 @@
         </div>
     </div>
     <div id="ec2_details" class="details-table" style="margin-left: 50px">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+
         <div class="cont_table_main">
-            <table class="myTable">
+            <table class="myTable" id="ec2_Table">
                 <thead>
                 <tr class="heading-tr">
                     <th>Name</th>
@@ -947,21 +827,7 @@
         }
     });
 
-    {#var underlineMenuItems = document.querySelectorAll("ul li");#}
-    {#underlineMenuItems[0].classList.add("active");#}
-    {##}
-    {#underlineMenuItems.forEach(function (item) {#}
-    {#    item.addEventListener("click", function select() {#}
-    {#        underlineMenuItems.forEach(function (item) {#}
-    {#            console.log(item, "remove akune item")#}
-    {#            return item.classList.remove("active");#}
-    {#        });#}
-    {##}
-    {#        item.classList.add("active");#}
-    {##}
-    {#    });#}
-    {##
-    {# });#}
+
 
 
     function closeNav() {
@@ -978,26 +844,6 @@
     function myFunction() {
         document.getElementById("dropdown-content").classList.toggle("show");
     }
-
-    {#function getRegion() {#}
-    {##}
-    {#    let links = document.querySelectorAll("h6");#}
-    {##}
-    {#    for (let link of links) {#}
-    {#        link.addEventListener("click", function (event) {#}
-    {#            event.preventDefault();#}
-    {#            let clickedLinkText = this.textContent;#}
-    {#            window.location.href = '/dashboard/' + clickedLinkText;#}
-    {#            document.getElementById("regionIndi").textContent = clickedLinkText;#}
-    {#            document.getElementById("regiondrop").textContent = clickedLinkText;#}
-    {#            document.getElementById("dropdown-content").classList.toggle("show");#}
-    {##}
-    {##}
-    {#        });#}
-    {##}
-    {#    }#}
-    {##}
-    {# } #}
 
 
 </script>
