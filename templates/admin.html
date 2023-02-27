@@ -86,7 +86,7 @@
         </div>
         <div class="a-elements">
             <ul id="sidebar-elements" class="sidebar-elements" style="padding-bottom: 1rem;">
-                <li onclick="ats();" class="item" data-value="1">
+                <li data-table-selector="#ts_Table" class="item ats" data-value="1">
                     <span class="material-symbols-outlined icon" id="ats_logo">send</span>
                     <span class="element-name" id="ats_text">Amazon Transfer Service</span>
                 </li>
@@ -206,36 +206,12 @@
 </div>
 <div class="content_div" id="cont_div">
 
-    <div id="add-scheduler-popup" class="popup-container">
-        <div class="popup-content">
-            <div class="heading-refresh">
-                <div style="flex-grow: 1 "><h3>CUSTOM REFRESH INTERVAL</h3></div>
-
-                <div><a href="#" class="close">&times;</a></div>
-            </div>
-
-            <div style="display:flex;flex-direction:column; align-items: center;margin-top:50px; ">
-                <legend>CREATE NEW REFRESH SCHEDULE
-                    <form action="/automate_refresh" method="post" class="new_refresh">
-
-                        <div>
-                            <div class="host-div">
-                                <div>
-                                    <h4>REGION</h4>
-                                </div>
-                                <div>
-                                    <input type="text" id="ip-input-new" name="region"
-                                           style="display:block;width: 270px;border:1px solid #000;margin-top: 20px"
-                                           value="{{ reg }}" readonly class="region-in">
-                                    <label for="region" style="display:inline-block;font-size: x-small">Note: Kindly
-                                        change the region from selector on navigation bar </label>
 
     <div id="subnet_details" class="details-table">
         <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
         <div class="cont_table_main">
             <table class="myTable" style="width: 100%" id="subnet_Table">
                 <thead>
-
                 <tr class="heading-tr">
                     <th>Name</th>
                     <th>Subnet ID</th>
@@ -248,25 +224,13 @@
                     <th>Network ACL</th>
                     <th>Route Table</th>
                 </tr>
-                <tr>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-                    <th><input></th>
-
-                </tr>
                 </thead>
                 <tbody>
                 {% for subnets in processing_data['subnet_details'] %}
 
                     <tr>
-                        <td>{{ subnets['Name'] }}</td>                        <td>{{ subnets['Subnet ID'] }}</td>
+                        <td>{{ subnets['Name'] }}</td>
+                        <td>{{ subnets['Subnet ID'] }}</td>
                         <td>{{ subnets['State'] }}</td>
                         <td>{{ subnets['VPC'] }}</td>
                         <td>{{ subnets['IPv4 CIDR'] }}</td>
@@ -283,6 +247,7 @@
         </div>
     </div>
     <div id="vpc_details" class="details-table" style="margin-left: 50px">
+        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
 
         <div class="cont_table_main">
             <table class="myTable" id="vpc_Table">
@@ -769,6 +734,156 @@
                 {% endfor %}
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div id="add-scheduler-popup" class="popup-container">
+        <div class="popup-content">
+            <div class="heading-refresh">
+                <div style="flex-grow: 1 "><h3>CUSTOM REFRESH INTERVAL</h3></div>
+
+                <div><a href="#" class="close">&times;</a></div>
+            </div>
+
+            <div style="display:flex;flex-direction:column; align-items: center;margin-top:50px; ">
+                <legend>CREATE NEW REFRESH SCHEDULE
+                    <form action="/automate_refresh" method="post" class="new_refresh">
+
+                        <div>
+                            <div class="host-div">
+                                <div>
+                                    <h4>REGION</h4>
+                                </div>
+                                <div>
+                                    <input type="text" id="ip-input-new" name="region"
+                                           style="display:block;width: 270px;border:1px solid #000;margin-top: 20px"
+                                           value="{{ reg }}" readonly class="region-in">
+                                    <label for="region" style="display:inline-block;font-size: x-small">Note: Kindly
+                                        change the region from selector on navigation bar </label>
+
+                                </div>
+
+                                <div><h4>TIME INTERVAL</h4></div>
+                                <div><input type="text" placeholder="Enter interval in minutes/hours"
+                                            id="time-input-new"
+                                            name="interval"></div>
+                                <div>
+                                    <select name="units" id="range-picker-new">
+                                        <option value="hours" selected>Hours</option>
+                                        <option value="minutes">Minutes</option>
+                                    </select>
+                                </div>
+                                <div class="button-refresh">
+                                    <button>ADD</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </legend>
+                <div class="refresh_container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Region</th>
+                            <th>Time Interval</th>
+                            <th>Delete</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for key,value in scheduler_data.items() %}
+                            <tr>
+
+                                <td class="regionKey">{{ key |default('') }}</td>
+                                <td class="interval">{{ value['interval'] }} {{ value['interval_units'] }}</td>
+
+                                <td class="delete_region" style="cursor:pointer;" onclick="openConfirm()"><span
+                                        class="material-symbols-outlined"> delete</span></td>
+                                <td class="status"><label class="switch">
+                                    <input type="checkbox"/>
+                                    <span class="slider round"></span>
+                                </label></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="confirmPopup" id="confirmPopup" style="display: none">
+            <form action="/delete_region" method="post" class="popup-content">
+                <a href="#" class="close">&times;</a>
+                <h3>DELETE CUSTOM REFRESH INTERVAL</h3>
+                <div style="display: flex;flex-direction: column;width: 100%;height: 280px;align-items:center;justify-content: space-evenly">
+                    <span>You are going to delete the {{ reg }} scheduled refresh.Are you sure??</span>
+                    <div style="display:flex;width:100%;height:fit-content;justify-content:center;">
+                        <button id="del-reg"
+                                style="width:150px;height:30px;border:none;cursor:pointer;background-color:#006E74;color:white;margin: 14px">
+                            DELETE
+                        </button>
+                    </div>
+                </div>
+                <div style="display:none;flex-direction:column; align-items: center">
+                    <div class="host-div">
+                        <div><input type="text" class="region-delete" readonly name="region_name"
+                                    style="visibility: hidden"></div>
+                    </div>
+                    <div class="interval-div">
+                        {#                    <div><h4>TIME INTERVAL</h4></div>#}
+                        <div><input type="text" readonly name="time-interval" class="delete-time"
+                                    style="visibility: hidden"></div>
+                        <div style="visibility: hidden">
+                            <select readonly="readonly" name="interval-units">
+                                <option value="hours" selected>Hours</option>
+                                <option value="minutes">Minutes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="dashboard_View" id="dash-view" style="display:flex">
+        <div class="cb_container">
+            <div class="grid-box box1">
+                <div class="head-text"><span>EC2</span></div>
+                <div class="count-text" class="vms"><a >{{ processing_data['ec2_details'] | length }}</a></div>
+            </div>
+            <div class="grid-box box2">
+                <div class="head-text"><span>VPC</span></div>
+                <div class="count-text" class="vpc"><a>{{ processing_data['vpc_details'] | length }}</a>
+                </div>
+
+            </div>
+            <div class="grid-box box3">
+                <div class="head-text"><span>RDS</span></div>
+                <div class="count-text" class="rds"><a>{{ processing_data['rds_details'] | length }}</a></div>
+
+            </div>
+            <div class="grid-box box4">
+                <div class="head-text"><span>DynamoDB</span></div>
+                <div class="count-text" class="dynamo"><a>{{ processing_data['dynamodb_details'] | length }}</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="gb_container">
+            <div class="graphbox box1">
+
+                <canvas id="myChart" width="1300" height="340"
+                        style="width: 1300px;height: 340px; background:#183229"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class='filterTab'>
+        <div id="columnFilters"></div>
+        <div>
+            <button id="filterButton">Filter</button>
+            <button id="clearButton">Clear</button>
         </div>
     </div>
 </div>

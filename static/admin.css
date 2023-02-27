@@ -1061,3 +1061,40 @@ canvas {
     color: #03dac5;
 }
 
+
+/*Filter div*/
+.filtericon {
+    display: flex;
+    height: 30px;
+    position: fixed;
+    right: 170px;
+    top: 77px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.filterTab {
+    width: 240px;
+    position: fixed;
+    transition: 0.7s ease;
+    right: 0;
+    top: 57px;
+    display: none;
+    height: calc(100% - 77px);
+    flex-direction: column;
+    background-color: white;
+}
+
+#columnFilters {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: calc(100% - 170px);
+
+}
+
+.select_filter {
+    border: none;
+    outline: none;
+    height: 20px;
+}
