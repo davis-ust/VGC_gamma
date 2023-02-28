@@ -3,6 +3,7 @@ let cur_table = ""
 var table
 $(document).ready(function () {
 
+
     document.getElementById('label-head').textContent = "";
 
     //tables show function
@@ -21,9 +22,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
-
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "Amazon Transfer Service";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -71,9 +72,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
-
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "SUBNETS";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -116,9 +117,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
-
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "VPC DETAILS";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -162,9 +163,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
-
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "LOAD BALANCER";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -206,8 +207,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "NACL";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -249,8 +251,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "IGW";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -292,8 +295,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "SQS";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -336,8 +340,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "NAT";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -379,8 +384,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "TGW";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -422,8 +428,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "RDS";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -465,8 +472,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "DYNAMO DB";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -508,8 +516,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "SNS";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -551,8 +560,9 @@ $(document).ready(function () {
         $('.filterTab').css("display", "none");
         $('.content_div').css("width", "calc(100% - 30px)");
         $('.filtericon').css("right", "170px");
-        $('.dataTables_info').css("right", "30px");
-        $('.dataTables_length').css("right", "30px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
         document.getElementById('label-head').textContent = "VMs";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -585,14 +595,27 @@ $(document).ready(function () {
         ec2.style.display = "flex";
         sns.style.display = "none"
     });
+    $('#closeButton').click(function () {
+        $('.filterTab').css("display", "none");
+        $('.content_div').css("width", "calc(100% - 30px)");
+        $('.filtericon').css("right", "170px");
+        $('.dataTables_info').css("right", "20px");
+        $('.dataTables_length').css("right", "20px");
+        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+    });
+    $('#refLoad').click(function (){
+        $('.loader').css("display","flex");
+    });
 
     //Filter Function
     function filter() {
         $(".filtericon").click(function () {
             $('.filterTab').css("display", "flex");
-            $('.content_div').css("width", "calc(100% - 270px");
-            $('.dataTables_info').css("right", "255px");
-            $('.dataTables_length').css("right", "255px");
+            $('.content_div').css("width", "calc(100% - 290px");
+            $('.dataTables_info').css("right", "20px");
+            $('.dataTables_length').css("right", "260px");
+            $('.dataTables_length').css("width", "calc(100% - 1166px)");
+
             $('.filtericon').css("right", "395px");
         });
 
@@ -606,12 +629,12 @@ $(document).ready(function () {
 
             // Create a new filter input for the current column
             var filterInput = $('<div>')
-                .append($('<label>').text(headerText))
-                .append($('<select>').attr('data-column', index)
+                .append($('<label style=" font-size: 12px;font-weight: 700;margin-right: 12px;">').text(headerText))
+                .append($('<select style="height: 30px;outline: none;border: none;font-size: 12px;color: #ff8e3c;">').attr('data-column', index)
                     .append($('<option>').val('contains').text('Contains'))
                     .append($('<option>').val('equals').text('Equals'))
                     .append($('<option>').val('not_equals').text('Not Equals')))
-                .append($('<input>').attr('type', 'text'));
+                .append($('<input style="width: 180px;height: 18px;outline: none;">').attr('type', 'text'));
 
             // Add the new filter input to the container
             columnFilters.append(filterInput);
@@ -667,75 +690,6 @@ $(document).ready(function () {
         $('.item[data-value="' + value + '"]').addClass('active');
 
     });
-
-
-    //for filter
-    // $(".filtericon").click(function () {
-    //     $('.filterTab').css("display", "flex");
-    //     $('.content_div').css("width", "calc(100% - 270px");
-    // });
-    //
-    // var columnFilters = $('#columnFilters');
-    // columnFilters.empty();
-    // // Iterate over each column in the table
-    // table.columns().every(function (index) {
-    //
-    //     // Get the header text for the current column
-    //     var headerText = $(table.column(index).header()).text();
-    //
-    //     // Create a new filter input for the current column
-    //     var filterInput = $('<div>')
-    //         .append($('<label>').text(headerText))
-    //         .append($('<select>').attr('data-column', index)
-    //             .append($('<option>').val('contains').text('Contains'))
-    //             .append($('<option>').val('equals').text('Equals'))
-    //             .append($('<option>').val('not_equals').text('Not Equals')))
-    //         .append($('<input>').attr('type', 'text'));
-    //
-    //     // Add the new filter input to the container
-    //     columnFilters.append(filterInput);
-    // });
-    //
-    // $('#filterButton').on('click', function () {
-    //
-    //     table.columns().every(function (index) {
-    //
-    //         // Get the filter settings for the current column
-    //         var filterType = columnFilters.find('[data-column=' + index + ']').val();
-    //         var searchTerm = columnFilters.find('[data-column=' + index + ']').next().val();
-    //
-    //         console.log(filterType, "filtertype")
-    //         console.log(searchTerm, "SearchTem")
-    //         // Apply the selected filter for the current column
-    //         switch (filterType) {
-    //             case 'contains':
-    //                 table.column(index).search(searchTerm, true, false);
-    //                 break;
-    //             case 'equals':
-    //                 table.column(index).search('^' + searchTerm + '$', true, false);
-    //                 break;
-    //             case 'not_equals':
-    //                 table.column(index).search('^(?!' + searchTerm + '$).+', true, false);
-    //                 break;
-    //         }
-    //     });
-    //
-    //     // Redraw the table to apply the filters
-    //     table.draw();
-    // });
-    //
-    //
-    // // Attach an event listener to the clear button
-    // $('#clearButton').on('click', function () {
-    //     // Clear the filter for each column in the table
-    //     table.columns().search('').draw();
-    //
-    //     // Reset the filter inputs to their default values
-    //     columnFilters.find('select').val('contains');
-    //     columnFilters.find('input').val('');
-    // });
-
-    // end filter
 
 
     $("#subnets").hover(function () {
@@ -838,7 +792,7 @@ function openConfirm() {
 
 }
 
-$('#del-reg').addEventListener('click', function () {
+$('#del-reg').click( function () {
     var conDiv = document.getElementById('confirmPopup');
     conDiv.style.display = "none";
 });
@@ -848,8 +802,8 @@ function openSettings() {
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
     const load_balancer = document.getElementById("load_balancer");
-    const nacl = document.getElementById("nacl");
-    const igw = document.getElementById("igw");
+    const nacl = document.getElementById("nacl_details");
+    const igw = document.getElementById("igw_details");
     const sqs = document.getElementById("sqs_details");
     const nat = document.getElementById("nat_details");
     const tgw = document.getElementById("tgw_details");
@@ -891,8 +845,8 @@ function opendash() {
     const subnet_details = document.getElementById("subnet_details");
     const vpc = document.getElementById("vpc_details");
     const load_balancer = document.getElementById("load_balancer");
-    const nacl = document.getElementById("nacl");
-    const igw = document.getElementById("igw");
+    const nacl = document.getElementById("nacl_details");
+    const igw = document.getElementById("igw_details");
     const sqs = document.getElementById("sqs_details");
     const nat = document.getElementById("nat_details");
     const tgw = document.getElementById("tgw_details");
@@ -923,7 +877,12 @@ function getRegion(e) {
     document.getElementById("dropdown-content").classList.toggle("show")
     clickedLinkText = e.target.textContent;
     window.location.href = '/dashboard/' + clickedLinkText;
+    $(".loader").css("display","flex");
     document.getElementById("regionIndi").textContent = clickedLinkText;
     document.getElementById("regiondrop").textContent = clickedLinkText;
+}
+function openRegioDrop(){
+    console.log(" clicked")
+     document.getElementById("dropdown-content").classList.toggle("show");
 }
 

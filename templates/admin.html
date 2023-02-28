@@ -33,9 +33,9 @@
                      onclick="opendash()">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Dashboard</span>
                 </div>
-                <div class="refresh" id="refresh" class="nav-icons" style=""
+                <div class="refresh" class="nav-icons" style=""
                      onclick="location.href='/get_latest_data'">
-                    <span style="color:white;font-weight:500; margin-bottom:0;">Refresh</span>
+                    <span style="color:white;font-weight:500; margin-bottom:0;" id="refLoad">Refresh</span>
                 </div>
                 <div class="refresh" id="export" class="nav-icons"
                      onclick="location.href='/downloads/{{ filename }}'">
@@ -46,36 +46,38 @@
                             href="#add-scheduler-popup">Auto Scan</a></span>
                 </div>
                 <div id="user" class="nav-icons">
-                    <div class="refresh" id="dropdown">
-                        <div style="display: flex;justify-content: space-evenly;width: 140px;align-items: center"
-                             onclick="myFunction()"><span
+
+                    <div id="region_drop" onclick="openRegioDrop()"
+                         style="display: flex;cursor:pointer;justify-content: space-evenly;width: 140px;align-items: center">
+                        <span
                                 id="regiondrop" style="color:white;font-weight:500; margin-bottom:0;">{{ reg }}</span>
-                            <span class="material-symbols-outlined">public</span></div>
-                        <div class="dropdown-content" id="dropdown-content">
-                            <h6 onclick="getRegion(event)">ap-south-1</h6>
-                            <h6 onclick="getRegion(event)">eu-north-1</h6>
-                            <h6 onclick="getRegion(event)">eu-west-3</h6>
-                            <h6 onclick="getRegion(event)">eu-west-2</h6>
-                            <h6 onclick="getRegion(event)">eu-west-1</h6>
-                            <h6 onclick="getRegion(event)">ap-northeast-3</h6>
-                            <h6 onclick="getRegion(event)">ap-northeast-2</h6>
-                            <h6 onclick="getRegion(event)">ap-northeast-1</h6>
-                            <h6 onclick="getRegion(event)">ca-central-1</h6>
-                            <h6 onclick="getRegion(event)">sa-east-1</h6>
-                            <h6 onclick="getRegion(event)">ap-southeast-1</h6>
-                            <h6 onclick="getRegion(event)">ap-southeast-2</h6>
-                            <h6 onclick="getRegion(event)">eu-central-1</h6>
-                            <h6 onclick="getRegion(event)">us-east-1</h6>
-                            <h6 onclick="getRegion(event)">us-east-2</h6>
-                            <h6 onclick="getRegion(event)">us-west-1</h6>
-                            <h6 onclick="getRegion(event)">us-west-2</h6>
-                        </div>
+                        <span class="material-symbols-outlined">public</span></div>
+                    <div class="dropdown-content" id="dropdown-content">
+                        <h6 onclick="getRegion(event)">ap-south-1</h6>
+                        <h6 onclick="getRegion(event)">eu-north-1</h6>
+                        <h6 onclick="getRegion(event)">eu-west-3</h6>
+                        <h6 onclick="getRegion(event)">eu-west-2</h6>
+                        <h6 onclick="getRegion(event)">eu-west-1</h6>
+                        <h6 onclick="getRegion(event)">ap-northeast-3</h6>
+                        <h6 onclick="getRegion(event)">ap-northeast-2</h6>
+                        <h6 onclick="getRegion(event)">ap-northeast-1</h6>
+                        <h6 onclick="getRegion(event)">ca-central-1</h6>
+                        <h6 onclick="getRegion(event)">sa-east-1</h6>
+                        <h6 onclick="getRegion(event)">ap-southeast-1</h6>
+                        <h6 onclick="getRegion(event)">ap-southeast-2</h6>
+                        <h6 onclick="getRegion(event)">eu-central-1</h6>
+                        <h6 onclick="getRegion(event)">us-east-1</h6>
+                        <h6 onclick="getRegion(event)">us-east-2</h6>
+                        <h6 onclick="getRegion(event)">us-west-1</h6>
+                        <h6 onclick="getRegion(event)">us-west-2</h6>
                     </div>
+
                 </div>
             </div>
 
         </div>
     </nav>
+    <div class="loader"></div>
 </div>
 
 <div id="mySidenav" class="sidenav">
@@ -350,7 +352,6 @@
             </table>
         </div>
     </div>
-
     <div id="igw_details" class="details-table">
         <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
 
@@ -851,7 +852,7 @@
         <div class="cb_container">
             <div class="grid-box box1">
                 <div class="head-text"><span>EC2</span></div>
-                <div class="count-text" class="vms"><a >{{ processing_data['ec2_details'] | length }}</a></div>
+                <div class="count-text" class="vms"><a>{{ processing_data['ec2_details'] | length }}</a></div>
             </div>
             <div class="grid-box box2">
                 <div class="head-text"><span>VPC</span></div>
@@ -872,7 +873,7 @@
             </div>
         </div>
         <div class="gb_container">
-            <div class="graphbox box1">
+            <div class="graphbox">
 
                 <canvas id="myChart" width="1300" height="340"
                         style="width: 1300px;height: 340px; background:#183229"></canvas>
@@ -881,9 +882,10 @@
     </div>
     <div class='filterTab'>
         <div id="columnFilters"></div>
-        <div>
+        <div class="buttons">
             <button id="filterButton">Filter</button>
             <button id="clearButton">Clear</button>
+            <button id="closeButton">Close</button>
         </div>
     </div>
 </div>
@@ -943,8 +945,6 @@
     });
 
 
-
-
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
 
@@ -957,7 +957,6 @@
 
 
     function myFunction() {
-        document.getElementById("dropdown-content").classList.toggle("show");
     }
 
 
