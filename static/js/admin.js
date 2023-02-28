@@ -605,6 +605,7 @@ $(document).ready(function () {
     });
     $('#refLoad').click(function (){
         $('.loader').css("display","flex");
+        document.getElementById("dropdown-content").style.display="none";
     });
 
     //Filter Function

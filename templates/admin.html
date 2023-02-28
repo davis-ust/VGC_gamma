@@ -852,22 +852,22 @@
         <div class="cb_container">
             <div class="grid-box box1">
                 <div class="head-text"><span>EC2</span></div>
-                <div class="count-text" class="vms"><a>{{ processing_data['ec2_details'] | length }}</a></div>
+                <div class="count-text" ><a class="vms" data-table-selector="#ec2_Table">{{ processing_data['ec2_details'] | length }}</a></div>
             </div>
             <div class="grid-box box2">
                 <div class="head-text"><span>VPC</span></div>
-                <div class="count-text" class="vpc"><a>{{ processing_data['vpc_details'] | length }}</a>
+                <div class="count-text" ><a class="vpc" data-table-selector="#vpc_Table">{{ processing_data['vpc_details'] | length }}</a>
                 </div>
 
             </div>
             <div class="grid-box box3">
                 <div class="head-text"><span>RDS</span></div>
-                <div class="count-text" class="rds"><a>{{ processing_data['rds_details'] | length }}</a></div>
+                <div class="count-text" ><a class="rds" data-table-selector="#rds_Table">{{ processing_data['rds_details'] | length }}</a></div>
 
             </div>
             <div class="grid-box box4">
                 <div class="head-text"><span>DynamoDB</span></div>
-                <div class="count-text" class="dynamo"><a>{{ processing_data['dynamodb_details'] | length }}</a>
+                <div class="count-text" ><a class="dynamo" data-table-selector="#dynamo_Table">{{ processing_data['dynamodb_details'] | length }}</a>
                 </div>
 
             </div>
