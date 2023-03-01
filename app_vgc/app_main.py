@@ -55,7 +55,7 @@ def main():
     Path(download_folder_path).mkdir(exist_ok=True)
     tz = pytz.timezone('Asia/Kolkata')
     current_date = datetime.datetime.now(tz=tz).strftime("%Y-%m-%d--%H-%M-%S")
-    excel_filename = region + '-' + current_date + ".xlsx"
+    excel_filename = region + ':' + current_date + ".xlsx"
     # print("Excel Filename", excel_filename)
     relative_path = fr"{download_folder_path}/aws_resource_inventory-{excel_filename}"
     print("Excel Filename", relative_path)
