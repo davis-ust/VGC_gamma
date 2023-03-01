@@ -24,7 +24,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "Amazon Transfer Service";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -74,7 +74,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "SUBNETS";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -119,7 +119,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "VPC DETAILS";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -165,7 +165,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "LOAD BALANCER";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -209,7 +209,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "NACL";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -253,7 +253,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "IGW";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -297,7 +297,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "SQS";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -342,7 +342,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "NAT";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -386,7 +386,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "TGW";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -430,7 +430,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "RDS";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -474,7 +474,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "DYNAMO DB";
         document.getElementById("mySidenav").style.width = "0";
         const subnet_details = document.getElementById("subnet_details");
@@ -518,7 +518,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
         document.getElementById('label-head').textContent = "SNS";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -562,7 +562,8 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
+
         document.getElementById('label-head').textContent = "VMs";
         document.getElementById("mySidenav").style.width = "0";
         const sns = document.getElementById("sns_details");
@@ -601,7 +602,7 @@ $(document).ready(function () {
         $('.filtericon').css("right", "170px");
         $('.dataTables_info').css("right", "20px");
         $('.dataTables_length').css("right", "20px");
-        $('.dataTables_length').css("width", "calc(100% - 1151px)");
+        $('.dataTables_length').css("width", "calc(100% - 89%)");
     });
     $('#refLoad').click(function () {
         $('.loader').css("display", "flex");
@@ -631,9 +632,9 @@ $(document).ready(function () {
             $('.content_div').css("width", "calc(100% - 290px");
             $('.dataTables_info').css("right", "20px");
             $('.dataTables_length').css("right", "260px");
-            $('.dataTables_length').css("width", "calc(100% - 1166px)");
+            $('.dataTables_length').css("width", "calc(100% - 89%)");
 
-            $('.filtericon').css("right", "395px");
+            $('.filtericon').css("right", "410px");
         });
 
         var columnFilters = $('#columnFilters');
