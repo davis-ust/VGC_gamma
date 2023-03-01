@@ -603,10 +603,26 @@ $(document).ready(function () {
         $('.dataTables_length').css("right", "20px");
         $('.dataTables_length').css("width", "calc(100% - 1151px)");
     });
-    $('#refLoad').click(function (){
-        $('.loader').css("display","flex");
-        document.getElementById("dropdown-content").style.display="none";
+    $('#refLoad').click(function () {
+        $('.loader').css("display", "flex");
+        dropToggle();
+
     });
+    $("#autoscan").click(function () {
+        dropToggle();
+
+    });
+    $("#export").click(function () {
+        dropToggle();
+    });
+
+    function dropToggle() {
+        const divElement = document.querySelector('.dropdown-content');
+        const classNames = divElement.className.substring(17);
+        if (classNames === "show") {
+            document.getElementById("dropdown-content").classList.toggle("show");
+        }
+    }
 
     //Filter Function
     function filter() {
@@ -793,7 +809,7 @@ function openConfirm() {
 
 }
 
-$('#del-reg').click( function () {
+$('#del-reg').click(function () {
     var conDiv = document.getElementById('confirmPopup');
     conDiv.style.display = "none";
 });
@@ -878,12 +894,13 @@ function getRegion(e) {
     document.getElementById("dropdown-content").classList.toggle("show")
     clickedLinkText = e.target.textContent;
     window.location.href = '/dashboard/' + clickedLinkText;
-    $(".loader").css("display","flex");
+    $(".loader").css("display", "flex");
     document.getElementById("regionIndi").textContent = clickedLinkText;
     document.getElementById("regiondrop").textContent = clickedLinkText;
 }
-function openRegioDrop(){
+
+function openRegioDrop() {
     console.log(" clicked")
-     document.getElementById("dropdown-content").classList.toggle("show");
+    document.getElementById("dropdown-content").classList.toggle("show");
 }
 

@@ -36,8 +36,10 @@ def timestamp_check():
         filename = (list(req_region_data.keys()))[0]
         ts = filename.replace('aws_resource_inventory-', '')
         ts = ts.replace('.xlsx', '')
+
         ts = ts.split('--')
         ts = ts[0] + ' ' + ts[1].replace('-', ':')
+
         print(session['region'], '---', processing_data)
         return ts, processing_data, filename
 
@@ -71,14 +73,17 @@ def handle_dashboard(region='us-east-1'):
         handle_thread_data()
         ts, processing_data, filename = timestamp_check()
         print("Latest Timestamp", ts)
+        fTime = ts.split(':', 1)[1]
+
         automated_data = get_scheduler_data()
         print('if akathu', processing_data)
-        return render_template('admin.html', processing_data=processing_data, ts=ts, filename=filename,
+        return render_template('admin.html', processing_data=processing_data, ts=fTime, filename=filename,
                                reg=session['region'], scheduler_data=automated_data)
     auto_data = get_scheduler_data()
     print("json data", auto_data)
     ts, processing_data, filename = timestamp_check()
-    return render_template('admin.html', processing_data=processing_data, ts=ts, filename=filename,
+    fTime = ts.split(':', 1)[1]
+    return render_template('admin.html', processing_data=processing_data, ts=fTime, filename=filename,
                            reg=session['region'], scheduler_data=auto_data)
 
 

@@ -42,15 +42,15 @@
                     <span style="color:white;font-weight:500; margin-bottom:0;">Export</span>
                 </div>
                 <div class="refresh" id="schedule" class="nav-icons">
-                    <span style="color:white;font-weight:500; margin-bottom:0;"><a
+                    <span style="color:white;font-weight:500; margin-bottom:0;"><a id="autoscan"
                             href="#add-scheduler-popup">Auto Scan</a></span>
                 </div>
                 <div id="user" class="nav-icons">
 
                     <div id="region_drop" onclick="openRegioDrop()"
                          style="display: flex;cursor:pointer;justify-content: space-evenly;width: 140px;align-items: center">
-                        <span
-                                id="regiondrop" style="color:white;font-weight:500; margin-bottom:0;">{{ reg }}</span>
+                        <span id="regiondrop" style="color:white;font-weight:500; margin-bottom:0;">
+                                {{ reg }}</span>
                         <span class="material-symbols-outlined">public</span></div>
                     <div class="dropdown-content" id="dropdown-content">
                         <h6 onclick="getRegion(event)">ap-south-1</h6>
@@ -890,9 +890,6 @@
     </div>
 </div>
 <footer>
-    <div>
-        <button class="region dropbtn" id="regionIndi">{{ reg }}</button>
-    </div>
     <div id="timestamp">
         Timestamp: {{ ts }}
     </div>
