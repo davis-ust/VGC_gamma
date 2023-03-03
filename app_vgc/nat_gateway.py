@@ -1,16 +1,16 @@
 from app_vgc import BotoManager
 
 
-def _get_aws_nat_gateway_data():
+def _get_aws_nat_gateway_data(region):
     print('getting _get_aws_nat_gateway_data...')
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
     nat_gw = ec2.describe_nat_gateways()
     return nat_gw
 
 
-def get_nat_gateway_df():
+def get_nat_gateway_df(region):
     print('processing get_nat_gateway_df...')
-    inat = _get_aws_nat_gateway_data()
+    inat = _get_aws_nat_gateway_data(region)
     NAT_lst = []
     for inatd in inat['NatGateways']:
         natID = {'NAT gateway ID': inatd['NatGatewayId']}

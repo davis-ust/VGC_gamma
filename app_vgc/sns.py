@@ -1,21 +1,21 @@
 from app_vgc import BotoManager
 
-
 # import json
-# import boto3
+import boto3
 
 
-def get_sns():
+def get_sns(region):
     # aws_access_key_id = "AKIAXUJZERGG4ZB2XJNX"
     # aws_secret_access_key = "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"
     # region_name = "us-east-1"
+    print(region, "region...................1................")
     print('processing get_sns...')
     #
     # session = boto3.Session(region_name=region_name, aws_access_key_id=aws_access_key_id,
     #                         aws_secret_access_key=aws_secret_access_key)
     #
     # client = session.client('sns')
-    client = BotoManager.boto_session.client('sns')
+    client = region.client('sns')
 
     sns_list = []
 
@@ -34,5 +34,7 @@ def get_sns():
 
 
 if __name__ == "__main__":
-    result = get_sns()
+    a = boto3.Session(region_name='us-east-1')
+    print(a, "aaaa")
+    result = get_sns(a)
     print(result)

@@ -1,12 +1,11 @@
 from app_vgc import BotoManager, recursive_process
+import boto3
 
-
-def get_load_balancer():
+def get_load_balancer(region):
     print('getting get_load_balancer...')
     lb_list = []
-
-    elb_classic = BotoManager.boto_session.client('elb')
-    elb_application = BotoManager.boto_session.client('elbv2')
+    elb_classic = region.client('elb')
+    elb_application = region.client('elbv2')
 
     lb_classic_lst = elb_classic.describe_load_balancers()
     lb_lst = elb_application.describe_load_balancers()
@@ -19,10 +18,10 @@ def get_load_balancer():
     return lb_list
 
 
-def get_load_balancer_pd():
+def get_load_balancer_pd(region):
     print('processing get_load_balancer_pd...')
     loadBalancer_list = []
-    lb_data = get_load_balancer()
+    lb_data = get_load_balancer(region)
 
     for i in lb_data:
         for key, values in i.items():
@@ -71,5 +70,7 @@ def get_load_balancer_pd():
 
 
 if __name__ == "__main__":
-    result = get_load_balancer_pd()
+    region = "us-east-1"
+    session = boto3.Session(region_name=region, aws_access_key_id='AKIAXUJZERGG4ZB2XJNX', aws_secret_access_key='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')
+    result = get_load_balancer_pd(session)
     print(result)

@@ -1,25 +1,24 @@
 from app_vgc import BotoManager
 
 
-def _get_dynamodb():
+def _get_dynamodb(region):
     print('getting _get_dynamodb...')
     result_ddb = []
-    dynamodb = BotoManager.boto_session.client('dynamodb')
+    dynamodb = region.client('dynamodb')
     response = dynamodb.list_tables()
     table_list = response['TableNames']
     for table in table_list:
         table_info = dynamodb.describe_table(TableName=table)
         result_ddb.append(table_info['Table'])
-
     return result_ddb
 
 
-def get_dynamo_db_df():
+def get_dynamo_db_df(region):
     print('processing get_dynamo_db_df...')
-    dynamo_db_data = _get_dynamodb()
+    dynamo_db_data = _get_dynamodb(region)
     db_table_lst = []
     for iidb in dynamo_db_data:
-        #print(iidb['ProvisionedThroughput'])
+        # print(iidb['ProvisionedThroughput'])
         TableName = {'Table Name': iidb['TableName']}
         for ikey in iidb['KeySchema']:
             TableName.update({'Key Name': ikey['AttributeName']})
@@ -34,6 +33,6 @@ def get_dynamo_db_df():
         TableName.update({'TableArn': iidb['TableArn']})
         TableName.update({'TableId': iidb['TableId']})
         db_table_lst.append(TableName)
-    #print(db_table_lst)
+    # print(db_table_lst)
 
     return db_table_lst

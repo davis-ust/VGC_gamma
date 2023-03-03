@@ -1,10 +1,10 @@
 from app_vgc import BotoManager
 
 
-def get_tgw():
+def get_tgw(region):
     print('getting get_tgw...')
     tgw_list = []
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
     tgw_details = ec2.describe_transit_gateways()
     tgw_vpc_attachments = ec2.describe_transit_gateway_vpc_attachments()
     tgw_attachments = ec2.describe_transit_gateway_attachments()
@@ -21,10 +21,10 @@ def get_tgw():
     return tgw_list
 
 
-def get_transit_gateway_df():
+def get_transit_gateway_df(region):
     print('processing get_transit_gateway_df...')
     # Transit gateway data preparation
-    transit_gate = get_tgw()
+    transit_gate = get_tgw(region)
     transit_gate_list = []
     for itran in transit_gate:
         if 'TransitGatewayAttachments' in itran.keys():

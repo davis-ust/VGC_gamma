@@ -1,10 +1,13 @@
-from app_vgc import BotoManager
-import ipaddress
+from app_vgc import BotoManager, NewBotoManager
+import ipaddress, boto3
+
+manager = NewBotoManager()
+session = manager.set_boto_session()
 
 
-def get_vpc_list():
+def get_vpc_list(region):
     print('getting get_vpc_list...')
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
     vpc_details = ec2.describe_vpcs()
     list_output = list(vpc_details['Vpcs'])
     # print(list_output)
@@ -14,9 +17,9 @@ def get_vpc_list():
 
 
 def get_vpc_pd(tup_args):
-    route_table, net_vpc = tup_args
+    region, route_table, net_vpc = tup_args
     print('processing get_vpc_pd...')
-    vpc_list = get_vpc_list()
+    vpc_list = get_vpc_list(region)
 
     vpc_detail_set = []
     for i_vpc in vpc_list:
@@ -57,7 +60,7 @@ def get_vpc_pd(tup_args):
                     RouteTableID = {'Main route table': ieki['RouteTableId']}
                     s.update(RouteTableID)
         vpc_route.append(s)
-    #print(vpc_route)
+    # print(vpc_route)
 
     # join vpc with networkACL
     vpc_ACL_list = []
@@ -67,6 +70,14 @@ def get_vpc_pd(tup_args):
             if ie['vpcID'] == s['VPC ID']:
                 s.update({'Main network ACL': ie['NetworkACL']})
         vpc_ACL_list.append(s)
-    #print(vpc_ACL_list)
+    # print(vpc_ACL_list)
 
     return vpc_ACL_list
+
+
+if __name__ == '__main__':
+    session = boto3.Session(
+        aws_access_key_id="AKIAXUJZERGG4ZB2XJNX",
+        aws_secret_access_key="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",
+        region_name='us-east-1'
+    )

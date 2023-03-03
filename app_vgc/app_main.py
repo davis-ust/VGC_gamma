@@ -1,36 +1,36 @@
 import threading
+
+import boto3
 import pytz
 import datetime
 import pandas as pd
 from pathlib import Path
-from app_vgc import BotoManager, subnet, vpc, load_balancer, internet_gateway, sqs, nat_gateway, \
+from app_vgc import BotoManager, NewBotoManager, subnet, vpc, load_balancer, internet_gateway, sqs, nat_gateway, \
     transit_gateway, rds, dynamo_db, transfer_service, ec2_vm, network_acl, sns
-
 
 download_folder_path = "generated_files"
 
 
-def main():
-    if not BotoManager.boto_session:
-        BotoManager.set_boto_session()
-    route_table = subnet.get_route_table()
-    network_acl_data = subnet.get_nacl_aws_data()
-    subnet_data, net_vpc = subnet.get_subnet_pd(route_table, network_acl_data)
-    region = BotoManager.boto_key_region
+def main(region):
+    boto_session = boto3.Session(region_name=region, aws_access_key_id='AKIAXUJZERGG4ZB2XJNX',
+                                 aws_secret_access_key='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')
+    route_table = subnet.get_route_table(boto_session)
+    network_acl_data = subnet.get_nacl_aws_data(boto_session)
+    subnet_data, net_vpc = subnet.get_subnet_pd(boto_session, route_table, network_acl_data)
     print("REGION", region)
     all_data_meta = (
-        ('vpc_details', vpc.get_vpc_pd, (route_table, net_vpc)),
-        ('load_balancer', load_balancer.get_load_balancer_pd, None),
+        ('vpc_details', vpc.get_vpc_pd, (boto_session, route_table, net_vpc)),
+        ('load_balancer', load_balancer.get_load_balancer_pd, boto_session),
         ('network_acl_details', network_acl.get_network_acl_df, network_acl_data),
-        ('igw_details', internet_gateway.get_internet_gateway, None),
-        ('sqs_details', sqs.get_sqs_df, None),
-        ('NAT_details', nat_gateway.get_nat_gateway_df, None),
-        ('tgw_details', transit_gateway.get_transit_gateway_df, None),
-        ('rds_details', rds.get_rds_df, None),
-        ('dynamodb_details', dynamo_db.get_dynamo_db_df, None),
-        ('ts_details', transfer_service.get_transfer_service_df, None),
-        ('ec2_details', ec2_vm.get_ec2_df, None),
-        ('sns_details', sns.get_sns, None)
+        ('igw_details', internet_gateway.get_internet_gateway, boto_session),
+        ('sqs_details', sqs.get_sqs_df, boto_session),
+        ('NAT_details', nat_gateway.get_nat_gateway_df, boto_session),
+        ('tgw_details', transit_gateway.get_transit_gateway_df, boto_session),
+        ('rds_details', rds.get_rds_df, boto_session),
+        ('dynamodb_details', dynamo_db.get_dynamo_db_df, boto_session),
+        ('ts_details', transfer_service.get_transfer_service_df, boto_session),
+        ('ec2_details', ec2_vm.get_ec2_df, boto_session),
+        ('sns_details', sns.get_sns, boto_session)
     )
 
     all_data = {'subnet_details': subnet_data}
@@ -55,7 +55,7 @@ def main():
     Path(download_folder_path).mkdir(exist_ok=True)
     tz = pytz.timezone('Asia/Kolkata')
     current_date = datetime.datetime.now(tz=tz).strftime("%Y-%m-%d--%H-%M-%S")
-    excel_filename = region + ':' + current_date + ".xlsx"
+    excel_filename = region + '-' + current_date + ".xlsx"
     # print("Excel Filename", excel_filename)
     relative_path = fr"{download_folder_path}/aws_resource_inventory-{excel_filename}"
     print("Excel Filename", relative_path)
@@ -81,14 +81,23 @@ def main():
         if 'dynamodb_details' in all_data:
             pd.DataFrame(data=all_data['dynamodb_details']).to_excel(writer, sheet_name="Dynamo DB", index=False)
         if 'ts_details' in all_data:
-            pd.DataFrame(data=all_data['ts_details']).to_excel(writer, sheet_name="AWS Transfer Service", index=False)
+            pd.DataFrame(data=all_data['ts_details']).to_excel(writer, sheet_name="AWS Transfer Service",
+                                                               index=False)
         if 'ec2_details' in all_data:
             pd.DataFrame(data=all_data['ec2_details']).to_excel(writer, sheet_name="VMs", index=False),
         if 'sns_details' in all_data:
             pd.DataFrame(data=all_data['sns_details']).to_excel(writer, sheet_name="SNS", index=False)
-
+    print(f"Data for region {region}: {all_data}")
     return relative_path, all_data
 
 
 if __name__ == '__main__':
-    main()
+    regions = ["us-east-1", "us-west-2", "eu-west-1"]
+    main_list = []
+    for items in regions:
+        t_regions = threading.Thread(target=main, args=(items,), daemon=True)
+        main_list.append(t_regions)
+        t_regions.start()
+    for region in main_list:
+        region.join()
+

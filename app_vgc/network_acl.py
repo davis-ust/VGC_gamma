@@ -2,7 +2,6 @@ def get_network_acl_df(network_acl):
     print('processing get_network_acl_df...')
     network_acl_lst = []
     for inet in network_acl['NetworkAcls']:
-
         NetworkAclId = {'Network ACL ID': inet['NetworkAclId']}
         for tn in inet['Tags']:
             NetworkAclId.update({'Name': tn['Value']})

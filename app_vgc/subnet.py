@@ -1,33 +1,35 @@
-from app_vgc import BotoManager
+from app_vgc import BotoManager, NewBotoManager
+
+manager = NewBotoManager()
+session = manager.set_boto_session()
 
 
-def get_nacl_aws_data():
+def get_nacl_aws_data(region):
     print('getting get_nacl_aws_data...')
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
     nacl_details = ec2.describe_network_acls()
     return nacl_details
 
 
-def get_route_table():
+def get_route_table(region):
     print('getting get_route_table...')
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
+
     route_table_details = ec2.describe_route_tables()
     return route_table_details
 
 
-def get_subnet_list():
+def get_subnet_list(region):
     print('getting get_subnet_list...')
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
     subnet_details = ec2.describe_subnets()
     list_output = list(subnet_details['Subnets'])
     return list_output
 
 
-def get_subnet_pd(route_table, network_acl):
+def get_subnet_pd(region, route_table, network_acl):
     print('processing get_subnet_pd...')
-    # network acl dataset
-    # extract vpcID and subnetID along with NetworkACL_ID
-    subnet_list = get_subnet_list()
+    subnet_list = get_subnet_list(region)
 
     net_vpc = []
     sub_net_l = []
@@ -40,14 +42,6 @@ def get_subnet_pd(route_table, network_acl):
         for i_asso in asso:
             sub_acl = {'SubnetId': i_asso['SubnetId'], 'NetworkAclId': i_asso['NetworkAclId']}
             sub_net_l.append(sub_acl)
-    #print(net_vpc)
-    #print(sub_net_l)
-
-    # Collect Route Table data
-
-    # Collect subnet details
-    # subnet_list = [{ sample subnet details }]
-    # subnet data preparation
     subnet_detail_set = []
     for i_sub in subnet_list:
         # print(i_sub)
@@ -74,7 +68,7 @@ def get_subnet_pd(route_table, network_acl):
         SubnetId.update(Networkbordergroup)
         # print(SubnetId)
         subnet_detail_set.append(SubnetId)
-    #print(subnet_detail_set)
+    # print(subnet_detail_set)
 
     # join subnet with routeTable
     subnet_route = []
@@ -100,4 +94,3 @@ def get_subnet_pd(route_table, network_acl):
         subnet_ACL.append(s)
 
     return subnet_ACL, net_vpc
-

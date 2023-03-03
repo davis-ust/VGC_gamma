@@ -1,9 +1,13 @@
-from app_vgc import BotoManager
+from app_vgc import BotoManager, NewBotoManager
+import boto3
+
+manager = NewBotoManager()
+session = manager.set_boto_session()
 
 
-def _get_transfer_service_boto_data():
+def _get_transfer_service_boto_data(region):
     print('getting _get_transfer_service_boto_data...')
-    transfer_service = BotoManager.boto_session.client('transfer')
+    transfer_service = region.client('transfer')
     server_details = transfer_service.list_servers()
     response = server_details['Servers']
     transfer_list = []
@@ -15,17 +19,16 @@ def _get_transfer_service_boto_data():
         # ServerID = response[0]['ServerId']
         # print(transfer_service.describe_server(ServerId = ServerID))
         ServerID = item['ServerId']
-        #print(transfer_service.describe_server(ServerId=ServerID))
+        # print(transfer_service.describe_server(ServerId=ServerID))
         transfer_list.append(transfer_service.describe_server(ServerId=ServerID))
-    #print(transfer_list)
+    # print(transfer_list)
 
     return transfer_list
 
 
-def get_transfer_service_df():
+def get_transfer_service_df(region):
     print('processing get_transfer_service_df...')
-    # Transfer Service Data Prepration
-    transfer_service = _get_transfer_service_boto_data()
+    transfer_service = _get_transfer_service_boto_data(region)
     transfer_service_lst = []
     for itrans in transfer_service:
         server = itrans['Server']
@@ -46,3 +49,14 @@ def get_transfer_service_df():
     # print(transfer_service_lst)
 
     return transfer_service_lst
+
+
+if __name__ == '__main__':
+    session = boto3.Session(
+        aws_access_key_id="AKIAXUJZERGG4ZB2XJNX",
+        aws_secret_access_key="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",
+        region_name='us-east-1'
+    )
+    val = get_transfer_service_df()
+    print(val)
+

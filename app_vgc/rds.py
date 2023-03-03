@@ -1,10 +1,11 @@
 from app_vgc import BotoManager
 import json
+import boto3
 
 
-def get_rds_df():
+def get_rds_df(region):
     print('processing get_rds_df...')
-    rds = BotoManager.boto_session.client('rds')
+    rds = region.client('rds')
     dbtype_file = 'app_vgc/db_instance_types.json'
     with open(dbtype_file, 'r') as json_file:
         db_types_json = json.load(json_file)
@@ -45,10 +46,10 @@ def get_rds_df():
         DB_Name.update({'VPC ID': db_details['DBSubnetGroup']['VpcId']})
         dbtype = db_details['DBInstanceClass']
 
-        #for subnet_info in db_details['DBSubnetGroup']['Subnets']:
-            #print("Subnet ID:: ", subnet_info['SubnetIdentifier'])
-            #print("Subnet Availability Zone:: ", subnet_info['SubnetAvailabilityZone']['Name'])
-            #print("Subnet Status:: ", subnet_info['SubnetStatus'])
+        # for subnet_info in db_details['DBSubnetGroup']['Subnets']:
+        # print("Subnet ID:: ", subnet_info['SubnetIdentifier'])
+        # print("Subnet Availability Zone:: ", subnet_info['SubnetAvailabilityZone']['Name'])
+        # print("Subnet Status:: ", subnet_info['SubnetStatus'])
 
         DB_Name.update({'Prefered Maintenance Window': db_details['PreferredMaintenanceWindow']})
         DB_Name.update({'LatestRestorableTime': str(db_details.get('LatestRestorableTime'))})
@@ -70,6 +71,5 @@ def get_rds_df():
 
 
 if __name__ == "__main__":
-    result = get_rds_df()
+    result = get_rds_df(boto3.Session(region_name='us-east-1'))
     print(result)
-

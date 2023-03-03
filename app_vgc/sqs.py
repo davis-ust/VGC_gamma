@@ -1,10 +1,11 @@
 from app_vgc import BotoManager
-import datetime
+import datetime, boto3
 
 
-def _get_sqs_boto_data():
+def _get_sqs_boto_data(region_name):
+    print(region_name)
     print('getting _get_sqs_boto_data...')
-    sqs = BotoManager.boto_session.client('sqs')
+    sqs = region_name.client('sqs')
     # sqs_details = sqs.list_queues()
     sqs_list = []
     for queue_url in sqs.list_queues()['QueueUrls']:
@@ -30,12 +31,18 @@ def _get_sqs_boto_data():
     return sqs_list
 
 
-def get_sqs_df():
+def get_sqs_df(region_name):
     print('processing get_sqs_df...')
     # SQS Dataset preparation
-    sqs_data = _get_sqs_boto_data()
+    sqs_data = _get_sqs_boto_data(region_name)
     sqs_lst = []
     for i_sqs in sqs_data:
         sqs_lst.append(i_sqs)
 
     return sqs_lst
+
+
+if __name__ == "__main__":
+    a = boto3.Session(region_name='us-east-1')
+    result = get_sqs_df(a)
+    print(result)

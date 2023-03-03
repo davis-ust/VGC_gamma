@@ -69,18 +69,14 @@ def handle_dashboard(region='us-east-1'):
     if not BotoManager.boto_session or BotoManager.boto_key_region != region:
         BotoManager.boto_key_region = region
         BotoManager.set_boto_session()
-        # _, processing_data = app_main.main()
         handle_thread_data()
         ts, processing_data, filename = timestamp_check()
         print("Latest Timestamp", ts)
         fTime = ts.split(':', 1)[1]
-
         automated_data = get_scheduler_data()
-        print('if akathu', processing_data)
         return render_template('admin.html', processing_data=processing_data, ts=fTime, filename=filename,
                                reg=session['region'], scheduler_data=automated_data)
     auto_data = get_scheduler_data()
-    print("json data", auto_data)
     ts, processing_data, filename = timestamp_check()
     fTime = ts.split(':', 1)[1]
     return render_template('admin.html', processing_data=processing_data, ts=fTime, filename=filename,
@@ -165,7 +161,6 @@ def add_automated_regions():
         interval_units=req_data.get('units'),
     )
     return redirect(url_for('handle_dashboard'))
-
 
 
 @app.route('/delete_region', methods=['POST'])

@@ -1,17 +1,17 @@
 from app_vgc import BotoManager
 
 
-def _get_igw():
+def _get_igw(region):
     print('getting _get_igw...')
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = region.client('ec2')
     igw_details = ec2.describe_internet_gateways()
     return igw_details
 
 
-def get_internet_gateway():
+def get_internet_gateway(region):
     print('processing get_internet_gateway...')
     igw_lst = []
-    igw_data = _get_igw()
+    igw_data = _get_igw(region)
     for iint in igw_data['InternetGateways']:
         # print(iint)
         intGat = {'Internet Gateway Id': iint['InternetGatewayId']}
