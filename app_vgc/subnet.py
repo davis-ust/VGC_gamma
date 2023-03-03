@@ -53,11 +53,15 @@ def get_subnet_pd(route_table, network_acl):
         # print(i_sub)
         SubnetId = {'Subnet ID': i_sub['SubnetId']}
         SubnetId['Name'] = '-'
+        SubnetId['Environment'] = '-'
         if 'Tags' in i_sub.keys():
             for i_tag in i_sub['Tags']:
                 if i_tag['Key'] == 'Name':
                     Name = {'Name': i_tag['Value'] or '-'}
                     SubnetId.update(Name)
+                elif i_tag['Key'] == 'Environment':
+                    Environment = {'Environment': i_tag['Value'] or '-'}
+                    SubnetId.update(Environment)
                     break
 
         State = {'State': i_sub['State']}

@@ -15,9 +15,14 @@ def get_nat_gateway_df():
     for inatd in inat['NatGateways']:
         natID = {'NAT gateway ID': inatd['NatGatewayId']}
         if len(inatd['Tags']) == 0:
-            natID.update({'Name': ' '})
+            natID.update({'Name': ''})
+        natID['Name'] = '-'
+        natID['Environment'] = '-'
         for it in inatd['Tags']:
-            natID.update({'Name': it['Value']})
+            if it['Key'] == 'Name':
+                natID.update({'Name': it['Value']} or '-')
+            elif it['Key'] == 'Environment':
+                natID.update({'Environment': it['Value']} or '-')
         for iep in inatd['NatGatewayAddresses']:
             natID.update({
                 'Elastic IP Address': iep['PublicIp'], 'Private IP address': iep['PrivateIp'],
@@ -25,6 +30,6 @@ def get_nat_gateway_df():
             })
         natID.update({'VPC ID': inatd['VpcId'], 'Subnet ID': inatd['SubnetId']})
         NAT_lst.append(natID)
-    # print(NAT_lst)
+    #print(NAT_lst)
 
     return NAT_lst

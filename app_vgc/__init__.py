@@ -23,8 +23,8 @@ def recursive_process(inp):
 
 
 class BotoManager:
-    boto_key_id = "AKIAXUJZERGG4ZB2XJNX"
-    boto_access_key = "JwdnIZ33ZzWDALMDiHcO28fQ76W4Q0mJkZRuD2q/"
+    boto_key_id = ""
+    boto_access_key = ""
     boto_key_region = 'eu-west-1'
     boto_session = None
 

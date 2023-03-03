@@ -22,11 +22,15 @@ def get_vpc_pd(tup_args):
     for i_vpc in vpc_list:
         vpcID = {'VPC ID': i_vpc['VpcId']}
         vpcID['Name'] = '-'
+        vpcID['Environment'] = '-'
         if 'Tags' in i_vpc.keys():
             for i_tags in i_vpc['Tags']:
                 if i_tags['Key'] == 'Name':
                     Name = {'Name': i_tags['Value'] or '-'}
                     vpcID.update(Name)
+                elif i_tags['Key'] == 'Environment':
+                    Environment = {'Environment': i_tags['Value'] or '-'}
+                    vpcID.update(Environment)
                     break
 
         State = {'State': i_vpc['State']}

@@ -1,4 +1,8 @@
+from pathlib import Path
+
 import boto3
+from flask import Flask, render_template, request, session, redirect, url_for, send_from_directory
+from threading import Thread
 import json
 import time
 import schedule
@@ -238,4 +242,4 @@ def handle_custom_error(error):
 if __name__ == '__main__':
     s = Thread(target=run, args=(120,))
     s.start()
-    app.run(host='0.0.0.0', port=7070, debug=True)
+    app.run(host='0.0.0.0', port=7000, debug=True)

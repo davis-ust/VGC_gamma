@@ -1,12 +1,29 @@
 import boto3
+import datetime
+# aws_access_key_id = "AKIAXUJZERGG4ZB2XJNX"
+# aws_secret_access_key = "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"
+region_name = "us-east-1"
 
-from app_vgc import BotoManager, recursive_process
+# session = boto3.Session(region_name=region_name, aws_access_key_id=aws_access_key_id,
+#                         aws_secret_access_key=aws_secret_access_key)
+session = boto3.Session(region_name=region_name)
 
+def recursive_process(inp):
+    # add conditions to check in other iterables (eg: set, tuple, etc..) if necessary
+    if isinstance(inp, list):
+        inp = [recursive_process(item) for item in inp]
+    elif isinstance(inp, dict):
+        inp = {key: recursive_process(value) for key, value in inp.items()}
 
-def _get_ec2_boto_data():
-    print('getting _get_ec2_boto_data...')
+    elif isinstance(inp, datetime.datetime):
+        inp = inp.replace(tzinfo=None)
+
+    return inp
+
+def get_boto_data():
+    print('getting get_boto_data...')
     output_list = []
-    ec2 = BotoManager.boto_session.client('ec2')
+    ec2 = session.client('ec2')
     instance_details = ec2.describe_instances()
     for instance in instance_details['Reservations']:
         for instance_item in instance['Instances']:
@@ -58,16 +75,20 @@ def _get_ec2_boto_data():
                             #  to get multiple additional disks data
                             instance_detail.update({'Additional Data Disk IDs': additional_disk_id})
                             additional_disk_volume = ec2.describe_volumes(VolumeIds=[additional_disk_id])
-                            instance_detail['Additional Data Device Name'] = additional_disk_volume['Volumes'][0]['Attachments'][0]['Device']
+                            instance_detail['Additional Data Device Name'] = \
+                            additional_disk_volume['Volumes'][0]['Attachments'][0]['Device']
                             instance_detail['Additional Data Disk Size'] = additional_disk_volume['Volumes'][0]['Size']
-                            instance_detail['Additional Disk Availability Zone'] = additional_disk_volume['Volumes'][0]['AvailabilityZone']
+                            instance_detail['Additional Disk Availability Zone'] = additional_disk_volume['Volumes'][0][
+                                'AvailabilityZone']
 
-            bkp = BotoManager.boto_session.client('backup')
+            bkp = session.client('backup')
             for bkp_plan_list in bkp.list_backup_plans()['BackupPlansList']:
                 bkp_plan_id = bkp_plan_list['BackupPlanId']
                 for selection_list in bkp.list_backup_selections(BackupPlanId=bkp_plan_id)['BackupSelectionsList']:
                     selection_id = selection_list['SelectionId']
-                    bkp_instance_list = bkp.get_backup_selection(BackupPlanId=bkp_plan_id, SelectionId=selection_id)['BackupSelection']['Resources']
+                    bkp_instance_list = \
+                    bkp.get_backup_selection(BackupPlanId=bkp_plan_id, SelectionId=selection_id)['BackupSelection'][
+                        'Resources']
                     for arn in bkp_instance_list:
                         if '/' not in arn:
                             continue
@@ -75,9 +96,11 @@ def _get_ec2_boto_data():
                         if instance_id == arn.split('/')[1]:
                             bkp_plan = bkp.get_backup_plan(BackupPlanId=bkp_plan_id)
                             instance_detail.update({'Backup Plan Name': bkp_plan['BackupPlan']['BackupPlanName']})
-                            instance_detail.update({'Backup Retention': bkp_plan['BackupPlan']['Rules'][0]['Lifecycle']['DeleteAfterDays']})
+                            instance_detail.update({'Backup Retention': bkp_plan['BackupPlan']['Rules'][0]['Lifecycle'][
+                                'DeleteAfterDays']})
                             instance_detail.update({'Backup Rule Name': bkp_plan['BackupPlan']['Rules'][0]['RuleName']})
-                            instance_detail.update({'Backup Target Vault': bkp_plan['BackupPlan']['Rules'][0]['TargetBackupVaultName']})
+                            instance_detail.update(
+                                {'Backup Target Vault': bkp_plan['BackupPlan']['Rules'][0]['TargetBackupVaultName']})
 
             output_list.append(instance_detail)
     return output_list
@@ -85,7 +108,7 @@ def _get_ec2_boto_data():
 
 def get_ec2_df():
     print('processing get_ec2_df...')
-    ec2_vm_list = _get_ec2_boto_data()
+    ec2_vm_list = get_boto_data()
     vms_ec2_lst = []
     for ec2 in ec2_vm_list:
         owner_id = {'owner_id': ec2['OwnerId']}
@@ -93,6 +116,7 @@ def get_ec2_df():
             owner_id['Name'] = '-'
             owner_id['Environment'] = '-'
             for i_t in i_ec2['Tags']:
+                print(i_t,"@@@")
                 if i_t['Key'] == 'Name':
                     owner_id['Name'] = i_t['Value']
                 elif i_t['Key'] == 'Environment':
@@ -141,11 +165,7 @@ def get_ec2_df():
     return vms_ec2_lst
 
 
-if __name__ == '__main__':
-    BotoManager.boto_session = boto3.Session(
-        aws_access_key_id="AKIAXUJZERGG4ZB2XJNX",
-        aws_secret_access_key="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",
-        region_name='us-east-1'
-    )
-    val = get_ec2_df()
-    #print(val)
+if __name__ == "__main__":
+    result = get_ec2_df()
+    #print(result)
+

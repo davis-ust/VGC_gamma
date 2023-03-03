@@ -13,7 +13,7 @@ def _get_sqs_boto_data():
         Created_Timestamp = sqs.get_queue_attributes(QueueUrl=queue_url, AttributeNames=['CreatedTimestamp'])
         epoch_time = int(Created_Timestamp['Attributes']['CreatedTimestamp'])
         Created_Time = datetime.datetime.fromtimestamp(epoch_time)
-        name.update({'Created':str(Created_Time)})
+        name.update({'Created': str(Created_Time)})
         name.update({'Type': 'FIFO' if sqs_name[-4:] == "fifo" else 'Standard'})
         SSE_Status = sqs.get_queue_attributes(QueueUrl=queue_url, AttributeNames=['SqsManagedSseEnabled'])['Attributes']['SqsManagedSseEnabled']
         kms_dict = sqs.get_queue_attributes(QueueUrl=queue_url, AttributeNames=['KmsMasterKeyId'])
