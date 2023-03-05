@@ -2,7 +2,7 @@ let clickedLinkText;
 let cur_table = ""
 var table
 $(document).ready(function () {
-
+//this is the working JS.Removed unwanted codes.
 
     document.getElementById('label-head').textContent = "";
 
@@ -899,7 +899,6 @@ function getRegion(e) {
     document.getElementById("regionIndi").textContent = clickedLinkText;
     document.getElementById("regiondrop").textContent = clickedLinkText;
 }
-
 function openRegioDrop() {
     console.log(" clicked")
     document.getElementById("dropdown-content").classList.toggle("show");

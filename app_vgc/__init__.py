@@ -25,7 +25,7 @@ def recursive_process(inp):
 class BotoManager:
     boto_key_id = ""
     boto_access_key = ""
-    boto_key_region = 'eu-west-1'
+    boto_key_region = 'eu-east-1'
     boto_session = None
 
     @classmethod

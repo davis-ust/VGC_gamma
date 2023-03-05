@@ -43,7 +43,7 @@
                 </div>
                 <div class="refresh" id="schedule" class="nav-icons">
                     <span style="color:white;font-weight:500; margin-bottom:0;"><a id="autoscan"
-                            href="#add-scheduler-popup">Auto Scan</a></span>
+                                                                                   href="#add-scheduler-popup">Auto Scan</a></span>
                 </div>
                 <div id="user" class="nav-icons">
 
@@ -53,23 +53,25 @@
                                 {{ reg }}</span>
                         <span class="material-symbols-outlined">public</span></div>
                     <div class="dropdown-content" id="dropdown-content">
-                        <h6 onclick="getRegion(event)">ap-south-1</h6>
-                        <h6 onclick="getRegion(event)">eu-north-1</h6>
-                        <h6 onclick="getRegion(event)">eu-west-3</h6>
-                        <h6 onclick="getRegion(event)">eu-west-2</h6>
-                        <h6 onclick="getRegion(event)">eu-west-1</h6>
-                        <h6 onclick="getRegion(event)">ap-northeast-3</h6>
-                        <h6 onclick="getRegion(event)">ap-northeast-2</h6>
-                        <h6 onclick="getRegion(event)">ap-northeast-1</h6>
-                        <h6 onclick="getRegion(event)">ca-central-1</h6>
-                        <h6 onclick="getRegion(event)">sa-east-1</h6>
-                        <h6 onclick="getRegion(event)">ap-southeast-1</h6>
-                        <h6 onclick="getRegion(event)">ap-southeast-2</h6>
-                        <h6 onclick="getRegion(event)">eu-central-1</h6>
-                        <h6 onclick="getRegion(event)">us-east-1</h6>
-                        <h6 onclick="getRegion(event)">us-east-2</h6>
-                        <h6 onclick="getRegion(event)">us-west-1</h6>
-                        <h6 onclick="getRegion(event)">us-west-2</h6>
+                        <form>
+                            <h6 onclick="getRegion(event)">ap-south-1</h6>
+                            <h6 onclick="getRegion(event)">eu-north-1</h6>
+                            <h6 onclick="getRegion(event)">eu-west-3</h6>
+                            <h6 onclick="getRegion(event)">eu-west-2</h6>
+                            <h6 onclick="getRegion(event)">eu-west-1</h6>
+                            <h6 onclick="getRegion(event)">ap-northeast-3</h6>
+                            <h6 onclick="getRegion(event)">ap-northeast-2</h6>
+                            <h6 onclick="getRegion(event)">ap-northeast-1</h6>
+                            <h6 onclick="getRegion(event)">ca-central-1</h6>
+                            <h6 onclick="getRegion(event)">sa-east-1</h6>
+                            <h6 onclick="getRegion(event)">ap-southeast-1</h6>
+                            <h6 onclick="getRegion(event)">ap-southeast-2</h6>
+                            <h6 onclick="getRegion(event)">eu-central-1</h6>
+                            <h6 onclick="getRegion(event)">us-east-1</h6>
+                            <h6 onclick="getRegion(event)">us-east-2</h6>
+                            <h6 onclick="getRegion(event)">us-west-1</h6>
+                            <h6 onclick="getRegion(event)">us-west-2</h6>
+                        </form>
                     </div>
 
                 </div>
@@ -210,7 +212,7 @@
 
 
     <div id="subnet_details" class="details-table">
-        <div class="filtericon"><span class="material-symbols-outlined">filter_alt</span></div>
+        <div class="filtericon"><span class="material-symbols-outlined material-symbols-sharp">filter_alt</span></div>
         <div class="cont_table_main">
             <table class="myTable" style="width: 100%" id="subnet_Table">
                 <thead>
@@ -864,22 +866,28 @@
         <div class="cb_container">
             <div class="grid-box box1">
                 <div class="head-text"><span>EC2</span></div>
-                <div class="count-text" ><a class="vms" data-table-selector="#ec2_Table">{{ processing_data['ec2_details'] | length }}</a></div>
+                <div class="count-text"><a class="vms"
+                                           data-table-selector="#ec2_Table">{{ processing_data['ec2_details'] | length }}</a>
+                </div>
             </div>
             <div class="grid-box box2">
                 <div class="head-text"><span>VPC</span></div>
-                <div class="count-text" ><a class="vpc" data-table-selector="#vpc_Table">{{ processing_data['vpc_details'] | length }}</a>
+                <div class="count-text"><a class="vpc"
+                                           data-table-selector="#vpc_Table">{{ processing_data['vpc_details'] | length }}</a>
                 </div>
 
             </div>
             <div class="grid-box box3">
                 <div class="head-text"><span>RDS</span></div>
-                <div class="count-text" ><a class="rds" data-table-selector="#rds_Table">{{ processing_data['rds_details'] | length }}</a></div>
+                <div class="count-text"><a class="rds"
+                                           data-table-selector="#rds_Table">{{ processing_data['rds_details'] | length }}</a>
+                </div>
 
             </div>
             <div class="grid-box box4">
                 <div class="head-text"><span>DynamoDB</span></div>
-                <div class="count-text" ><a class="dynamo" data-table-selector="#dynamo_Table">{{ processing_data['dynamodb_details'] | length }}</a>
+                <div class="count-text"><a class="dynamo"
+                                           data-table-selector="#dynamo_Table">{{ processing_data['dynamodb_details'] | length }}</a>
                 </div>
 
             </div>
