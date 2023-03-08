@@ -1,8 +1,8 @@
-from app_vgc import BotoManager, NewBotoManager
+# from app_vgc import BotoManager, NewBotoManager
 import ipaddress, boto3
 
-manager = NewBotoManager()
-session = manager.set_boto_session()
+# manager = NewBotoManager()
+# session = manager.set_boto_session()
 
 
 def get_vpc_list(region):

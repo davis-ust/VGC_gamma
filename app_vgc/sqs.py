@@ -6,6 +6,7 @@ def _get_sqs_boto_data(region_name):
     print(region_name)
     print('getting _get_sqs_boto_data...')
     sqs = region_name.client('sqs')
+    print(f'sqs client connect{region_name.client("sqs")}')
     # sqs_details = sqs.list_queues()
     sqs_list = []
     for queue_url in sqs.list_queues()['QueueUrls']:

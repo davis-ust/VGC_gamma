@@ -774,16 +774,16 @@ $(document).ready(function () {
     }, function () {
         $(this).css('cursor', 'auto');
     });
-    setInterval(function () {
-        $.ajax({
-            url: "/get_latest_ts", type: 'GET', success: function (res) {
-                let prev_ts = $('#timestamp').text().replace('Timestamp: ', '').trim();
-                if (prev_ts !== res) {
-                    location.reload();
-                }
-            }
-        });
-    }, 3 * 60 * 1000);
+    // setInterval(function () {
+    //     $.ajax({
+    //         url: "/get_latest_ts", type: 'GET', success: function (res) {
+    //             let prev_ts = $('#timestamp').text().replace('Timestamp: ', '').trim();
+    //             if (prev_ts !== res) {
+    //                 location.reload();
+    //             }
+    //         }
+    //     });
+    // }, 3 * 60 * 1000);
 
 });
 

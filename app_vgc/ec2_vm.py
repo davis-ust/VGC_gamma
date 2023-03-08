@@ -90,7 +90,6 @@ def _get_ec2_boto_data(region):
 
 
 def get_ec2_df(region):
-    print(region)
     print('processing get_ec2_df...')
     ec2_vm_list = _get_ec2_boto_data(region)
     vms_ec2_lst = []
@@ -146,13 +145,6 @@ def get_ec2_df(region):
 
 
 if __name__ == '__main__':
-    # BotoManager.boto_session = boto3.Session(
-    #     aws_access_key_id="AKIAXUJZERGG4ZB2XJNX",
-    #     aws_secret_access_key="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",
-    #     region_name='us-east-1'
-    # )
-    # val = get_ec2_df()
-    # print(val)
     region = 'us-east-1'
     session = boto3.Session(region_name=region, aws_access_key_id='AKIAXUJZERGG4ZB2XJNX', aws_secret_access_key='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')
     print(get_ec2_df(session))

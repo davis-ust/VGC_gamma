@@ -1,8 +1,8 @@
-from app_vgc import BotoManager, NewBotoManager
+# from app_vgc import BotoManager, NewBotoManager
 import boto3
 
-manager = NewBotoManager()
-session = manager.set_boto_session()
+# manager = NewBotoManager()
+# session = manager.set_boto_session()
 
 
 def _get_transfer_service_boto_data(region):

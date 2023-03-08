@@ -5,7 +5,7 @@ import pytz
 import datetime
 import pandas as pd
 from pathlib import Path
-from app_vgc import BotoManager, NewBotoManager, subnet, vpc, load_balancer, internet_gateway, sqs, nat_gateway, \
+from app_vgc import BotoManager, subnet, vpc, load_balancer, internet_gateway, sqs, nat_gateway, \
     transit_gateway, rds, dynamo_db, transfer_service, ec2_vm, network_acl, sns
 
 download_folder_path = "generated_files"
@@ -17,7 +17,6 @@ def main(region):
     route_table = subnet.get_route_table(boto_session)
     network_acl_data = subnet.get_nacl_aws_data(boto_session)
     subnet_data, net_vpc = subnet.get_subnet_pd(boto_session, route_table, network_acl_data)
-    print("REGION", region)
     all_data_meta = (
         ('vpc_details', vpc.get_vpc_pd, (boto_session, route_table, net_vpc)),
         ('load_balancer', load_balancer.get_load_balancer_pd, boto_session),
@@ -53,12 +52,12 @@ def main(region):
         all_thread.join()
 
     Path(download_folder_path).mkdir(exist_ok=True)
+    Path(download_folder_path).mkdir(exist_ok=True)
     tz = pytz.timezone('Asia/Kolkata')
     current_date = datetime.datetime.now(tz=tz).strftime("%Y-%m-%d--%H-%M-%S")
     excel_filename = region + '-' + current_date + ".xlsx"
     # print("Excel Filename", excel_filename)
     relative_path = fr"{download_folder_path}/aws_resource_inventory-{excel_filename}"
-    print("Excel Filename", relative_path)
     with pd.ExcelWriter(relative_path) as writer:
         if 'subnet_details' in all_data:
             pd.DataFrame(data=all_data['subnet_details']).to_excel(writer, sheet_name="Subnet", index=False)
@@ -87,7 +86,9 @@ def main(region):
             pd.DataFrame(data=all_data['ec2_details']).to_excel(writer, sheet_name="VMs", index=False),
         if 'sns_details' in all_data:
             pd.DataFrame(data=all_data['sns_details']).to_excel(writer, sheet_name="SNS", index=False)
-    print(f"Data for region {region}: {all_data}")
+    all_data['timestamp'] = current_date
+    all_data['filename'] = fr"aws_resource_inventory-{excel_filename}"
+    print(f'region- {region} --- timestamp:{current_date}')
     return relative_path, all_data
 
 

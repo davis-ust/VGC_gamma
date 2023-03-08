@@ -1,7 +1,5 @@
-from app_vgc import BotoManager, NewBotoManager
+from app_vgc import BotoManager
 
-manager = NewBotoManager()
-session = manager.set_boto_session()
 
 
 def get_nacl_aws_data(region):

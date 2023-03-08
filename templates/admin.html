@@ -33,21 +33,20 @@
                      onclick="opendash()">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Dashboard</span>
                 </div>
-                <div class="refresh" class="nav-icons" style=""
-                     onclick="location.href='/get_latest_data'">
+                <div class="refresh" id="refresh-button" class="nav-icons">
                     <span style="color:white;font-weight:500; margin-bottom:0;" id="refLoad">Refresh</span>
                 </div>
                 <div class="refresh" id="export" class="nav-icons"
-                     onclick="location.href='/downloads/{{ filename }}'">
+                     onclick="window.location.href='/downloads/{{filename}}'">
                     <span style="color:white;font-weight:500; margin-bottom:0;">Export</span>
                 </div>
                 <div class="refresh" id="schedule" class="nav-icons">
                     <span style="color:white;font-weight:500; margin-bottom:0;"><a id="autoscan"
-                            href="#add-scheduler-popup">Auto Scan</a></span>
+                                                                                   href="#add-scheduler-popup">Auto Scan</a></span>
                 </div>
                 <div id="user" class="nav-icons">
 
-                    <div id="region_drop" onclick="openRegioDrop()"
+                    <div id="region_drop" onchange="refreshData()" onclick="openRegioDrop()"
                          style="display: flex;cursor:pointer;justify-content: space-evenly;width: 140px;align-items: center">
                         <span id="regiondrop" style="color:white;font-weight:500; margin-bottom:0;">
                                 {{ reg }}</span>
@@ -56,10 +55,10 @@
                         <h6 onclick="getRegion(event)">ap-south-1</h6>
                         <h6 onclick="getRegion(event)">eu-north-1</h6>
                         <h6 onclick="getRegion(event)">eu-west-3</h6>
-                        <h6 onclick="getRegion(event)">eu-west-2</h6>
-                        <h6 onclick="getRegion(event)">eu-west-1</h6>
-                        <h6 onclick="getRegion(event)">ap-northeast-3</h6>
-                        <h6 onclick="getRegion(event)">ap-northeast-2</h6>
+                        <h6 onclick="getRegion(event)">eu-west-2 </h6>
+                        <h6 onclick="getRegion(event)">eu-west-1 </h6>
+                        <h6 onclick="getRegion(event)">ap-northeast-3 </h6>
+                        <h6 onclick="getRegion(event)">ap-northeast-2 </h6>
                         <h6 onclick="getRegion(event)">ap-northeast-1</h6>
                         <h6 onclick="getRegion(event)">ca-central-1</h6>
                         <h6 onclick="getRegion(event)">sa-east-1</h6>
@@ -852,22 +851,28 @@
         <div class="cb_container">
             <div class="grid-box box1">
                 <div class="head-text"><span>EC2</span></div>
-                <div class="count-text" ><a class="vms" data-table-selector="#ec2_Table">{{ processing_data['ec2_details'] | length }}</a></div>
+                <div class="count-text"><a class="vms"
+                                           data-table-selector="#ec2_Table">{{ processing_data['ec2_details'] | length }}</a>
+                </div>
             </div>
             <div class="grid-box box2">
                 <div class="head-text"><span>VPC</span></div>
-                <div class="count-text" ><a class="vpc" data-table-selector="#vpc_Table">{{ processing_data['vpc_details'] | length }}</a>
+                <div class="count-text"><a class="vpc"
+                                           data-table-selector="#vpc_Table">{{ processing_data['vpc_details'] | length }}</a>
                 </div>
 
             </div>
             <div class="grid-box box3">
                 <div class="head-text"><span>RDS</span></div>
-                <div class="count-text" ><a class="rds" data-table-selector="#rds_Table">{{ processing_data['rds_details'] | length }}</a></div>
+                <div class="count-text"><a class="rds"
+                                           data-table-selector="#rds_Table">{{ processing_data['rds_details'] | length }}</a>
+                </div>
 
             </div>
             <div class="grid-box box4">
                 <div class="head-text"><span>DynamoDB</span></div>
-                <div class="count-text" ><a class="dynamo" data-table-selector="#dynamo_Table">{{ processing_data['dynamodb_details'] | length }}</a>
+                <div class="count-text"><a class="dynamo"
+                                           data-table-selector="#dynamo_Table">{{ processing_data['dynamodb_details'] | length }}</a>
                 </div>
 
             </div>
@@ -898,6 +903,12 @@
 <script>
     {#var canvas = document.getElementById('myChart');#}
     // canvas.width = "320
+    $('#refresh-button').click(function () {
+        var region = $('#regiondrop').text().trim();
+        console.log(region, 'regionn---------')
+        window.location.href = '/get_latest_data/' + region; // redirect to the dashboard page with the current or default region
+    });
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
