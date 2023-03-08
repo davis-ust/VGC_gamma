@@ -3,13 +3,14 @@ import datetime, boto3
 
 
 def _get_sqs_boto_data(region_name):
-    print(region_name)
+    print("sqs", region_name)
     print('getting _get_sqs_boto_data...')
     sqs = region_name.client('sqs')
     print(f'sqs client connect{region_name.client("sqs")}')
     # sqs_details = sqs.list_queues()
     sqs_list = []
     for queue_url in sqs.list_queues()['QueueUrls']:
+        print(f'result for sqs-listqueues(){queue_url}')
         sqs_name = queue_url.split('/')[-1]
         name = {'Name': sqs_name}
         Created_Timestamp = sqs.get_queue_attributes(QueueUrl=queue_url, AttributeNames=['CreatedTimestamp'])
